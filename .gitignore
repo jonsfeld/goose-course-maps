@@ -1,0 +1,34 @@
+# Large raw source data — regenerable from public APIs, don't commit
+courses/*/sources/dem/*.tif
+courses/*/sources/dem/*.tiff
+courses/*/sources/point_cloud/*.laz
+courses/*/sources/point_cloud/*.las
+courses/*/sources/imagery/*.tif
+courses/*/sources/imagery/*.tiff
+courses/*/sources/imagery/*.jp2
+
+# Derived rasters — regenerable from sources
+courses/*/derived/*.tif
+courses/*/derived/*.tiff
+
+# QGIS project state (per-author)
+*.qgz
+*.qgs~
+*.qgd
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.python-version
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local-only scratch
+scratch/
+tmp/
