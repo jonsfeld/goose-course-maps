@@ -1,20 +1,21 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "status": "draft_read_from_user_purple_circles",
-    "source": "User drew 9 purple circles on green_picker.png annotation (2026-04-20). I'm reading coords approximately from the grid. User to verify before region-grow.",
+    "status": "user_verified_from_zoomed_annotation",
+    "source": "User's purple-circle annotations on green_picker_zoom.png (2026-04-20 second pass). Coords read from 0.001° yellow grid + 0.0002° fine grid.",
     "date": "2026-04-20",
-    "notes": "Hole numbers are PROVISIONAL — assigned in rough spatial order (NW to SE). Real hole assignment happens after centroids are confirmed, using the course layout diagram."
+    "expected_precision_m": 15,
+    "notes": "IDs are labels only — real hole_id assignment happens after picked polygons are confirmed, via course layout diagram spatial reasoning."
   },
   "features": [
-    {"type": "Feature", "properties": {"centroid_id": 1, "provisional_hole": null, "kind": "green_centroid_estimate"}, "geometry": {"type": "Point", "coordinates": [-118.2928, 34.11975]}},
-    {"type": "Feature", "properties": {"centroid_id": 2, "provisional_hole": null, "kind": "green_centroid_estimate"}, "geometry": {"type": "Point", "coordinates": [-118.29075, 34.12110]}},
-    {"type": "Feature", "properties": {"centroid_id": 3, "provisional_hole": null, "kind": "green_centroid_estimate"}, "geometry": {"type": "Point", "coordinates": [-118.28890, 34.12100]}},
-    {"type": "Feature", "properties": {"centroid_id": 4, "provisional_hole": null, "kind": "green_centroid_estimate"}, "geometry": {"type": "Point", "coordinates": [-118.28740, 34.12080]}},
-    {"type": "Feature", "properties": {"centroid_id": 5, "provisional_hole": null, "kind": "green_centroid_estimate"}, "geometry": {"type": "Point", "coordinates": [-118.29100, 34.11905]}},
-    {"type": "Feature", "properties": {"centroid_id": 6, "provisional_hole": null, "kind": "green_centroid_estimate"}, "geometry": {"type": "Point", "coordinates": [-118.29060, 34.11885]}},
-    {"type": "Feature", "properties": {"centroid_id": 7, "provisional_hole": null, "kind": "green_centroid_estimate"}, "geometry": {"type": "Point", "coordinates": [-118.28720, 34.11860]}},
-    {"type": "Feature", "properties": {"centroid_id": 8, "provisional_hole": null, "kind": "green_centroid_estimate"}, "geometry": {"type": "Point", "coordinates": [-118.28670, 34.11890]}},
-    {"type": "Feature", "properties": {"centroid_id": 9, "provisional_hole": null, "kind": "green_centroid_estimate"}, "geometry": {"type": "Point", "coordinates": [-118.29180, 34.11810]}}
+    {"type": "Feature", "properties": {"centroid_id": 1, "provisional_hole": null, "kind": "green_centroid"}, "geometry": {"type": "Point", "coordinates": [-118.2890, 34.1218]}},
+    {"type": "Feature", "properties": {"centroid_id": 2, "provisional_hole": null, "kind": "green_centroid"}, "geometry": {"type": "Point", "coordinates": [-118.2905, 34.1210]}},
+    {"type": "Feature", "properties": {"centroid_id": 3, "provisional_hole": null, "kind": "green_centroid"}, "geometry": {"type": "Point", "coordinates": [-118.2885, 34.1210]}},
+    {"type": "Feature", "properties": {"centroid_id": 4, "provisional_hole": null, "kind": "green_centroid"}, "geometry": {"type": "Point", "coordinates": [-118.2937, 34.1203]}},
+    {"type": "Feature", "properties": {"centroid_id": 5, "provisional_hole": null, "kind": "green_centroid"}, "geometry": {"type": "Point", "coordinates": [-118.2918, 34.1197]}},
+    {"type": "Feature", "properties": {"centroid_id": 6, "provisional_hole": null, "kind": "green_centroid"}, "geometry": {"type": "Point", "coordinates": [-118.2910, 34.1198]}},
+    {"type": "Feature", "properties": {"centroid_id": 7, "provisional_hole": null, "kind": "green_centroid"}, "geometry": {"type": "Point", "coordinates": [-118.2885, 34.1190]}},
+    {"type": "Feature", "properties": {"centroid_id": 8, "provisional_hole": null, "kind": "green_centroid"}, "geometry": {"type": "Point", "coordinates": [-118.2870, 34.1190]}},
+    {"type": "Feature", "properties": {"centroid_id": 9, "provisional_hole": null, "kind": "green_centroid"}, "geometry": {"type": "Point", "coordinates": [-118.2925, 34.1183]}}
   ]
 }
