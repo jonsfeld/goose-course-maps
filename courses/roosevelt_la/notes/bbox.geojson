@@ -4,26 +4,27 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Roosevelt GC footprint (tight, visually verified)",
-        "source": "NAIP visual inspection of Wikipedia centroid 34.118976, -118.293799 region",
+        "name": "Roosevelt GC footprint (v4 — full course after Google Maps cross-check)",
+        "source": "Google Maps visual inspection + NAIP confirmation. Course bounded by Commonwealth Canyon Dr (north + east), Vermont Canyon Dr (west), Lovell House (south).",
         "date": "2026-04-20",
         "revision_history": [
           "v1 (Phase A research): 1.52 km² centered on bad centroid 34.1265, -118.2967 — placed ~220m north of course in Griffith Park hills. WRONG.",
-          "v2 (bbox correction after NAIP inspection): 0.71 km² with verified Wikipedia centroid + buffer. Contained course but also Greek Theatre parking and Los Feliz residential.",
-          "v3 (this file): 0.42 km² tight to course features visible in NAIP. Matches LAZ southern coverage edge at 34.118."
+          "v2 (bbox correction): 0.71 km² with verified Wikipedia centroid + buffer. Contained course but also Greek Theatre parking and Los Feliz residential.",
+          "v3: 0.42 km² tight to course features visible in NAIP. Matched LAZ southern edge at 34.118 BUT cut off the entire eastern half of the course.",
+          "v4 (this file): ~1.17 km². Extends east to ~-118.283 (Commonwealth Canyon Dr east flank) and slightly south to 34.117. Captures full course per Google Maps cross-check."
         ],
-        "area_km2": 0.42,
-        "laz_coverage_note": "Southern bbox edge matches LAZ tile boundary at lat 34.118 exactly. If course extends slightly south of this, CHM will have a thin gap there."
+        "area_km2": 1.17,
+        "laz_coverage_note": "South edge at 34.117 is 100m below LAZ coverage (LAZ bottom is 34.118). East edge at -118.283 is within the eastern LAZ column (-118.290 to -118.280) — fully covered. If the 100m south gap matters, we can pull 3 more LAZ tiles from the 037500 row."
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
-            [-118.2960, 34.1180],
-            [-118.2890, 34.1180],
-            [-118.2890, 34.1240],
-            [-118.2960, 34.1240],
-            [-118.2960, 34.1180]
+            [-118.2980, 34.1170],
+            [-118.2830, 34.1170],
+            [-118.2830, 34.1255],
+            [-118.2980, 34.1255],
+            [-118.2980, 34.1170]
           ]
         ]
       }
