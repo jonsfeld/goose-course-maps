@@ -52,11 +52,12 @@ def render(slug: str) -> Path:
     with centroids_path.open() as f:
         centroids = json.load(f)["features"]
     for c_ in centroids:
-        hole = c_["properties"]["hole"]
+        props = c_["properties"]
+        label = props.get("hole") or props.get("centroid_id") or props.get("provisional_hole") or "?"
         x, y = c_["geometry"]["coordinates"]
         ax.scatter([x], [y], s=180, marker="o",
                    facecolor="yellow", edgecolor="red", linewidths=2, zorder=5)
-        ax.annotate(str(hole), (x, y), fontsize=14, fontweight="bold",
+        ax.annotate(str(label), (x, y), fontsize=14, fontweight="bold",
                     color="white", ha="center", va="center", zorder=6)
 
     ax.set_title(
