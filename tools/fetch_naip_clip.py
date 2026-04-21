@@ -19,7 +19,7 @@ IMAGE_SERVER = (
 )
 
 
-def fetch(slug: str, width: int = 4096, height: int = 4096) -> Path:
+def fetch(slug: str, width: int = 2048, height: int = 2048) -> Path:
     minx, miny, maxx, maxy = bbox_from_course(slug)
 
     out_dir = ensure_dir(course_dir(slug) / "sources" / "imagery")
@@ -42,6 +42,12 @@ def fetch(slug: str, width: int = 4096, height: int = 4096) -> Path:
     r = requests.get(IMAGE_SERVER, params=params, timeout=120, stream=True)
     r.raise_for_status()
 
+    # ImageServer returns JSON on error (even with 200). Detect by content-type.
+    ctype = r.headers.get("content-type", "")
+    if "image" not in ctype.lower():
+        body = r.content[:500].decode("utf-8", errors="replace")
+        raise RuntimeError(f"NAIP ImageServer returned non-image ({ctype}): {body}")
+
     with out_path.open("wb") as f:
         for chunk in r.iter_content(chunk_size=1 << 20):
             f.write(chunk)
@@ -54,8 +60,8 @@ def fetch(slug: str, width: int = 4096, height: int = 4096) -> Path:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--course", required=True, help="Course slug (e.g. roosevelt_la)")
-    ap.add_argument("--width", type=int, default=4096, help="Output pixel width")
-    ap.add_argument("--height", type=int, default=4096, help="Output pixel height")
+    ap.add_argument("--width", type=int, default=2048, help="Output pixel width (max ~4096 per ImageServer)")
+    ap.add_argument("--height", type=int, default=2048, help="Output pixel height")
     args = ap.parse_args()
 
     fetch(args.course, args.width, args.height)

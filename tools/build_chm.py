@@ -29,6 +29,7 @@ from _common import course_dir, ensure_dir
 
 
 CHM_NOISE_FLOOR_M = 0.3
+CHM_MAX_PLAUSIBLE_M = 80.0   # anything above this is garbage (tallest trees ~50m)
 
 
 def build(slug: str) -> Path:
@@ -49,6 +50,8 @@ def build(slug: str) -> Path:
         crs = dem_src.crs
         bounds = dem_src.bounds
         meta = dem_src.meta.copy()
+        dem_nodata = dem_src.nodata
+    dem_valid = dem != dem_nodata if dem_nodata is not None else np.ones_like(dem, dtype=bool)
 
     print(f"[chm] target grid {width}x{height}, crs={crs}, bounds={bounds}")
 
@@ -90,10 +93,19 @@ def build(slug: str) -> Path:
             dsm[rows, cols] = new_vals
 
     dsm_valid = ~np.isnan(dsm)
-    print(f"[chm] DSM populated for {dsm_valid.sum()} / {dsm.size} cells")
+    valid = dsm_valid & dem_valid
+    print(
+        f"[chm] DSM populated for {dsm_valid.sum()} / {dsm.size} cells; "
+        f"DEM valid for {dem_valid.sum()}; both valid {valid.sum()}"
+    )
 
-    chm = np.where(dsm_valid, dsm - dem, 0.0).astype("float32")
+    chm = np.where(valid, dsm - dem, 0.0).astype("float32")
     chm[chm < CHM_NOISE_FLOOR_M] = 0.0
+    # Clip impossible heights (hard cap; these are artifacts of mis-aligned cells)
+    implausible = chm > CHM_MAX_PLAUSIBLE_M
+    if implausible.any():
+        print(f"[chm] clipping {implausible.sum()} implausible cells (>{CHM_MAX_PLAUSIBLE_M} m) to 0")
+        chm[implausible] = 0.0
 
     out_path = derived / "canopy_height_model.tif"
     meta.update({"dtype": "float32", "compress": "deflate", "tiled": True})
