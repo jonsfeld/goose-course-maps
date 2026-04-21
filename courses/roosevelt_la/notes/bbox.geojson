@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Roosevelt GC footprint",
+        "source": "manual estimate from public maps",
+        "date": "2026-04-20"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-118.3030, 34.1210],
+            [-118.2900, 34.1210],
+            [-118.2900, 34.1325],
+            [-118.3030, 34.1325],
+            [-118.3030, 34.1210]
+          ]
+        ]
+      }
+    }
+  ]
+}
