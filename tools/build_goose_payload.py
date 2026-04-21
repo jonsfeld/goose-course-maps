@@ -168,7 +168,7 @@ def _features_by_hole(osm_feats: list, hole_refs: dict) -> dict:
 # Build
 # --------------------------------------------------------------------------
 
-def build(slug: str) -> tuple[Path, Path]:
+def build(slug: str, name_suffix: str = "") -> tuple[Path, Path]:
     c = course_dir(slug)
     osm_path = c / "derived" / "features_osm.geojson"
     hole_data_path = c / "derived" / "hole_data.json"
@@ -317,10 +317,12 @@ def build(slug: str) -> tuple[Path, Path]:
         "vintage": "2026-04-21",
     }
 
-    payload = {
-        "name": (next((f["properties"].get("course_name") for f in osm_feats
+    base_name = (next((f["properties"].get("course_name") for f in osm_feats
                        if f["properties"]["kind"] == "course_boundary"), None)
-                 or "Roosevelt Golf Course"),
+                 or "Roosevelt Golf Course")
+    full_name = f"{base_name}{(' ' + name_suffix) if name_suffix else ''}"
+    payload = {
+        "name": full_name,
         "slug": slug,
         "holes": len(hole_data_list),
         "location": {
@@ -389,8 +391,12 @@ ON CONFLICT (name) DO UPDATE SET
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--course", required=True)
+    ap.add_argument(
+        "--name-suffix", default="",
+        help='Appended to course name, e.g. "(LiDAR-OSM)" for side-by-side variance test',
+    )
     args = ap.parse_args()
-    build(args.course)
+    build(args.course, args.name_suffix)
 
 
 if __name__ == "__main__":
