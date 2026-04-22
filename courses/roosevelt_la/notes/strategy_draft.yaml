@@ -1,0 +1,928 @@
+---
+# =========================================================================
+# Roosevelt Municipal GC — Phase D Strategy Draft
+# =========================================================================
+# STATUS:  draft — pending user approval, not merged into map.auto.md
+# LAYER:   complementary to Phase B/C/E outputs (2D geometry + LiDAR terrain)
+# PURPOSE: strategic narrative + landing/approach/miss zones per hole,
+#          research-backed with source URLs + confidence tags per claim.
+#
+# Merge-target fields (when approved):
+#   - map.auto.md → per-hole narrative + strategy block
+#   - goose_payload.json.hole_data[n].course_strategy
+#   - goose_payload.json.hole_data[n].green_intelligence
+#   - goose_payload.json.course_intelligence.course_memory_rules
+#
+# Research base: notes/strategy_research.md
+# Generated: 2026-04-21
+# Pipeline: manual:phase_d_v0
+#
+# Confidence legend:
+#   high   = 2+ concurring sources, or architect statement, or corroborated by
+#            our geometry/terrain data
+#   medium = 1 credible source + geometric plausibility, or 2 casual sources
+#   low    = 1 casual source OR pure geometric inference with no reviewer input
+#   absent = no claim made (honest gap)
+# =========================================================================
+
+meta:
+  status: draft_pending_user_approval
+  generated: 2026-04-21
+  course_slug: roosevelt_la
+  pipeline: manual:phase_d_v0
+  research_base: notes/strategy_research.md
+  overall_confidence: medium
+  overall_confidence_note: >
+    Single primary hole-by-hole source (GolfGreatly post-renovation review,
+    2021). Reviewer chorus confirms overall course themes. Holes 2/4/6/8
+    have best coverage; holes 1/3/5/7/9 are thinner and rely more heavily
+    on architect-intent quotes + our own geometry/terrain data.
+  known_gaps:
+    - Per-hole green slope magnitudes (only directions inferred from DEM)
+    - Pin placement tendencies (zero public data)
+    - Wind behaviour / prevailing direction (not in any golf source)
+    - Firm/soft seasonality (one casual note only)
+    - Hole-1, hole-7 strategic specifics (reviewers say "straightforward" / "not notable")
+  conflicts_flagged:
+    - Grass type (bent per GolfPass vs. poa annua per reviewer) — needs ground-truth
+    - OSM bunker count (10) vs. architect-stated total (5) — OSM may include pre-renovation
+      bunkers that Richardson removed in 2019; flag each bunker until field-verified
+
+# =========================================================================
+# Course-level character (high confidence, architect + multi-reviewer)
+# =========================================================================
+
+course_character:
+  personality: >
+    Walking-only hilly 9-hole muni tucked into the south end of Griffith
+    Park. Par 33, 2,496 yd from the Black tees — small by yardage, but the
+    drama is entirely in the terrain. Architect intent (Forrest Richardson,
+    2019 restoration): "The defence of the course is all about the natural
+    terrain and the drama you get from playing up, down and around."
+
+  hardest_holes: [2, 4, 6, 8]
+  hardest_holes_confidence: high
+  hardest_holes_source: >
+    Greenskeeper reviewer roarksown1 (stated across 2 reviews) + echoed by
+    other reviewers.
+
+  defining_features:
+    - claim: "Only 5 bunkers total post-renovation"
+      confidence: high
+      source: Forrest Richardson firm announcement (Jan 2019)
+      url: https://www.forrestrichardsongolf.com/city-of-los-angeles-restores-roosevelt-golf-course/
+    - claim: "No water hazards anywhere on the course"
+      confidence: medium
+      source: "Richie's World of Golf (2013, pre-reno) + reno scope did not add water; corroborated by our OSM query returning zero water polygons"
+    - claim: "Trees isolate each hole — tight tree-lined corridors"
+      confidence: medium
+      source: Multiple TripAdvisor/GolfPass mentions; corroborated by our CHM showing dense canopy
+    - claim: "Tee boxes are the weak point — poor grass, firm soil"
+      confidence: high
+      source: GolfGreatly + multiple Greenskeeper reviewers (roarksown1, t8fish, dangerousbri)
+    - claim: "Greens roll better than typical LA muni when maintained; medium speed"
+      confidence: high
+      source: GolfGreatly + Greenskeeper reviewers t8fish (07/2024), Itslikeimsayin (04/2024)
+
+  conditions:
+    green_speed: medium
+    green_speed_confidence: high
+    green_firmness: medium
+    green_firmness_confidence: low  # single casual mention
+    grass:
+      fairway: bermuda
+      fairway_confidence: high
+      green: "conflicting — bent (GolfPass) vs poa annua (reviewer). Most LA munis run poa. Flag for ground-truth."
+      green_confidence: conflicting
+    wind:
+      description: "No authoritative golf-source description of prevailing direction or canyon effect"
+      confidence: absent
+      policy: "do not synthesise; wind is runtime input only per schema principle"
+
+  architect_quotes:
+    - >
+      "The defence of the course is all about the natural terrain and the
+      drama you get from playing up, down and around."
+      — Forrest Richardson (GCA article)
+    - >
+      "The last thing Roosevelt needs is an abundance of bunkers to make it
+      interesting."
+      — Forrest Richardson (GCA article)
+    - >
+      "The course doesn't make you feel as if you've hiked the Alps, yet
+      you become totally lost in the hills."
+      — Forrest Richardson (GCA article)
+
+  renovation:
+    architect: "Forrest Richardson (ASGCA)"
+    year: 2019
+    scope: "Better Billy Bunker installation, new forward tees, green restoration to original configurations, recycled-water irrigation"
+    source: https://www.forrestrichardsongolf.com/projects/roosevelt-golf-course-griffith-park-california/
+
+  bunker_count_anomaly:
+    osm_count: 10
+    architect_stated_count: 5
+    resolution: >
+      OSM likely contains pre-2019 bunker polygons that Richardson removed
+      during consolidation. Each bunker feature should carry a
+      `may_be_preren` flag until field-verified against current Google
+      Earth imagery or on-course walkthrough.
+    action: >
+      Goose should treat OSM bunker polygons as "probable" rather than
+      "confirmed" until verified. For strategy purposes, avoid calling out
+      individual bunker positions that disagree with architect-documented
+      renovated bunkers (cross bunker on H4; greenside bunkers on H1 left
+      and H3 short-left; others TBD).
+
+# =========================================================================
+# Per-hole strategy (research + geometry fusion)
+# =========================================================================
+
+holes:
+
+  # --------------------------------------------------------------------
+  - hole: 1
+    par: 4
+    yardage_black: 275
+    handicap: 6
+    geometry_from_pipeline:
+      net_delta_m: +9.6    # uphill
+      green_fall_direction: NE
+      dominant_slope_deg: 0.5
+      osm_bunkers_assigned: 1
+
+    narrative: >
+      Short opening par-4 playing 9.6 m uphill. Reviewers call it the most
+      straightforward hole on the course — a gentle settle-in. A single
+      bunker guards the left side of the green; everything else is playable.
+
+    course_strategy:
+      hole_type: short_par_4_opener
+      hole_personality: straightforward
+      tee_strategy:
+        preferred_club: "hybrid or long iron (driver unnecessary)"
+        rationale: "275 yd total uphill — 220 yd with hybrid leaves a comfortable wedge in"
+        confidence: medium
+      approach_strategy:
+        primary_target: center_green
+        preferred_miss: right
+        danger_miss: left   # bunker
+        green_slope_bias: "slight fall NE (0.5° from LiDAR — not material)"
+        confidence: medium
+      miss_hierarchy:
+        safe: "short or right"
+        risky: "left (bunker); long downhill past green"
+      confidence: medium
+      sources:
+        - "GolfGreatly review: https://www.golfgreatly.com/golf-course-reviews/roosevelt-golf-course"
+
+    green_intelligence:
+      size: unknown
+      shape: unknown
+      firmness: medium   # course-level default
+      safe_miss: right
+      dangerous_miss: left   # bunker
+      pin_tendency: unknown
+      confidence: low
+
+    landing_zones:
+      - label: default
+        priority: default
+        club: "hybrid / long iron"
+        target: center_fairway
+        leaves_distance_yd: ~55
+        left_penalty: low
+        right_penalty: low
+        rationale: "Wide corridor, no fairway trouble. Short-iron-in is the ideal approach distance for an uphill 275."
+        confidence: medium
+
+    approach_zones:
+      - target_side: center
+        miss_left_penalty: medium  # bunker
+        miss_right_penalty: low
+        rationale: "Bunker left = the only greenside trouble."
+        confidence: medium
+
+    miss_zones:
+      - side: left
+        penalty: medium
+        shot_difficulty: medium
+        description: "Left greenside bunker"
+      - side: right
+        penalty: low
+        shot_difficulty: low
+      - side: long
+        penalty: low
+        shot_difficulty: medium
+        description: "Downhill chip back up to green"
+
+  # --------------------------------------------------------------------
+  - hole: 2
+    par: 4
+    yardage_black: 391
+    handicap: 2
+    geometry_from_pipeline:
+      net_delta_m: +12.9   # long uphill
+      green_fall_direction: NW
+      dominant_slope_deg: 0.75
+      osm_bunkers_assigned: 0
+
+    narrative: >
+      One of the most challenging par 4s in the city — long and uphill with
+      deep valleys on every side of the elevated green except left. Missing
+      short, right, or long leaves tough hillside recovery shots. Reviewers
+      consistently cite this as a round-shaper.
+
+    course_strategy:
+      hole_type: long_par_4_uphill
+      hole_personality: penal_elevated_green
+      tee_strategy:
+        preferred_club: driver
+        rationale: "391 yd black + 12.9 m uphill → plays 420+ effective. Need maximum distance off the tee."
+        confidence: high
+      approach_strategy:
+        primary_target: "left-center of green"
+        preferred_miss: left   # the ONLY miss that isn't a valley
+        danger_miss: "short, right, or long — all valleys per GolfGreatly"
+        green_slope_bias: "slight NW fall (0.75° from LiDAR)"
+        confidence: high
+      miss_hierarchy:
+        safe: left
+        risky: "short, right, or long (each leaves hillside recovery)"
+      confidence: high
+      sources:
+        - "GolfGreatly: https://www.golfgreatly.com/golf-course-reviews/roosevelt-golf-course"
+        - "Greenskeeper t8fish 08/2022: 'long uphill tee shot will test you for length'"
+
+    green_intelligence:
+      size: unknown
+      shape: unknown
+      firmness: medium
+      safe_miss: left
+      dangerous_miss: "any other direction"
+      pin_tendency: unknown
+      confidence: medium
+
+    landing_zones:
+      - label: default
+        priority: default
+        club: driver
+        target: center_fairway
+        leaves_distance_yd: ~150
+        left_penalty: low
+        right_penalty: medium
+        rationale: "Need max distance. Center or slight left-favour to avoid right hillside."
+        confidence: high
+
+    approach_zones:
+      - target_side: left_center
+        miss_left_penalty: low
+        miss_right_penalty: high
+        rationale: "Left is the only non-hillside miss. Take one extra club (uphill + elevated)."
+        confidence: high
+
+    miss_zones:
+      - side: left
+        penalty: low
+        shot_difficulty: medium
+        description: "Only safe miss — easy chip back"
+      - side: short
+        penalty: high
+        shot_difficulty: hard
+        description: "Hillside base, tough recovery"
+      - side: right
+        penalty: high
+        shot_difficulty: hard
+        description: "Deep valley"
+      - side: long
+        penalty: high
+        shot_difficulty: hard
+        description: "Deep valley"
+
+  # --------------------------------------------------------------------
+  - hole: 3
+    par: 3
+    yardage_black: 155
+    handicap: 9
+    geometry_from_pipeline:
+      net_delta_m: +0.1    # flat
+      green_fall_direction: N
+      dominant_slope_deg: 0.61
+      osm_bunkers_assigned: 1
+
+    narrative: >
+      Shortest hole on the course, demanding both accuracy and distance
+      control. A large overhanging eucalyptus frames the right side and a
+      bunker sits short-left. Reviewers mention tricky back-to-front slopes.
+
+    course_strategy:
+      hole_type: short_par_3
+      hole_personality: accuracy_test
+      tee_strategy:
+        preferred_club: "short to mid iron (~155 yd)"
+        rationale: "Straight tee shot to a center target. Beware the eucalyptus right."
+        confidence: medium
+      approach_strategy:
+        primary_target: center_green
+        preferred_miss: right   # away from the bunker
+        danger_miss: left   # bunker
+        green_slope_bias: "back-to-front reviewer hint + N-ish fall from LiDAR (0.61°)"
+        confidence: medium
+      miss_hierarchy:
+        safe: "long or right"
+        risky: "short-left (bunker); under the eucalyptus right"
+      confidence: medium
+      sources:
+        - "GolfGreatly (defining features: eucalyptus right + bunker short-left)"
+        - "Search-snippet commentary re: back-to-front slopes"
+
+    green_intelligence:
+      size: unknown
+      shape: unknown
+      firmness: medium
+      safe_miss: right
+      dangerous_miss: "short-left (bunker)"
+      pin_tendency: "back pins play longer due to back-to-front slope (qualitative)"
+      confidence: medium
+
+    landing_zones:
+      - label: tee_shot
+        priority: default
+        club: "short-mid iron"
+        target: center_green
+        rationale: "No layup option on a par 3; full shot to the green."
+        confidence: medium
+
+    approach_zones:
+      - target_side: center
+        miss_left_penalty: medium   # bunker
+        miss_right_penalty: low
+        rationale: "Bunker short-left; eucalyptus deep-right but playable."
+        confidence: medium
+
+    miss_zones:
+      - side: short_left
+        penalty: medium
+        shot_difficulty: medium
+        description: "Bunker"
+      - side: right
+        penalty: low
+        shot_difficulty: medium
+        description: "Under eucalyptus; playable but blocked"
+      - side: long
+        penalty: low
+        shot_difficulty: medium
+        description: "Downhill chip into back-to-front slope"
+
+  # --------------------------------------------------------------------
+  - hole: 4
+    par: 4
+    yardage_black: 335
+    handicap: 3
+    geometry_from_pipeline:
+      net_delta_m: +1.2    # effectively flat, but steep uphill final approach
+      green_fall_direction: E
+      dominant_slope_deg: 0.41
+      osm_bunkers_assigned: 0    # but architect confirmed cross bunker exists
+    osm_bunker_warning: "OSM shows 0 bunkers on this hole; architect says Richardson added a cross bunker in 2019. OSM may be stale."
+
+    narrative: >
+      Short par 4 that Richardson called a "gem." Landing zone ~200 yd
+      leaves a tough short-iron up a steep final hill to a small target.
+      The cross bunker added in the 2019 restoration is in play off the
+      tee. Overshoot the green by five yards and you're in an inaccessible
+      penalty area — short is much safer than long.
+
+    course_strategy:
+      hole_type: short_par_4_uphill_approach
+      hole_personality: "risk_reward — gem hole"
+      tee_strategy:
+        preferred_club: "3-wood / hybrid (avoid the cross bunker)"
+        rationale: "Cross bunker in play from driver. Layup to ~200 yd is the architect's intended strategic choice."
+        confidence: medium
+      approach_strategy:
+        primary_target: "center-front of green"
+        preferred_miss: short   # long = penalty area
+        danger_miss: long   # inaccessible penalty
+        green_slope_bias: "slight E fall (0.41° from LiDAR)"
+        confidence: high
+      miss_hierarchy:
+        safe: short
+        risky: long
+      confidence: medium_high
+      sources:
+        - "GolfGreatly ('a gem', 200-yd drive, long=penalty)"
+        - "Forrest Richardson firm: https://www.forrestrichardsongolf.com/city-of-los-angeles-restores-roosevelt-golf-course/ (cross bunker)"
+        - "Richie's World 2013: dogleg right (routing unchanged)"
+
+    green_intelligence:
+      size: small   # implied by "small target / no margin"
+      shape: unknown
+      firmness: medium
+      safe_miss: short
+      dangerous_miss: long
+      pin_tendency: "front pins more accessible; back pins push long = risky"
+      confidence: medium
+
+    landing_zones:
+      - label: safe_layup
+        priority: default
+        club: "3-wood / hybrid"
+        target: "center fairway short of cross bunker (~200 yd)"
+        leaves_distance_yd: ~135
+        left_penalty: low
+        right_penalty: low
+        rationale: "Architect's intended play — lay short of the cross bunker, then fire at the pin with a full short-iron."
+        confidence: high
+      - label: aggressive
+        priority: aggressive
+        club: driver
+        target: "right side of fairway past the cross bunker"
+        leaves_distance_yd: ~85
+        left_penalty: medium   # cross bunker
+        right_penalty: medium
+        rationale: "Longer carry past cross bunker leaves wedge in; risk is a found bunker."
+        confidence: medium
+
+    approach_zones:
+      - target_side: front_to_center
+        miss_left_penalty: low
+        miss_right_penalty: low
+        miss_long_penalty: high   # inaccessible penalty area
+        miss_short_penalty: low
+        rationale: "Green is small and uphill; steep uphill means the ball stops fast. DO NOT go long."
+        confidence: high
+
+    miss_zones:
+      - side: long
+        penalty: severe
+        shot_difficulty: impossible   # inaccessible
+        description: "Inaccessible penalty area past green"
+      - side: short
+        penalty: low
+        shot_difficulty: easy
+        description: "Uphill chip back"
+
+  # --------------------------------------------------------------------
+  - hole: 5
+    par: 4
+    yardage_black: 344
+    handicap: 4
+    geometry_from_pipeline:
+      net_delta_m: +5.1    # uphill
+      green_fall_direction: N
+      dominant_slope_deg: 0.66
+      osm_bunkers_assigned: 2
+
+    narrative: >
+      Dogleg-left par 4 from an elevated tee box. The tee shot requires a
+      carry of 200+ yd across a valley to set up a favourable angle to a
+      narrow green.
+
+    course_strategy:
+      hole_type: par_4_dogleg_left_carry
+      hole_personality: forced_carry_risk_reward
+      tee_strategy:
+        preferred_club: "driver / 3-wood (must carry 200+ yd)"
+        rationale: "Elevated tee + valley carry; any shorter and you're blocked"
+        confidence: medium
+      approach_strategy:
+        primary_target: center_green
+        preferred_miss: short   # narrow green, long-side unknown trouble
+        danger_miss: unknown
+        green_slope_bias: "N fall (0.66°)"
+        confidence: medium
+      miss_hierarchy:
+        safe: "short or center"
+        risky: "unknown — narrow green"
+      confidence: medium
+      sources:
+        - "GolfGreatly (elevated tee, 200-yd carry, narrow green, dogleg left)"
+        - "Richie's World 2013 (dogleg left confirmed)"
+
+    green_intelligence:
+      size: small   # "narrow"
+      shape: long_narrow
+      firmness: medium
+      safe_miss: "front/center"
+      dangerous_miss: unknown
+      pin_tendency: unknown
+      confidence: medium
+
+    landing_zones:
+      - label: default
+        priority: default
+        club: "driver / 3-wood"
+        target: "past the dogleg, left-center fairway"
+        leaves_distance_yd: ~130
+        rationale: "200+ yd carry across valley to set up the angle; shorter = blocked or in valley"
+        confidence: medium
+
+    approach_zones:
+      - target_side: center
+        miss_short_penalty: low
+        rationale: "Narrow green — aim center. Distance control > direction here."
+        confidence: medium
+
+    miss_zones:
+      - side: short
+        penalty: low
+        shot_difficulty: medium
+      - side: long
+        penalty: unknown
+        shot_difficulty: unknown
+      - side: left_off_tee
+        penalty: high
+        shot_difficulty: hard
+        description: "Valley; blocked"
+
+  # --------------------------------------------------------------------
+  - hole: 6
+    par: 4
+    yardage_black: 315
+    handicap: 5
+    geometry_from_pipeline:
+      net_delta_m: -20.8   # STEEP DOWNHILL
+      green_fall_direction: NE
+      dominant_slope_deg: 0.36
+      osm_bunkers_assigned: 1
+
+    narrative: >
+      Downhill par 4 with city views. The fairway is very tight and slopes
+      hard right-to-left. The smart play per the best public review is NOT
+      driver: take a short iron or wedge and loft it straight down the
+      right side, hugging the tree line — the slope will kick it down into
+      position. Avoid driver, the fairway is too narrow.
+
+    course_strategy:
+      hole_type: short_par_4_downhill
+      hole_personality: "finesse — club-down off the tee"
+      tee_strategy:
+        preferred_club: "short iron / wedge (NOT driver)"
+        rationale: >
+          315 yd downhill with 20.8 m drop means it plays ~275-285
+          effective. Tight fairway slopes R→L; a short iron lofted right
+          lets the slope deliver you into the fairway. Driver is dangerous.
+        confidence: high
+      approach_strategy:
+        primary_target: center_green
+        preferred_miss: center_to_right   # slope already pushes left
+        danger_miss: left   # slope amplifies everything left
+        green_slope_bias: "NE fall (0.36°), but course slope from fairway is dominant"
+        confidence: medium
+      miss_hierarchy:
+        safe: right_rough
+        risky: "left (slope kicks everything further left)"
+      confidence: high
+      sources:
+        - "GolfGreatly (tight, slopes hard R→L, short iron smart)"
+        - "Richie's World 2013 (narrow tree-lined, drops significantly)"
+        - "Greenskeeper t8fish: 'usual backup on #6' — confirms hole plays slowly"
+        - "Reviewer roarksown1: hardest-4 list includes hole 6"
+
+    green_intelligence:
+      size: unknown
+      shape: unknown
+      firmness: medium
+      safe_miss: right
+      dangerous_miss: left
+      pin_tendency: unknown
+      confidence: medium
+
+    landing_zones:
+      - label: default_finesse
+        priority: default
+        club: "short iron / wedge"
+        target: "right side of fairway along tree line"
+        leaves_distance_yd: ~120
+        left_penalty: high   # slope + tight
+        right_penalty: medium   # trees
+        rationale: "Architect-intent hole — control over distance. Slope delivers the ball to center."
+        confidence: high
+      - label: aggressive_discouraged
+        priority: aggressive
+        club: driver
+        note: "NOT recommended — fairway is too narrow for the dispersion"
+        confidence: high
+
+    approach_zones:
+      - target_side: center
+        miss_right_penalty: low
+        miss_left_penalty: medium
+        rationale: "Short iron in from 120 yd; easy."
+        confidence: medium
+
+    miss_zones:
+      - side: left
+        penalty: medium
+        shot_difficulty: hard
+        description: "Slope pushes everything left; recovery is steep uphill back to fairway"
+      - side: right
+        penalty: low
+        shot_difficulty: medium
+        description: "Tree line"
+
+  # --------------------------------------------------------------------
+  - hole: 7
+    par: 3
+    yardage_black: 163
+    handicap: 7
+    geometry_from_pipeline:
+      net_delta_m: +6.6    # uphill
+      green_fall_direction: NE
+      dominant_slope_deg: 0.44
+      osm_bunkers_assigned: 0
+    osm_bunker_warning: "Pre-renovation (2013) source noted a fronting bunker; OSM shows none. Post-reno status uncertain."
+
+    narrative: >
+      Uphill par 3 with distinctive humps in front of the green.
+      Not considered notable by reviewers, but the humps demand flighted
+      distance — short comes up in the bumps.
+
+    course_strategy:
+      hole_type: uphill_par_3
+      hole_personality: "flight control"
+      tee_strategy:
+        preferred_club: "one extra club (163 + 6.6m uphill → plays 180+)"
+        rationale: "Uphill + humps in front = must carry to the putting surface"
+        confidence: medium
+      approach_strategy:
+        primary_target: center_green
+        preferred_miss: long_to_center   # don't come up short into the humps
+        danger_miss: short   # humps
+        green_slope_bias: "NE fall (0.44°)"
+        confidence: medium
+      miss_hierarchy:
+        safe: long_center
+        risky: short
+      confidence: medium
+      sources:
+        - "GolfGreatly ('pleasant but not notable', uphill, humps in front)"
+
+    green_intelligence:
+      size: unknown
+      shape: unknown
+      firmness: medium
+      safe_miss: long_center
+      dangerous_miss: short
+      pin_tendency: unknown
+      confidence: low
+
+    landing_zones:
+      - label: tee_shot
+        priority: default
+        club: "one extra club vs stock 163"
+        target: center_green
+        rationale: "Plays ~180+ effective. Don't leave it short into the humps."
+        confidence: medium
+
+    approach_zones:
+      - target_side: center
+        rationale: "Par 3 — single shot to the green."
+        confidence: medium
+
+    miss_zones:
+      - side: short
+        penalty: medium
+        shot_difficulty: medium
+        description: "Humps in front make chipping awkward"
+      - side: long
+        penalty: low
+        shot_difficulty: medium
+
+  # --------------------------------------------------------------------
+  - hole: 8
+    par: 4
+    yardage_black: 351
+    handicap: 1
+    geometry_from_pipeline:
+      net_delta_m: +2.6    # slight net, but shape dominates
+      green_fall_direction: NW
+      dominant_slope_deg: 0.35
+      osm_bunkers_assigned: 3
+
+    narrative: >
+      One of the most unusual and memorable par 4s around. The tee shot
+      requires a solid 215-yd strike up the hill, past trees encroaching
+      from the right, to a hilltop aiming flag — at which point the
+      fairway turns sharply down to the right. Miss right and you're up
+      a steep hillside with a blind pitch-out; miss left risks OB. Griffith
+      Observatory is visible from the hole as a rough aiming reference.
+      Reviewers consistently cite this as the hardest hole on the course
+      (handicap 1).
+
+    course_strategy:
+      hole_type: dogleg_right_blind_tee
+      hole_personality: "demanding — hit the aiming flag or suffer"
+      tee_strategy:
+        preferred_club: "driver / 3-wood — 215 yd minimum required"
+        rationale: "Must carry the hill + trees right to reach the turn; any less and you're blocked or on the hillside"
+        confidence: high
+      approach_strategy:
+        primary_target: "right-center of green"
+        preferred_miss: right   # slope kicks left, approach drifts left and runs hot
+        danger_miss: left   # downhill approaches drift left
+        green_slope_bias: "NW fall (0.35°), but approach is strongly downhill — balls run hot"
+        confidence: high
+      miss_hierarchy:
+        safe: "center (straight up the aiming flag)"
+        risky: "right off tee = stuck uphill with blind pitch; left off tee = OB; approach left = runs hot"
+      confidence: high
+      sources:
+        - "GolfGreatly (the definitive description: 215yd uphill, aiming flag, blind sharp right, downhill approaches run hot, left OB)"
+        - "Richie's World 2013 (dogleg right, Observatory background)"
+        - "TripAdvisor baybee63: 'one hole has the Observatory as an aiming point'"
+        - "Reviewer roarksown1: hardest-4 list includes hole 8"
+
+    green_intelligence:
+      size: unknown
+      shape: unknown
+      firmness: medium
+      safe_miss: "right-of-green (against the slope drift)"
+      dangerous_miss: "left (slope amplifies left drift, approaches run hot)"
+      pin_tendency: unknown
+      confidence: medium
+
+    landing_zones:
+      - label: mandatory_aim
+        priority: default
+        club: "driver / 3-wood"
+        target: "aiming flag on hilltop (straight, no shape)"
+        leaves_distance_yd: ~130
+        left_penalty: high   # OB
+        right_penalty: high   # hillside, blind pitch out
+        rationale: "No alternative — must hit the aiming flag. Both misses are severe."
+        confidence: high
+
+    approach_zones:
+      - target_side: right_center
+        miss_left_penalty: high   # approach drifts hot left
+        miss_right_penalty: low
+        rationale: "Downhill approach; ball runs hot + slope drifts left. Aim RIGHT to let physics deliver to center."
+        confidence: high
+
+    miss_zones:
+      - side: right_off_tee
+        penalty: severe
+        shot_difficulty: hard
+        description: "Steep hillside; blind pitch-out only — effectively a 1-shot penalty"
+      - side: left_off_tee
+        penalty: severe
+        shot_difficulty: impossible
+        description: "OB"
+      - side: long
+        penalty: medium
+        shot_difficulty: hard
+        description: "Approach runs hot downhill — long miss extends trouble"
+
+  # --------------------------------------------------------------------
+  - hole: 9
+    par: 3
+    yardage_black: 167
+    handicap: 8
+    geometry_from_pipeline:
+      net_delta_m: -11.2   # DOWNHILL
+      green_fall_direction: NE
+      dominant_slope_deg: 0.16
+      osm_bunkers_assigned: 2
+
+    narrative: >
+      Downhill finishing par 3 to a large green with hidden breaks. Short
+      shots will run onto the putting surface. The ONLY real danger is
+      taking too much club and flying it long — the penalty area beyond
+      the green is ominously marked as "rattlesnake habitat." Short is fine;
+      long is disaster.
+
+    course_strategy:
+      hole_type: downhill_par_3
+      hole_personality: "distance-control finisher"
+      tee_strategy:
+        preferred_club: "one LESS club than stock 167 (11m downhill → plays ~145)"
+        rationale: >
+          Downhill + large receptive green + rattlesnake penalty long =
+          short is forgiving, long is catastrophic. Club down.
+        confidence: high
+      approach_strategy:
+        primary_target: center_green
+        preferred_miss: short   # balls run up
+        danger_miss: long   # rattlesnake penalty area
+        green_slope_bias: "NE fall (0.16° — minimal); reviewer notes 'hidden breaks'"
+        confidence: high
+      miss_hierarchy:
+        safe: short
+        risky: long
+      confidence: high
+      sources:
+        - "GolfGreatly (downhill, large green, rattlesnake penalty long)"
+
+    green_intelligence:
+      size: large
+      shape: unknown
+      firmness: medium
+      safe_miss: short
+      dangerous_miss: long
+      pin_tendency: "front pins very accessible running up; back pins require full carry"
+      confidence: medium
+
+    landing_zones:
+      - label: tee_shot
+        priority: default
+        club: "one less than stock 167 (plays ~145)"
+        target: "front-center of green"
+        rationale: "Let the ball run up. Prioritise not going long."
+        confidence: high
+
+    approach_zones:
+      - target_side: front_center
+        miss_long_penalty: severe   # rattlesnake
+        rationale: "Short is ball-runs-up. Long is penalty."
+        confidence: high
+
+    miss_zones:
+      - side: short
+        penalty: low
+        shot_difficulty: easy
+        description: "Ball runs onto green"
+      - side: long
+        penalty: severe
+        shot_difficulty: impossible
+        description: "Rattlesnake habitat penalty area"
+
+# =========================================================================
+# Course memory rules (cross-hole patterns Goose should remember)
+# =========================================================================
+
+course_memory_rules:
+  - pattern: "Holes 2, 4, 6, 8 are the four hardest — expect bogey-or-worse exposure if off your game"
+    confidence: high
+    sources:
+      - "Greenskeeper reviewer roarksown1 (stated twice)"
+      - "Multiple other reviewers"
+
+  - pattern: "Hole 4 and Hole 6 reward clubbing DOWN off the tee (lay up / short-iron) — architect-intended risk/reward"
+    confidence: medium
+    sources:
+      - "GolfGreatly (H4 cross bunker, H6 tight fairway)"
+
+  - pattern: "Hole 2 and Hole 8 reward maximum distance — uphill/long and forced-carry respectively"
+    confidence: high
+    sources:
+      - "GolfGreatly + multi-reviewer"
+
+  - pattern: "Walking-only course — conserve energy on uphill holes (2, 5, 7)"
+    confidence: medium
+    sources: ["SCGA listing", "GolfGreatly terrain descriptions"]
+
+  - pattern: "Tee boxes are firm/grassless — don't expect to plug a tee; bring a tee-peg-friendly pre-shot routine"
+    confidence: high
+    sources: ["GolfGreatly", "Greenskeeper roarksown1, t8fish, dangerousbri"]
+
+  - pattern: "Downhill holes (6, 9) amplify distance — always club down"
+    confidence: high
+    sources: ["GolfGreatly (H6 short iron)", "GolfGreatly (H9 rattlesnake-long warning)"]
+
+  - pattern: "Uphill holes (1, 2, 5, 7) play long — add club relative to yardage"
+    confidence: high
+    sources: ["Our LiDAR terrain data + reviewer corroboration on H2 + H7"]
+
+  - pattern: "Greens are the strong point of the course when maintained; medium speed"
+    confidence: high
+    sources: ["GolfGreatly", "Multiple Greenskeeper reviewers"]
+
+  - pattern: "Dogleg directions: H4=right, H5=left, H8=right"
+    confidence: high
+    sources: ["Richie's World 2013 (pre-reno, routing unchanged)", "GolfGreatly (H5, H8)"]
+
+# =========================================================================
+# Summary of what's in vs out of this draft
+# =========================================================================
+
+summary:
+  populated_with_research_backing:
+    high_confidence: [hole 2 strategy, hole 4 cross bunker, hole 6 short-iron strategy, hole 8 demanding tee shot, hole 9 rattlesnake, course-level architect intent]
+    medium_confidence: [hole 1 narrative, hole 3 features, hole 5 carry strategy, hole 7 uphill humps, green characteristics generally]
+  populated_with_geometry_only:
+    - Green fall direction + magnitude (from our DEM gradient analysis)
+    - Net elevation deltas per hole
+    - Bunker counts (OSM) — FLAGGED for possible pre-renovation staleness
+  honestly_empty:
+    - Per-hole pin tendencies (zero public data)
+    - Wind / prevailing direction
+    - Firm/soft seasonality beyond generic
+    - Green slope magnitudes beyond macro DEM gradient
+    - Hole 1, 7 strategic specifics (reviewers say "unremarkable")
+
+  user_review_checklist:
+    - "[ ] Per hole: does the narrative match Roosevelt as you've played it?"
+    - "[ ] Per hole: is the preferred_miss / danger_miss consistent with your memory?"
+    - "[ ] Bunker count flag on H4 and H7 (OSM vs architect reality) — confirm or correct"
+    - "[ ] Grass type conflict (bent vs poa) — can you resolve with ground-truth?"
+    - "[ ] Hole 8 'observatory as aiming flag' — is that still accurate post-reno?"
+    - "[ ] Anything I claim with 'medium' or 'low' confidence that you know first-hand"
+
+  merge_plan_when_approved:
+    - "Hole narratives → map.auto.md per-hole narrative block"
+    - "course_strategy + green_intelligence → goose_payload.json hole_data[n]"
+    - "landing_zones + approach_zones + miss_zones → map.auto.md + goose_payload.json"
+    - "course_memory_rules → goose_payload.json course_intelligence.course_memory_rules"
+    - "Regenerate goose_upsert.sql from updated goose_payload.json"
