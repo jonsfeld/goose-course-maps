@@ -1,6 +1,6 @@
--- Goose course upsert — Roosevelt Municipal Golf Course (LiDAR-OSM)
--- Generated 0.1 by build_goose_payload.py
--- Load via Supabase SQL editor: copy-paste and run.
+-- Goose course insert — Roosevelt Municipal Golf Course (LiDAR-OSM)
+-- Generated 0.1 by build_goose_payload.py (plain INSERT mode)
+-- Use --upsert flag to emit ON CONFLICT clause if your schema has UNIQUE(name).
 
 INSERT INTO courses (
   name, holes, location, hole_data, green_slope_data, terrain_data,
@@ -17,14 +17,4 @@ VALUES (
   '{"scorecard": {"tee_sets": [{"name": "black", "par": 33, "total_yards": 2496, "rating_mens": 63.8, "slope_mens": 106, "rating_womens": 68.8, "slope_womens": 114}, {"name": "blue", "par": 33, "total_yards": 2316, "rating_mens": 62.2, "slope_mens": 102, "rating_womens": 67.0, "slope_womens": 109}, {"name": "white", "par": 33, "total_yards": 1641, "rating_mens": 58.6, "slope_mens": 87, "rating_womens": 59.2, "slope_womens": 92}], "holes": [{"hole": 1, "par": 4, "handicap": 6, "yardages": {"black": 275, "blue": 256, "white": 192}}, {"hole": 2, "par": 4, "handicap": 2, "yardages": {"black": 391, "blue": 376, "white": 234}}, {"hole": 3, "par": 3, "handicap": 9, "yardages": {"black": 155, "blue": 132, "white": 105}}, {"hole": 4, "par": 4, "handicap": 3, "yardages": {"black": 335, "blue": 308, "white": 197}}, {"hole": 5, "par": 4, "handicap": 4, "yardages": {"black": 344, "blue": 323, "white": 264}}, {"hole": 6, "par": 4, "handicap": 5, "yardages": {"black": 315, "blue": 295, "white": 225}}, {"hole": 7, "par": 3, "handicap": 7, "yardages": {"black": 163, "blue": 149, "white": 125}}, {"hole": 8, "par": 4, "handicap": 1, "yardages": {"black": 351, "blue": 330, "white": 173}}, {"hole": 9, "par": 3, "handicap": 8, "yardages": {"black": 167, "blue": 147, "white": 126}}]}, "tee_shot_corridors": {"1": {"length_m": 233.8, "length_yd": 255.6, "narrowest_clear_yd": 22.4, "median_clear_yd": 58.0, "max_overhead_m": 0.0, "p90_overhead_m": 0.0, "pinch_at_yd": 0.0}, "2": {"length_m": 372.2, "length_yd": 407.1, "narrowest_clear_yd": 24.6, "median_clear_yd": 50.9, "max_overhead_m": 0.0, "p90_overhead_m": 0.0, "pinch_at_yd": 0.0}, "3": {"length_m": 100.5, "length_yd": 109.9, "narrowest_clear_yd": 19.7, "median_clear_yd": 41.0, "max_overhead_m": 0.0, "p90_overhead_m": 0.0, "pinch_at_yd": 0.0}, "4": {"length_m": 306.3, "length_yd": 334.9, "narrowest_clear_yd": 1.1, "median_clear_yd": 52.5, "max_overhead_m": 17.5, "p90_overhead_m": 0.0, "pinch_at_yd": 139.6}, "5": {"length_m": 225.1, "length_yd": 246.1, "narrowest_clear_yd": 36.1, "median_clear_yd": 59.3, "max_overhead_m": 0.0, "p90_overhead_m": 0.0, "pinch_at_yd": 240.5}, "6": {"length_m": 236.5, "length_yd": 258.7, "narrowest_clear_yd": 22.4, "median_clear_yd": 42.7, "max_overhead_m": 0.0, "p90_overhead_m": 0.0, "pinch_at_yd": 33.7}, "7": {"length_m": 174.7, "length_yd": 191.0, "narrowest_clear_yd": 1.6, "median_clear_yd": 47.6, "max_overhead_m": 20.4, "p90_overhead_m": 0.0, "pinch_at_yd": 5.8}, "8": {"length_m": 301.8, "length_yd": 330.0, "narrowest_clear_yd": 17.5, "median_clear_yd": 44.3, "max_overhead_m": 0.0, "p90_overhead_m": 0.0, "pinch_at_yd": 33.6}, "9": {"length_m": 138.1, "length_yd": 151.0, "narrowest_clear_yd": 25.2, "median_clear_yd": 35.3, "max_overhead_m": 0.0, "p90_overhead_m": 0.0, "pinch_at_yd": 63.9}}, "data_sources": {"dem": {"source": "USGS_3DEP_1m", "dataset": "CA_LosAngeles_B23", "vintage": "2025-08-11", "collection": "2023-01 to 2024-01"}, "point_cloud": {"source": "USGS_LPC", "dataset": "CA_LosAngeles_1_B23", "vintage": "2025-06-13", "density_pts_per_m2": 18.8}, "imagery": {"source": "USGS_NAIP_ImageServer", "vintage": "2025-01-09"}, "features_2d": {"source": "OpenStreetMap", "api": "Overpass", "vintage": "2026-04-21", "license": "ODbL"}}, "confidence_notes": {"terrain_vertical_m": 0.1, "terrain_horizontal_m": 1.0, "green_slope_resolution": "macro only (1m DEM); no micro-break", "geometry_source_accuracy_m": "OSM community; may be several meters off true boundary"}, "pipeline": "manual:auto", "payload_version": "0.1"}'::jsonb,
   'manual:auto',
   NULL
-)
-ON CONFLICT (name) DO UPDATE SET
-  holes = EXCLUDED.holes,
-  location = EXCLUDED.location,
-  hole_data = EXCLUDED.hole_data,
-  green_slope_data = EXCLUDED.green_slope_data,
-  terrain_data = EXCLUDED.terrain_data,
-  vector_data = EXCLUDED.vector_data,
-  course_intelligence = EXCLUDED.course_intelligence,
-  mapping_source = EXCLUDED.mapping_source,
-  updated_at = now();
+);

@@ -168,7 +168,7 @@ def _features_by_hole(osm_feats: list, hole_refs: dict) -> dict:
 # Build
 # --------------------------------------------------------------------------
 
-def build(slug: str, name_suffix: str = "") -> tuple[Path, Path]:
+def build(slug: str, name_suffix: str = "", upsert: bool = False) -> tuple[Path, Path]:
     c = course_dir(slug)
     osm_path = c / "derived" / "features_osm.geojson"
     hole_data_path = c / "derived" / "hole_data.json"
@@ -342,15 +342,15 @@ def build(slug: str, name_suffix: str = "") -> tuple[Path, Path]:
     out_json = c / "goose_payload.json"
     out_json.write_text(json.dumps(payload, indent=2, allow_nan=False))
 
-    # Also produce a SQL upsert (single statement, JSON-cast columns)
+    # SQL — plain INSERT by default (matches Goose's current courses schema:
+    # no `updated_at` column and no UNIQUE constraint on `name`).
+    # Pass --upsert to emit ON CONFLICT (name) DO UPDATE if your schema later
+    # adds those affordances. Default is plain INSERT to avoid round-trips
+    # with Lovable / Supabase about missing schema features.
     def _esc(s: str) -> str:
         return s.replace("'", "''")
 
-    sql = f"""-- Goose course upsert — {payload['name']}
--- Generated {PAYLOAD_VERSION} by build_goose_payload.py
--- Load via Supabase SQL editor: copy-paste and run.
-
-INSERT INTO courses (
+    base_values = f"""INSERT INTO courses (
   name, holes, location, hole_data, green_slope_data, terrain_data,
   vector_data, course_intelligence, mapping_source, igolf_id
 )
@@ -365,7 +365,14 @@ VALUES (
   '{_esc(json.dumps(payload['course_intelligence']))}'::jsonb,
   '{_esc(payload['mapping_source'])}',
   NULL
-)
+)"""
+
+    if upsert:
+        sql = f"""-- Goose course upsert — {payload['name']}
+-- Generated {PAYLOAD_VERSION} by build_goose_payload.py (--upsert mode)
+-- Requires UNIQUE(name) constraint and updated_at column on courses table.
+
+{base_values}
 ON CONFLICT (name) DO UPDATE SET
   holes = EXCLUDED.holes,
   location = EXCLUDED.location,
@@ -377,6 +384,14 @@ ON CONFLICT (name) DO UPDATE SET
   mapping_source = EXCLUDED.mapping_source,
   updated_at = now();
 """
+    else:
+        sql = f"""-- Goose course insert — {payload['name']}
+-- Generated {PAYLOAD_VERSION} by build_goose_payload.py (plain INSERT mode)
+-- Use --upsert flag to emit ON CONFLICT clause if your schema has UNIQUE(name).
+
+{base_values};
+"""
+
     out_sql = c / "goose_upsert.sql"
     out_sql.write_text(sql)
 
@@ -395,8 +410,12 @@ def main() -> None:
         "--name-suffix", default="",
         help='Appended to course name, e.g. "(LiDAR-OSM)" for side-by-side variance test',
     )
+    ap.add_argument(
+        "--upsert", action="store_true",
+        help="Emit ON CONFLICT (name) DO UPDATE clause (requires UNIQUE(name) + updated_at).",
+    )
     args = ap.parse_args()
-    build(args.course, args.name_suffix)
+    build(args.course, args.name_suffix, args.upsert)
 
 
 if __name__ == "__main__":
