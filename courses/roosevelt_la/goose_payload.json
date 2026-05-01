@@ -354,6 +354,7 @@
           "lng": -118.2936816
         }
       ],
+      "fairway_polygon_provenance": "osm",
       "bunkers": [
         {
           "osm_id": 893595854,
@@ -857,6 +858,7 @@
           "lng": -118.2925276
         }
       ],
+      "fairway_polygon_provenance": "osm",
       "bunkers": [],
       "water_hazards": [],
       "out_of_bounds": [],
@@ -1015,7 +1017,29 @@
           "lng": -118.2890339
         }
       ],
-      "fairway_polygon": [],
+      "fairway_polygon": [
+        {
+          "lat": 34.1220919,
+          "lng": -118.2891334
+        },
+        {
+          "lat": 34.1217943,
+          "lng": -118.2889344
+        },
+        {
+          "lat": 34.1212438,
+          "lng": -118.2897579
+        },
+        {
+          "lat": 34.1215414,
+          "lng": -118.2899569
+        },
+        {
+          "lat": 34.1220919,
+          "lng": -118.2891334
+        }
+      ],
+      "fairway_polygon_provenance": "synthesized_from_hole_line",
       "bunkers": [
         {
           "osm_id": 893595857,
@@ -1375,6 +1399,7 @@
           "lng": -118.288883
         }
       ],
+      "fairway_polygon_provenance": "osm",
       "bunkers": [
         {
           "osm_id": 893595856,
@@ -1638,6 +1663,7 @@
           "lng": -118.2896416
         }
       ],
+      "fairway_polygon_provenance": "osm",
       "bunkers": [
         {
           "osm_id": 893595858,
@@ -1938,6 +1964,7 @@
           "lng": -118.2874013
         }
       ],
+      "fairway_polygon_provenance": "osm",
       "bunkers": [],
       "water_hazards": [],
       "out_of_bounds": [],
@@ -2125,6 +2152,7 @@
           "lng": -118.2878288
         }
       ],
+      "fairway_polygon_provenance": "osm",
       "bunkers": [
         {
           "osm_id": 1211066551,
@@ -2602,6 +2630,7 @@
           "lng": -118.2916945
         }
       ],
+      "fairway_polygon_provenance": "osm",
       "bunkers": [
         {
           "osm_id": 893595855,
@@ -3121,6 +3150,7 @@
           "lng": -118.2922059
         }
       ],
+      "fairway_polygon_provenance": "osm",
       "bunkers": [],
       "water_hazards": [],
       "out_of_bounds": [],

@@ -583,7 +583,73 @@ git push
 
 ---
 
-## 15. Appendix C — Reference URLs
+## 15. Appendix C — Variance Test Findings (Roosevelt, 2026-05-01)
+
+After loading Roosevelt LiDAR-OSM into Goose as a sibling row alongside the existing iGolf and Manual rows, Lovable produced a deterministic-engine variance report ([`courses/roosevelt_la/notes/variance_report.md`](../courses/roosevelt_la/notes/variance_report.md)) showing exactly which fields each engine consumes vs. ignores. Summary of findings:
+
+### What's working today
+
+- ✅ Sibling-row pattern works: `mapping_source = "manual:auto"` falls into Goose's iGolf-shape consumer pipeline via the `!== "manual"` branch in `courseSourceResolver.ts`. Geometry, bunkers, hole shapes consume cleanly.
+- ✅ Bunker richness is **higher** than iGolf on H5 (1→2), H7 (0→2), H8 (1→3) — and all extras are read by `findNearestHazard`.
+- ✅ Hazard accuracy: water + OB correctly empty (matches reality).
+- ✅ Pre-existing iGolf and Manual rows untouched.
+
+### Gaps where our data exists but the runtime can't read it
+
+| # | Gap | Engine consumer | Our payload location | Adapter needed |
+|---|---|---|---|---|
+| 1 | **Per-hole elevation completely ignored** (H6 -73 ft, H9 -50 ft, H1 +40 ft, H2 +42 ft) | `strategyEngine.ts:989`, `shotDecisionEngine.ts:343` read `holeInfo.terrain.tee_to_green_delta_ft` | `terrain_data['<hole>'].net_delta_m` (per-hole, metric) | New `terrainAdapterLidarOsm.ts` mirroring `terrainAdapterIgolf.ts` |
+| 2 | **Per-tee yardages dropped** | `SimulatedRound.tsx`, `GooseSimulationRunner.tsx` read `holeInfo.yards` | `hole_data[i].yardages.{black,blue,white}` | Yardage selector — pick active tee's yardage as `holeInfo.yards` |
+| 3 | **Putt break direction missing** | `greenIntelligenceEngine.ts` reads `green_slope_model.dominantBreakDirection` | `green_slope_data['<hole>'].fall_direction` + `fall_line_azimuth_deg` | Green-slope adapter |
+| 4 | **Pin-zone strategy missing** | `caddieDecisionEngine.ts` reads `greenSlope.pin_strategy[zone]` | Synthesizable from `zones` + `dominant_slope_deg` | Same green-slope adapter |
+| 5 | **Authored `course_strategy` absent** | `strategyEngine.ts:754`, `shotDecisionEngine.ts:905, 1040` | n/a — Phase D not done | Phase D — separate authoring task |
+| 6 | **Tee shot corridors unused** | No consumer found in `src/` | `course_intelligence.tee_shot_corridors` | New consumer — would surface tree-corridor calls |
+| 7 | **Centerline elevation profile** in wrong place | iGolf path uses `terrain.centerline_profile_ft` per hole | `terrain_data['<hole>'].fairway_centerline_profile` | Part of terrain adapter |
+
+### Geometry-density tradeoff (real but mild)
+
+OSM polygons are sparser than iGolf's:
+
+| Hole | iGolf fairway pts | LiDAR-OSM (post-fix) | Δ |
+|---|---|---|---|
+| H1 | 67 | 46 | -21 |
+| H4 | 96 | 38 | -58 |
+| H5 | 99 | 27 | -72 |
+| H8 | 102 | 53 | -49 |
+
+This degrades `in_fairway` precision marginally. Not a bug, an OSM-quality cost. **H3 par-3 had 0 fairway points** in OSM (par-3 fairway tagging is conventionally absent); fixed in `build_goose_payload.py` (commit `5ab9d10` onwards) by synthesizing a buffered corridor from `hole_shape` and tagging `fairway_polygon_provenance: "synthesized_from_hole_line"`.
+
+### Adapter plan — Lovable Phase 2 brief
+
+In priority order (impact × effort):
+
+1. **Terrain adapter** (gap #1, #7) — biggest single product impact, restores H6/H9/H1/H2 elevation effects. ~1–2 hrs.
+2. **Yardage selector** (gap #2) — accurate base yardage per tee set. ~30 min.
+3. **Green-slope adapter** (gap #3, #4) — fixes putt commentary on every hole. ~1 hr.
+4. **Resolver explicit branch** for `manual:auto` — replaces the implicit `!== "manual"` fallback with a typed branch. Future-proofing. ~30 min.
+5. **Tee shot corridor consumer** (gap #6) — net-new caddie capability, no iGolf equivalent. Larger scope.
+6. **Phase D authoring** (gap #5) — different effort class, in `notes/strategy_draft.yaml` already drafted.
+
+### Acceptance criteria for adapters
+
+After Lovable ships fixes 1–3:
+
+- Re-run the same 5 scenarios from the variance report (H1 tee, H4 approach, H6 tee, H8 approach, H3 putt) on the LiDAR-OSM row
+- H6 tee shot must reflect the −73 ft downhill (club down, "ball will fly")
+- H1, H2 tee shots must reflect uphill (extra club)
+- Putt commentary on H3 must include break direction
+- iGolf and Manual rows must produce **identical** ShotDecision fingerprints before/after
+- Generate `variance_report_after_fixes.md` for the comparison
+
+### What this means for future courses
+
+Every course we map after the adapters ship benefits automatically. The variance test isn't a Roosevelt-specific finding — it's a one-time architectural fix. Once `terrainAdapterLidarOsm.ts` exists, all future LiDAR-OSM courses get the elevation benefit for free.
+
+This is the scalable win the pipeline was designed for: **build the data once, fix the runtime adapter once, infinite-N courses follow**.
+
+---
+
+## 16. Appendix D — Reference URLs
 
 - USGS 3DEP overview: https://www.usgs.gov/3d-elevation-program
 - USGS TNM Access API: https://apps.nationalmap.gov/tnmaccess/

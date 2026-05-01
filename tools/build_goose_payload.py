@@ -41,13 +41,44 @@ import json
 import re
 from pathlib import Path
 
-from shapely.geometry import mapping, shape
+import math
+
+from shapely.geometry import LineString, mapping, shape
 from shapely.ops import transform as shp_transform
 
 from _common import course_dir
 
 
 MAPPING_SOURCE = "manual:auto"
+
+# When OSM has no fairway polygon for a hole (typical for par-3 — OSM
+# convention is to omit fairway on holes that don't have one separate
+# from tee→green), synthesize a buffered corridor from the hole_line so
+# downstream `in_fairway` checks and landing-zone generators have
+# something usable. Tagged with `synthesized: true` for provenance.
+SYNTHETIC_FAIRWAY_BUFFER_M = 18.0   # ~20 yd each side of centerline
+
+
+def _synthesize_fairway_corridor(hole_line_points: list[dict]) -> list[dict]:
+    """Buffer the hole_line by SYNTHETIC_FAIRWAY_BUFFER_M to produce a
+    fairway-shaped polygon. Returns Goose-native [{lat,lng}] ring."""
+    if len(hole_line_points) < 2:
+        return []
+    coords = [(p["lng"], p["lat"]) for p in hole_line_points]
+    line = LineString(coords)
+    # Convert buffer from meters → degrees at this latitude
+    lat_center = sum(p["lat"] for p in hole_line_points) / len(hole_line_points)
+    deg_per_m_lat = 1 / 111_000
+    deg_per_m_lon = 1 / (111_000 * math.cos(math.radians(lat_center)))
+    # Use the average so the buffer is roughly isotropic in meters
+    buffer_deg = SYNTHETIC_FAIRWAY_BUFFER_M * (deg_per_m_lat + deg_per_m_lon) / 2
+    poly = line.buffer(buffer_deg, cap_style=2, join_style=2)  # flat caps, mitered joins
+    if poly.is_empty:
+        return []
+    if poly.geom_type == "MultiPolygon":
+        poly = max(poly.geoms, key=lambda p: p.area)
+    ring = list(poly.exterior.coords)
+    return [{"lat": round(y, 7), "lng": round(x, 7)} for x, y in ring]
 PAYLOAD_VERSION = "0.1"
 
 
@@ -230,11 +261,17 @@ def build(slug: str, name_suffix: str = "", upsert: bool = False) -> tuple[Path,
                 "context": "unknown",   # greenside vs fairway — not resolved yet
             })
 
-        # Fairway → take largest polygon
-        fairway_ring = []
+        # Fairway → take largest polygon. If OSM has none (typical for par-3),
+        # synthesize from hole_line as a fallback corridor for runtime checks.
+        fairway_ring: list = []
+        fairway_synthesized = False
         if group["fairways"]:
             biggest_fw = max(group["fairways"], key=lambda f: shape(f["geometry"]).area)
             fairway_ring = _polygon_to_goose_ring(biggest_fw["geometry"])
+        if not fairway_ring:
+            hole_line_pts = _linestring_to_goose_points(hole_line)
+            fairway_ring = _synthesize_fairway_corridor(hole_line_pts)
+            fairway_synthesized = bool(fairway_ring)
 
         # Tee positions (OSM polygons → centroid)
         tee_centroid = hr.get("hole_line", {}).get("tee") or {}
@@ -256,6 +293,9 @@ def build(slug: str, name_suffix: str = "", upsert: bool = False) -> tuple[Path,
             "green_perimeter": _polygon_to_goose_ring(green_feat["geometry"]) if green_feat else [],
             "hole_shape": _linestring_to_goose_points(hole_line),
             "fairway_polygon": fairway_ring,
+            "fairway_polygon_provenance": (
+                "synthesized_from_hole_line" if fairway_synthesized else "osm"
+            ),
             "bunkers": bunkers,
             "water_hazards": [],
             "out_of_bounds": [],
