@@ -649,6 +649,63 @@ This is the scalable win the pipeline was designed for: **build the data once, f
 
 ---
 
+### Adapter ship + variance-after report (2026-05-01)
+
+Lovable shipped fixes 1–3 the same day. Full report at [`courses/roosevelt_la/notes/variance_report_after_fixes.md`](../courses/roosevelt_la/notes/variance_report_after_fixes.md). Code changes:
+
+| File | Change |
+|---|---|
+| `src/lib/terrainAdapterLidarOsm.ts` | **NEW** — mirrors `terrainAdapterIgolf.ts`. Reads `terrain_data['<n>'].net_delta_m` (m), surfaces `tee_to_green_delta_ft` + `uphill_downhill_class` (identical thresholds to iGolf: `<3 flat / <10 mild / <25 moderate / ≥25 steep`) + `centerline_profile_ft` |
+| `src/pages/SimulatedRound.tsx` | Source-aware factory: builds per-hole terrain map only when `mapping_source === "manual:auto"`. Yardage selector resolves `holeInfo.yards` from `hole_data[i].yardages` (Black tee default) |
+| `src/components/simulation/GooseSimulationRunner.tsx` | Same yardage selector, fallback chain Black → Blue → White → Gold → Red → Green |
+| `src/lib/greenIntelligenceEngine.ts` | New `adaptLidarOsmGreenSlopeEntry()` — only invoked on LiDAR-OSM shape (presence of `fall_direction`/`fall_line_azimuth_deg`, absence of `green_slope_model`/`pin_strategy`). Maps compass `fall_direction` → `dominantBreakDirection`, synthesises basic `pin_strategy` from `dominant_slope_deg`. iGolf branch byte-for-byte unchanged |
+
+**All paths additive + source-tagged.** iGolf and Manual rows produce identical output before/after. TS type-check clean.
+
+### Concrete before/after (the product win)
+
+**S1 — H1 tee shot** (Par-4, +31.5 ft uphill, 275 yd Black):
+- Before: "Driver — 275 to the green"
+- After: "Driver. Plays uphill — about 16 yards more, so play it like 291"
+
+**S3 — H6 tee shot** (Par-4, **−68.2 ft steep_downhill**, 315 yd Black) — *the headline result*:
+- Before: "Driver — 315 to the green" (no terrain context)
+- After: "**Big drop here — about 34 yards downhill. Play it like 281, club down. 3-Wood is plenty.**"
+
+**S5 — H3 putt** (`fall_direction: N`, `0.61°`):
+- Before: "Center of the green" (no break info)
+- After: "**Green falls back-to-front. Stay below the hole — uphill putt is the play.**"
+
+### Validation
+
+- ✅ H6 tee reflects steep downhill; club-down recommendation
+- ✅ H1 tee reflects uphill (+16 yd adjustment)
+- ✅ Yardages resolve from per-tee object (Black tee default)
+- ✅ H3 putt reads back-to-front break direction
+- ✅ iGolf row decisions unchanged
+- ✅ Manual row decisions unchanged
+- ✅ Provenance preserved: `terrain_provenance.source = "lidar_osm_per_hole"`, `green_slope_data[i]._adapter = "lidar_osm_green_slope_v1"`
+
+### Honest data-not-fabricated note
+
+Lovable explicitly preserved nulls where source lacks data:
+- `green_front_elevation_ft`, `green_back_elevation_ft` — null (LiDAR has only single green elevation)
+- `sidehill_tendency` — null (no transverse samples)
+- `false_front`, `best_miss` per green — null (Phase D)
+- For greens with `<1°` macro slope, marked `attack`-able instead of fabricating tier complexity
+
+### Still deferred
+
+- **Fix 4** — explicit resolver branch for `manual:auto` (currently uses implicit `!== "manual"` fallback). Future-proofing, not blocking.
+- **Fix 5** — addressed at the data source (we synthesize a buffered corridor for empty par-3 fairways via `build_goose_payload.py`). Belt-and-suspenders with any future runtime fallback.
+- **Fix 6** — Phase D authored `course_strategy`. Draft exists in `courses/roosevelt_la/notes/strategy_draft.yaml` pending hole-by-hole approval.
+
+### Scaling implications confirmed
+
+Course #2 onwards loads through the same adapters. No additional Lovable work per course. The variance test is a one-time architectural milestone, not a per-course gate.
+
+---
+
 ## 16. Appendix D — Reference URLs
 
 - USGS 3DEP overview: https://www.usgs.gov/3d-elevation-program
