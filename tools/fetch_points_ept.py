@@ -129,7 +129,8 @@ def main() -> None:
     ]}
     t0 = time.time()
     import shutil
-    pdal = shutil.which("pdal")
+    import os
+    pdal = os.environ.get("PDAL_BIN") if os.path.exists(os.environ.get("PDAL_BIN", "")) else shutil.which("pdal")
     if not pdal:
         raise SystemExit("[ept] pdal not installed")
     subprocess.run([pdal, "pipeline", "--stdin"], input=json.dumps(pipeline).encode(), check=True)

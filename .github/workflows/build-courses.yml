@@ -33,9 +33,9 @@ jobs:
           create-args: pdal
           condarc: |
             channels: [conda-forge]
-      - name: Expose PDAL on PATH
+      - name: Point at the PDAL binary only (its env has its own Python; keep it off PATH)
         continue-on-error: true
-        run: echo "${MAMBA_ROOT_PREFIX:-$HOME/micromamba}/envs/pdal/bin" >> "$GITHUB_PATH"
+        run: echo "PDAL_BIN=${MAMBA_ROOT_PREFIX:-$HOME/micromamba}/envs/pdal/bin/pdal" >> "$GITHUB_ENV"
       - name: Write helper
         run: |
           cat > /tmp/run.sh <<'SH'
