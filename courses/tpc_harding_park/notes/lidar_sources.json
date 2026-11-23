@@ -14,5 +14,18 @@
       1196
     ],
     "epsg": 32610
+  },
+  "point_cloud": {
+    "product": "USGS 3DEP lidar (EPT copy on AWS usgs-lidar-public)",
+    "project": "CA_SanFrancisco_1_B23",
+    "year": 2023,
+    "epsg": 32610,
+    "file": "ept_CA_SanFrancisco_1_B23.laz",
+    "candidates": [
+      "ARRA-CA_GoldenGate_2010",
+      "ARRA-CA_SanFranCoast_2010",
+      "CA_SanFrancisco_1_B23",
+      "USGS_LPC_CA_WestCoastElNinoUTM10_2016_LAS_2017"
+    ]
   }
 }

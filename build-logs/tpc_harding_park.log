@@ -147,3 +147,150 @@
 | 16 | 4 | 2 | 2 | 5 | 4 | 0 | 0 |
 | 17 | 3 | 2 | 1 | 4 | 3 | 0 | 0 |
 | 18 | 4 | 1 | 1 | 4 | 4 | 1 | 0 |
+--- tools/fetch_points_ept.py --course tpc_harding_park (limit 20m)
+(pdal pipeline readers.ept Warning) 141183029 points will be downloaded
+(pdal pipeline writers.las Warning) Auto offset for 'X' requested in stream mode.  Using value of 545359.
+(pdal pipeline writers.las Warning) Auto offset for 'Y' requested in stream mode.  Using value of 4.17513e+06.
+(pdal pipeline writers.las Warning) Auto offset for 'Z' requested in stream mode.  Using value of 65.33.
+[ept] index: 4 resources intersect the course: ['ARRA-CA_GoldenGate_2010', 'ARRA-CA_SanFranCoast_2010', 'CA_SanFrancisco_1_B23', 'USGS_LPC_CA_WestCoastElNinoUTM10_2016_LAS_2017']
+[ept] using newest: CA_SanFrancisco_1_B23 (year 2023)
+[ept] wrote ept_CA_SanFrancisco_1_B23.laz (619 MB) in 232s, EPSG:32610
+--- tools/build_chm.py --course tpc_harding_park (limit 15m)
+[chm] target grid 1740x1202, crs=EPSG:4326, bounds=BoundingBox(left=-122.49949243777932, bottom=37.71642246489216, right=-122.48381676210364, top=37.72725129372099)
+[chm] reading ept_CA_SanFrancisco_1_B23.laz
+[chm]   CRS EPSG:32610, 133287831 points
+[chm] DSM populated for 1503320 / 2091480 cells; DEM valid for 2091480; both valid 1503320
+[chm] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/derived/canopy_height_model.tif (1.4 MB, max 70.8 m, 95th pct 26.8 m if nonzero)
+--- tools/detect_trees.py --course tpc_harding_park (limit 10m)
+[trees] CHM (1202, 1740), cellsize ~0.895 m
+[trees] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/derived/canopy_polygons.geojson (851 polygons)
+[trees] local-max window 5px (~4.5 m)
+[trees] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/derived/individual_trees.geojson (11590 trees)
+--- tools/build_hole_data.py --course tpc_harding_park (limit 10m)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+[hole-data] 27 hole_lines, 334 total features
+[hole-data] H1 par 4: 369m (404yd), Δelev +1.9m, green slope 0.48° N, tees 3 bunkers 2
+[hole-data] H1 par 4: 414m (452yd), Δelev +2.4m, green slope 0.48° N, tees 3 bunkers 2
+[hole-data] H2 par 4: 417m (456yd), Δelev +2.6m, green slope 0.28° SW, tees 3 bunkers 2
+[hole-data] H2 par 3: 133m (146yd), Δelev -1.1m, green slope 0.28° SW, tees 3 bunkers 2
+[hole-data] H3 par 3: 158m (172yd), Δelev +4.8m, green slope 0.49° S, tees 2 bunkers 3
+[hole-data] H3 par 3: 166m (181yd), Δelev +1.4m, green slope 0.49° S, tees 2 bunkers 3
+[hole-data] H4 par 5: 515m (563yd), Δelev -2.9m, green slope 0.33° NW, tees 4 bunkers 2
+[hole-data] H4 par 3: 124m (136yd), Δelev +0.3m, green slope 0.33° NW, tees 4 bunkers 2
+[hole-data] H5 par 4: 335m (366yd), Δelev -0.3m, green slope 0.33° E, tees 2 bunkers 1
+[hole-data] H5 par 3: 222m (243yd), Δelev +0.0m, green slope 0.33° E, tees 2 bunkers 1
+[hole-data] H6 par 4: 418m (457yd), Δelev -4.3m, green slope 0.67° N, tees 13 bunkers 10
+[hole-data] H6 par 3: 212m (232yd), Δelev -3.1m, green slope 0.67° N, tees 13 bunkers 10
+[hole-data] H7 par 4: 301m (329yd), Δelev +4.8m, green slope 0.52° W, tees 3 bunkers 2
+[hole-data] H7 par 4: 427m (466yd), Δelev +1.4m, green slope 0.52° W, tees 3 bunkers 2
+[hole-data] H8 par 3: 226m (248yd), Δelev -5.7m, green slope 0.79° S, tees 2 bunkers 1
+[hole-data] H8 par 4: 262m (287yd), Δelev +0.1m, green slope 0.79° S, tees 2 bunkers 1
+[hole-data] H9 par 5: 475m (519yd), Δelev -4.2m, green slope 0.19° NE, tees 2 bunkers 1
+[hole-data] H9 par 3: 138m (151yd), Δelev -2.2m, green slope 0.19° NE, tees 2 bunkers 1
+[hole-data] H10 par 5: 581m (635yd), Δelev +7.1m, green slope 0.49° W, tees 8 bunkers 6
+[hole-data] H11 par 3: 195m (213yd), Δelev -1.2m, green slope 0.41° SW, tees 4 bunkers 3
+[hole-data] H12 par 5: 411m (449yd), Δelev +1.7m, green slope 0.46° SW, tees 7 bunkers 4
+[hole-data] H13 par 4: 366m (401yd), Δelev +0.3m, green slope 0.31° SE, tees 9 bunkers 2
+[hole-data] H14 par 4: 440m (481yd), Δelev -1.8m, green slope 0.71° S, tees 16 bunkers 7
+[hole-data] H15 par 4: 377m (412yd), Δelev -12.3m, green slope 0.31° NE, tees 9 bunkers 3
+[hole-data] H16 par 4: 333m (364yd), Δelev -3.1m, green slope 0.21° NE, tees 4 bunkers 4
+[hole-data] H17 par 3: 155m (170yd), Δelev -0.4m, green slope 0.69° N, tees 4 bunkers 2
+[hole-data] H18 par 4: 470m (514yd), Δelev +2.7m, green slope 0.44° W, tees 6 bunkers 5
+[hole-data] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/derived/hole_data.json
+--- tools/build_goose_payload.py --course tpc_harding_park (limit 5m)
+[goose-payload] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/goose_payload.json (2513.3 KB)
+[goose-payload] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/goose_upsert.sql  (885.7 KB)
+--- tools/coverage_report.py --course tpc_harding_park (limit 3m)
+# Coverage — tpc_harding_park
+
+- OSM features: bunker 60, cart_path 67, course_boundary 1, driving_range 2, fairway 28, green 44, hole_line 27, tee_box 101, water 1, woods 3
+- Hole lines (golf=hole): 27
+- Lidar point cloud: CA_SanFrancisco_1_B23 (2023)
+- Trees detected from lidar: 11590
+- Per-hole terrain built: yes
+
+| Hole | Par | Green | Fairway | Tees | Bunkers | Water | Woods |
+|---|---|---|---|---|---|---|---|
+| 1 | 4 | 3 | 1 | 9 | 1 | 0 | 0 |
+| 1 | 4 | 5 | 4 | 5 | 6 | 0 | 0 |
+| 2 | 4 | 4 | 3 | 6 | 5 | 0 | 0 |
+| 2 | 3 | 5 | 2 | 7 | 3 | 0 | 0 |
+| 3 | 3 | 3 | 3 | 3 | 5 | 0 | 0 |
+| 3 | 3 | 2 | 3 | 4 | 3 | 0 | 0 |
+| 4 | 5 | 1 | 3 | 10 | 2 | 0 | 0 |
+| 4 | 3 | 2 | 3 | 6 | 1 | 0 | 0 |
+| 5 | 4 | 2 | 4 | 7 | 1 | 0 | 0 |
+| 5 | 3 | 3 | 3 | 5 | 5 | 0 | 0 |
+| 6 | 4 | 3 | 5 | 6 | 4 | 0 | 0 |
+| 6 | 3 | 3 | 5 | 9 | 2 | 0 | 0 |
+| 7 | 4 | 2 | 2 | 10 | 5 | 0 | 0 |
+| 7 | 4 | 4 | 5 | 10 | 2 | 0 | 0 |
+| 8 | 3 | 2 | 3 | 7 | 2 | 0 | 0 |
+| 8 | 4 | 3 | 3 | 6 | 2 | 0 | 0 |
+| 9 | 5 | 2 | 3 | 7 | 7 | 0 | 0 |
+| 9 | 3 | 2 | 2 | 4 | 2 | 0 | 0 |
+| 10 | 5 | 2 | 2 | 8 | 6 | 0 | 0 |
+| 11 | 3 | 2 | 2 | 9 | 5 | 0 | 0 |
+| 12 | 5 | 3 | 2 | 7 | 6 | 0 | 0 |
+| 13 | 4 | 2 | 1 | 5 | 3 | 0 | 0 |
+| 14 | 4 | 2 | 2 | 7 | 2 | 0 | 1 |
+| 15 | 4 | 2 | 1 | 5 | 2 | 0 | 0 |
+| 16 | 4 | 2 | 2 | 5 | 4 | 0 | 0 |
+| 17 | 3 | 2 | 1 | 4 | 3 | 0 | 0 |
+| 18 | 4 | 1 | 1 | 4 | 4 | 1 | 0 |
+614M	courses/tpc_harding_park/sources

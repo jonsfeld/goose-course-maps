@@ -1076,11 +1076,11 @@
       "tee_shot_corridor": {
         "length_m": 369.2,
         "length_yd": 403.8,
-        "narrowest_clear_yd": 65.6,
+        "narrowest_clear_yd": 36.1,
         "median_clear_yd": 65.6,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 50.5
       }
     },
     {
@@ -2193,11 +2193,11 @@
       "tee_shot_corridor": {
         "length_m": 413.7,
         "length_yd": 452.4,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
-        "max_overhead_m": 0.0,
+        "narrowest_clear_yd": 1.1,
+        "median_clear_yd": 43.2,
+        "max_overhead_m": 17.5,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 374.2
       }
     },
     {
@@ -3283,11 +3283,11 @@
       "tee_shot_corridor": {
         "length_m": 416.9,
         "length_yd": 455.9,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 39.9,
+        "median_clear_yd": 59.6,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 433.7
       }
     },
     {
@@ -4121,11 +4121,11 @@
       "tee_shot_corridor": {
         "length_m": 133.2,
         "length_yd": 145.6,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 10.9,
+        "median_clear_yd": 53.6,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 23.3
       }
     },
     {
@@ -5094,11 +5094,11 @@
       "tee_shot_corridor": {
         "length_m": 157.6,
         "length_yd": 172.3,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 34.4,
+        "median_clear_yd": 57.1,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 91.9
       }
     },
     {
@@ -6071,11 +6071,11 @@
       "tee_shot_corridor": {
         "length_m": 165.6,
         "length_yd": 181.1,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 36.1,
+        "median_clear_yd": 60.7,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 124.5
       }
     },
     {
@@ -7846,11 +7846,11 @@
       "tee_shot_corridor": {
         "length_m": 514.8,
         "length_yd": 562.9,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
-        "max_overhead_m": 0.0,
+        "narrowest_clear_yd": 36.6,
+        "median_clear_yd": 54.7,
+        "max_overhead_m": 0.4,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 200.7
       }
     },
     {
@@ -9273,11 +9273,11 @@
       "tee_shot_corridor": {
         "length_m": 124.0,
         "length_yd": 135.7,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 18.6,
+        "median_clear_yd": 43.7,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 76.7
       }
     },
     {
@@ -10422,11 +10422,11 @@
       "tee_shot_corridor": {
         "length_m": 334.7,
         "length_yd": 366.0,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 40.5,
+        "median_clear_yd": 59.1,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 214.0
       }
     },
     {
@@ -11471,11 +11471,11 @@
       "tee_shot_corridor": {
         "length_m": 222.0,
         "length_yd": 242.7,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 28.4,
+        "median_clear_yd": 43.7,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 124.2
       }
     },
     {
@@ -13500,11 +13500,11 @@
       "tee_shot_corridor": {
         "length_m": 417.7,
         "length_yd": 456.8,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 15.9,
+        "median_clear_yd": 52.8,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 133.7
       }
     },
     {
@@ -15349,11 +15349,11 @@
       "tee_shot_corridor": {
         "length_m": 212.2,
         "length_yd": 232.0,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 12.6,
+        "median_clear_yd": 49.2,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 62.3
       }
     },
     {
@@ -16419,11 +16419,11 @@
       "tee_shot_corridor": {
         "length_m": 301.2,
         "length_yd": 329.4,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 37.7,
+        "median_clear_yd": 47.6,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 44.7
       }
     },
     {
@@ -17601,11 +17601,11 @@
       "tee_shot_corridor": {
         "length_m": 426.5,
         "length_yd": 466.5,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 21.9,
+        "median_clear_yd": 47.3,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 22.2
       }
     },
     {
@@ -18634,11 +18634,11 @@
       "tee_shot_corridor": {
         "length_m": 226.5,
         "length_yd": 247.7,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 42.7,
+        "median_clear_yd": 60.7,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 135.1
       }
     },
     {
@@ -19699,11 +19699,11 @@
       "tee_shot_corridor": {
         "length_m": 262.0,
         "length_yd": 286.6,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 26.8,
+        "median_clear_yd": 49.2,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 118.0
       }
     },
     {
@@ -21141,11 +21141,11 @@
       "tee_shot_corridor": {
         "length_m": 474.5,
         "length_yd": 519.0,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
-        "max_overhead_m": 0.0,
+        "narrowest_clear_yd": 1.6,
+        "median_clear_yd": 65.1,
+        "max_overhead_m": 22.3,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 27.9
       }
     },
     {
@@ -22283,11 +22283,11 @@
       "tee_shot_corridor": {
         "length_m": 137.8,
         "length_yd": 150.7,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
-        "max_overhead_m": 0.0,
+        "narrowest_clear_yd": 27.3,
+        "median_clear_yd": 39.9,
+        "max_overhead_m": 4.5,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 98.5
       }
     },
     {
@@ -24214,11 +24214,11 @@
       "tee_shot_corridor": {
         "length_m": 580.7,
         "length_yd": 635.0,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 2.2,
+        "median_clear_yd": 61.8,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 11.0
       }
     },
     {
@@ -25667,11 +25667,11 @@
       "tee_shot_corridor": {
         "length_m": 195.0,
         "length_yd": 213.2,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 30.6,
+        "median_clear_yd": 49.2,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 46.1
       }
     },
     {
@@ -27522,11 +27522,11 @@
       "tee_shot_corridor": {
         "length_m": 411.0,
         "length_yd": 449.5,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 17.5,
+        "median_clear_yd": 53.6,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 33.3
       }
     },
     {
@@ -29302,11 +29302,11 @@
       "tee_shot_corridor": {
         "length_m": 366.4,
         "length_yd": 400.7,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
-        "max_overhead_m": 0.0,
+        "narrowest_clear_yd": 1.1,
+        "median_clear_yd": 50.0,
+        "max_overhead_m": 14.4,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 89.0
       }
     },
     {
@@ -31285,11 +31285,11 @@
       "tee_shot_corridor": {
         "length_m": 439.6,
         "length_yd": 480.7,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 13.7,
+        "median_clear_yd": 64.8,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 11.2
       }
     },
     {
@@ -33127,11 +33127,11 @@
       "tee_shot_corridor": {
         "length_m": 376.5,
         "length_yd": 411.8,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 13.1,
+        "median_clear_yd": 60.7,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 61.2
       }
     },
     {
@@ -34856,11 +34856,11 @@
       "tee_shot_corridor": {
         "length_m": 333.0,
         "length_yd": 364.2,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 33.4,
+        "median_clear_yd": 55.8,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 347.4
       }
     },
     {
@@ -36136,11 +36136,11 @@
       "tee_shot_corridor": {
         "length_m": 155.4,
         "length_yd": 170.0,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
+        "narrowest_clear_yd": 21.3,
+        "median_clear_yd": 43.5,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 11.3
       }
     },
     {
@@ -38304,11 +38304,11 @@
       "tee_shot_corridor": {
         "length_m": 470.1,
         "length_yd": 514.1,
-        "narrowest_clear_yd": 65.6,
-        "median_clear_yd": 65.6,
-        "max_overhead_m": 0.0,
+        "narrowest_clear_yd": 1.1,
+        "median_clear_yd": 63.4,
+        "max_overhead_m": 4.3,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 0.0
+        "pinch_at_yd": 182.4
       }
     }
   ]
