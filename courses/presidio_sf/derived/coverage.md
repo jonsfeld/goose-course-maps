@@ -2,9 +2,9 @@
 
 - OSM features: bunker 48, cart_path 28, course_boundary 1, driving_range 1, fairway 19, green 20, hole_line 18, rough 7, tee_box 56, water 1, woods 7
 - Hole lines (golf=hole): 18
-- Lidar point cloud: None (None)
-- Trees detected from lidar: 0
-- Per-hole terrain built: no
+- Lidar point cloud: CA_SanFrancisco_1_B23 (2023)
+- Trees detected from lidar: 16647
+- Per-hole terrain built: yes
 
 | Hole | Par | Green | Fairway | Tees | Bunkers | Water | Woods |
 |---|---|---|---|---|---|---|---|

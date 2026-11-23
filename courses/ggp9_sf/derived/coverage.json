@@ -106,9 +106,9 @@
       "woods": 1
     }
   ],
-  "trees_detected": 0,
-  "hole_data_built": false,
-  "lidar_project": null,
-  "lidar_year": null,
+  "trees_detected": 5237,
+  "hole_data_built": true,
+  "lidar_project": "CA_SanFrancisco_1_B23",
+  "lidar_year": 2023,
   "dem": "USGS 3DEP Elevation ImageServer (best available)"
 }
