@@ -1,0 +1,64 @@
+--- tools/fetch_osm_features.py --course presidio_sf (limit 6m)
+[osm] querying Overpass for bbox (-122.47419,37.78767)-(-122.45901,37.79561)
+[osm] got 206 elements
+[osm] feature counts: {'course_boundary': 1, 'water': 1, 'green': 20, 'tee_box': 56, 'fairway': 19, 'bunker': 48, 'cart_path': 28, 'rough': 7, 'woods': 7, 'driving_range': 1, 'hole_line': 18}
+[osm] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/presidio_sf/derived/features_osm.geojson (206 features)
+[osm] raw OSM saved to /home/runner/work/goose-course-maps/goose-course-maps/courses/presidio_sf/sources/osm_features.json
+--- tools/fetch_lidar.py --course presidio_sf --only dem (limit 6m)
+[dem] 1335x879 px (~1 m) -> /home/runner/work/goose-course-maps/goose-course-maps/courses/presidio_sf/sources/dem/3dep_1m.tif (5.0 MB)
+[lidar] provenance -> /home/runner/work/goose-course-maps/goose-course-maps/courses/presidio_sf/notes/lidar_sources.json
+--- tools/fetch_naip_clip.py --course presidio_sf (limit 6m)
+[naip] bbox -122.47419,37.78767,-122.45901,37.79561
+[naip] requesting 2048x2048 clip from https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer/exportImage
+[naip] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/presidio_sf/sources/imagery/naip_clip.tif (16.8 MB)
+--- tools/merge_clip_dem.py --course presidio_sf (limit 5m)
+[dem] merging 1 tiles from /home/runner/work/goose-course-maps/goose-course-maps/courses/presidio_sf/sources/dem
+[dem] merged mosaic CRS: EPSG:32610
+[dem] clipping to bbox -122.47419,37.78767,-122.45901,37.79561
+[dem] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/presidio_sf/derived/dem_clipped.tif (4.7 MB, 1685x884)
+--- tools/derive_terrain.py --course presidio_sf (limit 5m)
+[terrain] DEM (884, 1685), cellsize ~0.895 m
+[terrain] wrote slope.tif (valid range 0.00° – 89.55°, mean 9.05°)
+[terrain] wrote aspect.tif
+[terrain] wrote hillshade.tif (az=315.0°, alt=45.0°)
+--- tools/render_osm_features.py --course presidio_sf (limit 3m)
+[osm-preview] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/presidio_sf/derived/features_osm_preview.png
+--- tools/build_hole_data.py --course presidio_sf (limit 10m)
+Traceback (most recent call last):
+  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py", line 433, in <module>
+    main()
+  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py", line 429, in main
+    build(args.course)
+  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py", line 297, in build
+    raise FileNotFoundError(p)
+FileNotFoundError: /home/runner/work/goose-course-maps/goose-course-maps/courses/presidio_sf/derived/canopy_height_model.tif
+!!! FAILED or timed out: tools/build_hole_data.py --course presidio_sf
+--- tools/coverage_report.py --course presidio_sf (limit 3m)
+# Coverage — presidio_sf
+
+- OSM features: bunker 48, cart_path 28, course_boundary 1, driving_range 1, fairway 19, green 20, hole_line 18, rough 7, tee_box 56, water 1, woods 7
+- Hole lines (golf=hole): 18
+- Lidar point cloud: None (None)
+- Trees detected from lidar: 0
+- Per-hole terrain built: no
+
+| Hole | Par | Green | Fairway | Tees | Bunkers | Water | Woods |
+|---|---|---|---|---|---|---|---|
+| 1 | 4 | 1 | 1 | 4 | 2 | 0 | 0 |
+| 2 | 5 | 2 | 2 | 4 | 4 | 0 | 0 |
+| 3 | 4 | 2 | 2 | 4 | 3 | 0 | 0 |
+| 4 | 3 | 1 | 1 | 5 | 3 | 0 | 0 |
+| 5 | 4 | 1 | 1 | 5 | 0 | 0 | 0 |
+| 6 | 4 | 3 | 3 | 5 | 4 | 0 | 0 |
+| 7 | 3 | 1 | 2 | 4 | 2 | 0 | 0 |
+| 8 | 4 | 1 | 1 | 2 | 1 | 0 | 0 |
+| 9 | 5 | 1 | 5 | 4 | 5 | 0 | 0 |
+| 10 | 5 | 3 | 4 | 6 | 5 | 0 | 0 |
+| 11 | 4 | 3 | 4 | 7 | 4 | 0 | 0 |
+| 12 | 4 | 1 | 1 | 7 | 5 | 0 | 0 |
+| 13 | 3 | 2 | 2 | 2 | 4 | 0 | 0 |
+| 14 | 4 | 2 | 3 | 3 | 9 | 0 | 0 |
+| 15 | 3 | 1 | 1 | 3 | 4 | 0 | 0 |
+| 16 | 4 | 1 | 3 | 4 | 3 | 0 | 0 |
+| 17 | 4 | 2 | 2 | 3 | 7 | 0 | 1 |
+| 18 | 5 | 2 | 2 | 5 | 3 | 0 | 1 |

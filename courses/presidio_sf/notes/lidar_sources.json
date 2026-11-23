@@ -1,0 +1,18 @@
+{
+  "bbox": [
+    -122.47418634107734,
+    37.78766505914444,
+    -122.45901473352293,
+    37.795614842273636
+  ],
+  "fetched_at": "2026-11-23T02:47:25Z",
+  "dem": {
+    "product": "USGS 3DEP Elevation ImageServer (best available)",
+    "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage",
+    "pixels": [
+      1335,
+      879
+    ],
+    "epsg": 32610
+  }
+}

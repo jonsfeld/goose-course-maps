@@ -1,0 +1,114 @@
+{
+  "course": "ggp9_sf",
+  "feature_counts": {
+    "course_boundary": 1,
+    "green": 10,
+    "bunker": 14,
+    "tee_box": 9,
+    "woods": 3,
+    "clubhouse": 1,
+    "driving_range": 1,
+    "rough": 3,
+    "water": 1,
+    "fairway": 9,
+    "hole_line": 9
+  },
+  "hole_lines": 9,
+  "per_hole": [
+    {
+      "hole": "1",
+      "par": 3,
+      "green": 4,
+      "fairway": 3,
+      "tees": 2,
+      "bunkers": 2,
+      "water": 0,
+      "woods": 1
+    },
+    {
+      "hole": "2",
+      "par": 3,
+      "green": 3,
+      "fairway": 5,
+      "tees": 4,
+      "bunkers": 2,
+      "water": 0,
+      "woods": 1
+    },
+    {
+      "hole": "3",
+      "par": 3,
+      "green": 2,
+      "fairway": 3,
+      "tees": 2,
+      "bunkers": 2,
+      "water": 0,
+      "woods": 1
+    },
+    {
+      "hole": "4",
+      "par": 3,
+      "green": 3,
+      "fairway": 4,
+      "tees": 3,
+      "bunkers": 0,
+      "water": 0,
+      "woods": 0
+    },
+    {
+      "hole": "5",
+      "par": 3,
+      "green": 4,
+      "fairway": 6,
+      "tees": 3,
+      "bunkers": 3,
+      "water": 0,
+      "woods": 2
+    },
+    {
+      "hole": "6",
+      "par": 3,
+      "green": 3,
+      "fairway": 6,
+      "tees": 1,
+      "bunkers": 7,
+      "water": 0,
+      "woods": 0
+    },
+    {
+      "hole": "7",
+      "par": 3,
+      "green": 2,
+      "fairway": 5,
+      "tees": 4,
+      "bunkers": 3,
+      "water": 0,
+      "woods": 1
+    },
+    {
+      "hole": "8",
+      "par": 3,
+      "green": 2,
+      "fairway": 4,
+      "tees": 2,
+      "bunkers": 6,
+      "water": 0,
+      "woods": 1
+    },
+    {
+      "hole": "9",
+      "par": 3,
+      "green": 2,
+      "fairway": 3,
+      "tees": 2,
+      "bunkers": 5,
+      "water": 0,
+      "woods": 1
+    }
+  ],
+  "trees_detected": 0,
+  "hole_data_built": false,
+  "lidar_project": null,
+  "lidar_year": null,
+  "dem": "USGS 3DEP Elevation ImageServer (best available)"
+}
