@@ -46,3 +46,45 @@ Traceback (most recent call last):
     from shapely.geometry import shape
 ModuleNotFoundError: No module named 'shapely'
 !!! FAILED or timed out: tools/coverage_report.py --course tpc_harding_park
+--- tools/fetch_points_ept.py --course tpc_harding_park (limit 20m)
+Traceback (most recent call last):
+  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/fetch_points_ept.py", line 26, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+!!! FAILED or timed out: tools/fetch_points_ept.py --course tpc_harding_park
+--- tools/fetch_lidar.py --course tpc_harding_park --only lpc --max-tiles 12 (limit 35m)
+Traceback (most recent call last):
+  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/fetch_lidar.py", line 30, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+!!! FAILED or timed out: tools/fetch_lidar.py --course tpc_harding_park --only lpc --max-tiles 12
+--- tools/build_chm.py --course tpc_harding_park (limit 15m)
+Traceback (most recent call last):
+  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_chm.py", line 23, in <module>
+    import laspy
+ModuleNotFoundError: No module named 'laspy'
+!!! FAILED or timed out: tools/build_chm.py --course tpc_harding_park
+--- tools/detect_trees.py --course tpc_harding_park (limit 10m)
+Traceback (most recent call last):
+  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/detect_trees.py", line 16, in <module>
+    import rasterio
+ModuleNotFoundError: No module named 'rasterio'
+!!! FAILED or timed out: tools/detect_trees.py --course tpc_harding_park
+--- tools/build_hole_data.py --course tpc_harding_park (limit 10m)
+Traceback (most recent call last):
+  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py", line 28, in <module>
+    import rasterio
+ModuleNotFoundError: No module named 'rasterio'
+!!! FAILED or timed out: tools/build_hole_data.py --course tpc_harding_park
+--- tools/build_goose_payload.py --course tpc_harding_park (limit 5m)
+Traceback (most recent call last):
+  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_goose_payload.py", line 46, in <module>
+    from shapely.geometry import LineString, mapping, shape
+ModuleNotFoundError: No module named 'shapely'
+!!! FAILED or timed out: tools/build_goose_payload.py --course tpc_harding_park
+--- tools/coverage_report.py --course tpc_harding_park (limit 3m)
+Traceback (most recent call last):
+  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/coverage_report.py", line 14, in <module>
+    from shapely.geometry import shape
+ModuleNotFoundError: No module named 'shapely'
+!!! FAILED or timed out: tools/coverage_report.py --course tpc_harding_park
