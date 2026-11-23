@@ -1,5 +1,56 @@
 /home/runner/work/goose-course-maps/goose-course-maps/tools/fetch_hole_detail.py:67: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
   greens = [(f["properties"]["osm_id"], shp_transform(lambda x, y, z=None: to_utm.transform(x, y), shape(f["geometry"])))
+[detail] hole 1: green osm 853529808 (495 m2)
+[detail] hole 1: 207796 ground points around the green
+[detail] hole 1: aerial clip 1557x1884 (4.0 MB)
+[detail] hole 2: green osm 682915311 (510 m2)
+[detail] hole 2: 236319 ground points around the green
+[detail] hole 2: aerial clip 1678x1984 (4.4 MB)
+[detail] hole 3: green osm 853538550 (637 m2)
+[detail] hole 3: 306257 ground points around the green
+[detail] hole 3: aerial clip 1121x1427 (2.1 MB)
+[detail] hole 4: green osm 854400756 (629 m2)
+[detail] hole 4: 307807 ground points around the green
+[detail] hole 4: aerial clip 1114x2512 (3.7 MB)
+[detail] hole 5: green osm 858233958 (555 m2)
+[detail] hole 5: 323655 ground points around the green
+[detail] hole 5: aerial clip 983x2035 (2.6 MB)
+[detail] hole 6: green osm 858214731 (696 m2)
+[detail] hole 6: 251875 ground points around the green
+[detail] hole 6: aerial clip 1559x2059 (4.2 MB)
+[detail] hole 7: green osm 854379431 (615 m2)
+[detail] hole 7: 278689 ground points around the green
+[detail] hole 7: aerial clip 1435x1741 (3.3 MB)
+[detail] hole 8: green osm 854355701 (583 m2)
+[detail] hole 8: 242170 ground points around the green
+[detail] hole 8: aerial clip 1419x1426 (2.7 MB)
+[detail] hole 9: green osm 18096165 (588 m2)
+[detail] hole 9: 300576 ground points around the green
+[detail] hole 9: aerial clip 1781x2124 (5.1 MB)
+[detail] hole 10: green osm 854304741 (593 m2)
+[detail] hole 10: 316004 ground points around the green
+[detail] hole 10: aerial clip 2456x987 (3.4 MB)
+[detail] hole 11: green osm 854302755 (522 m2)
+[detail] hole 11: 231760 ground points around the green
+[detail] hole 11: aerial clip 1388x1268 (2.5 MB)
+[detail] hole 12: green osm 854298003 (532 m2)
+[detail] hole 12: 297327 ground points around the green
+[detail] hole 12: aerial clip 1137x2277 (3.5 MB)
+[detail] hole 13: green osm 854286821 (644 m2)
+[detail] hole 13: 313098 ground points around the green
+[detail] hole 13: aerial clip 1379x2044 (3.8 MB)
+[detail] hole 15: green osm 854097464 (622 m2)
+[detail] hole 15: 276050 ground points around the green
+[detail] hole 15: aerial clip 1746x1658 (3.9 MB)
+[detail] hole 17: green osm 854089822 (523 m2)
+[detail] hole 17: 192236 ground points around the green
+[detail] hole 17: aerial clip 1225x1307 (1.8 MB)
 [detail] hole 14: green osm 854119627 (524 m2)
-[detail] no EPT project in notes/lidar_sources.json; skipping green points
+[detail] hole 14: green points already fetched; kept
 [detail] hole 14: aerial clip 1812x1903 (4.7 MB)
+[detail] hole 16: green osm 854089825 (645 m2)
+[detail] hole 16: green points already fetched; kept
+[detail] hole 16: aerial clip 1767x1354 (3.0 MB)
+[detail] hole 18: green osm 853522217 (555 m2)
+[detail] hole 18: green points already fetched; kept
+[detail] hole 18: aerial clip 2041x1222 (3.3 MB)

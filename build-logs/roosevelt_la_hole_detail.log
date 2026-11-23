@@ -1,0 +1,29 @@
+/home/runner/work/goose-course-maps/goose-course-maps/tools/fetch_hole_detail.py:67: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  greens = [(f["properties"]["osm_id"], shp_transform(lambda x, y, z=None: to_utm.transform(x, y), shape(f["geometry"])))
+[detail] hole 1: green osm 893595853 (473 m2)
+[detail] hole 1: 37735 ground points around the green
+[detail] hole 1: aerial clip 1223x1625 (3.1 MB)
+[detail] hole 2: green osm 893595847 (499 m2)
+[detail] hole 2: 59277 ground points around the green
+[detail] hole 2: aerial clip 1910x1135 (3.3 MB)
+[detail] hole 3: green osm 893595848 (428 m2)
+[detail] hole 3: 52403 ground points around the green
+[detail] hole 3: aerial clip 1164x1120 (2.0 MB)
+[detail] hole 4: green osm 893595850 (508 m2)
+[detail] hole 4: 39643 ground points around the green
+[detail] hole 4: aerial clip 1601x1534 (3.7 MB)
+[detail] hole 5: green osm 893595849 (381 m2)
+[detail] hole 5: 48200 ground points around the green
+[detail] hole 5: aerial clip 1284x1457 (2.9 MB)
+[detail] hole 6: green osm 893595865 (303 m2)
+[detail] hole 6: 37652 ground points around the green
+[detail] hole 6: aerial clip 1272x1597 (3.1 MB)
+[detail] hole 7: green osm 893595867 (306 m2)
+[detail] hole 7: 40097 ground points around the green
+[detail] hole 7: aerial clip 1411x968 (2.1 MB)
+[detail] hole 8: green osm 893595851 (354 m2)
+[detail] hole 8: 32133 ground points around the green
+[detail] hole 8: aerial clip 1663x1152 (2.9 MB)
+[detail] hole 9: green osm 893595852 (366 m2)
+[detail] hole 9: 31980 ground points around the green
+[detail] hole 9: aerial clip 963x1385 (2.1 MB)
