@@ -286,7 +286,7 @@
     }
   ],
   "trees_detected": 0,
-  "hole_data_built": false,
+  "hole_data_built": true,
   "lidar_project": null,
   "lidar_year": null,
   "dem": "USGS 3DEP Elevation ImageServer (best available)"

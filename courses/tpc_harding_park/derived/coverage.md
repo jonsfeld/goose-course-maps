@@ -4,7 +4,7 @@
 - Hole lines (golf=hole): 27
 - Lidar point cloud: None (None)
 - Trees detected from lidar: 0
-- Per-hole terrain built: no
+- Per-hole terrain built: yes
 
 | Hole | Par | Green | Fairway | Tees | Bunkers | Water | Woods |
 |---|---|---|---|---|---|---|---|
