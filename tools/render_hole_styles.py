@@ -27,7 +27,7 @@ from scipy import ndimage
 from shapely.geometry import LineString, Point, Polygon, box, mapping, shape
 from shapely.ops import transform as shp_transform
 
-from _common import course_dir
+from _common import course_dir, pick_holes
 
 PAPER = (243, 241, 234)
 INK = "#111311"
@@ -229,8 +229,7 @@ def load(slug, hole):
     cdir = course_dir(slug)
     hd = json.loads((cdir / "derived/hole_data.json").read_text())
     fc = json.loads((cdir / "derived/features_osm.geojson").read_text())
-    hs = [h for h in hd["holes"] if h["hole"] == hole]
-    h = max(hs, key=lambda h: h["hole_line"]["length_m"])
+    h = pick_holes(hd["holes"], fc)[hole]
     return cdir, h, fc
 
 

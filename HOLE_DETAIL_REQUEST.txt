@@ -1,3 +1,4 @@
 # <course_slug> <hole> <hole> ...   (push to a build/* branch to run)
-# run 3: retry hole 14 aerial
-tpc_harding_park 14
+# run 4: all holes, Harding + Roosevelt
+tpc_harding_park 1 2 3 4 5 6 7 8 9 10 11 12 13 15 17 14 16 18
+roosevelt_la 1 2 3 4 5 6 7 8 9

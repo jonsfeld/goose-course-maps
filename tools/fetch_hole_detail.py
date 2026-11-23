@@ -30,7 +30,7 @@ from pyproj import Transformer
 from shapely.geometry import Point, shape
 from shapely.ops import transform as shp_transform
 
-from _common import course_dir, ensure_dir
+from _common import course_dir, ensure_dir, pick_holes
 from fetch_points_ept import BUCKET, UA, ept_bounds_ok, utm_epsg
 
 NAIP = "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer/exportImage"
@@ -67,14 +67,12 @@ def main() -> None:
     greens = [(f["properties"]["osm_id"], shp_transform(lambda x, y, z=None: to_utm.transform(x, y), shape(f["geometry"])))
               for f in fc["features"] if f["properties"].get("kind") == "green"]
 
+    picked = pick_holes(hd["holes"], fc)  # main course only (e.g. Harding, not Fleming)
     for n in a.holes:
-        holes = [h for h in hd["holes"] if h["hole"] == n]
-        if not holes:
+        h = picked.get(n)
+        if h is None:
             print(f"[detail] hole {n}: not found")
             continue
-        h = max(holes, key=lambda h: h["hole_line"]["length_m"]) if len(holes) > 1 else holes[0]
-        if len(holes) > 1:
-            print(f"[detail] hole {n}: {len(holes)} entries share this number; using the longest")
         tee, gc = h["hole_line"]["tee"], h["hole_line"]["green_center"]
         tx, ty = to_utm.transform(tee["lng"], tee["lat"])
         gx, gy = to_utm.transform(gc["lng"], gc["lat"])
