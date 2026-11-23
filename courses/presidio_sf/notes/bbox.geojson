@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Presidio Golf Course footprint",
+        "source": "Extent of tees, greens and hole lines from the Goose course record + 100 m buffer",
+        "date": "2026-11-22"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.47418634107734,
+              37.78766505914444
+            ],
+            [
+              -122.45901473352293,
+              37.78766505914444
+            ],
+            [
+              -122.45901473352293,
+              37.795614842273636
+            ],
+            [
+              -122.47418634107734,
+              37.795614842273636
+            ],
+            [
+              -122.47418634107734,
+              37.78766505914444
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

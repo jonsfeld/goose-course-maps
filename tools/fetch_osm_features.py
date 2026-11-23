@@ -88,12 +88,17 @@ def convert(slug: str) -> Path:
     minx, miny, maxx, maxy = bbox
 
     query = f"""
-[out:json][timeout:30];
+[out:json][timeout:90];
 (
   way["golf"]({miny},{minx},{maxy},{maxx});
   relation["golf"]({miny},{minx},{maxy},{maxx});
   way["leisure"="golf_course"]({miny},{minx},{maxy},{maxx});
   relation["leisure"="golf_course"]({miny},{minx},{maxy},{maxx});
+  way["natural"="water"]({miny},{minx},{maxy},{maxx});
+  relation["natural"="water"]({miny},{minx},{maxy},{maxx});
+  way["natural"~"^(wood|tree_row|scrub)$"]({miny},{minx},{maxy},{maxx});
+  way["landuse"="forest"]({miny},{minx},{maxy},{maxx});
+  relation["natural"="wood"]({miny},{minx},{maxy},{maxx});
 );
 out geom;
 """
@@ -101,7 +106,7 @@ out geom;
     r = requests.get(
         OVERPASS_URL,
         params={"data": query},
-        timeout=60,
+        timeout=120,
         headers={"User-Agent": "goose-course-maps/0.1"},
     )
     r.raise_for_status()
@@ -141,6 +146,10 @@ out geom;
             kind = "course_boundary"
         elif golf_tag in OSM_TAG_TO_KIND:
             kind = OSM_TAG_TO_KIND[golf_tag]
+        elif tags.get("natural") == "water":
+            kind = "water"           # lakes/ponds not tagged golf=* (e.g. Lake Merced)
+        elif tags.get("natural") in ("wood", "tree_row", "scrub") or tags.get("landuse") == "forest":
+            kind = "woods"
         else:
             continue  # skip anything else
 

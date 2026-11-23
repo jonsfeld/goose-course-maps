@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TPC Harding Park footprint",
+        "source": "Extent of tees, greens and hole lines from the Goose course record + 100 m buffer",
+        "date": "2026-11-22"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.4994909656125,
+              37.716428054424746
+            ],
+            [
+              -122.48382516105241,
+              37.716428054424746
+            ],
+            [
+              -122.48382516105241,
+              37.727246649114264
+            ],
+            [
+              -122.4994909656125,
+              37.727246649114264
+            ],
+            [
+              -122.4994909656125,
+              37.716428054424746
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

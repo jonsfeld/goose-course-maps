@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Golden Gate Park Golf Course footprint",
+        "source": "Extent of tees, greens and hole lines from the Goose course record + 100 m buffer",
+        "date": "2026-11-22"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.50841803362903,
+              37.76622769892315
+            ],
+            [
+              -122.50179086975986,
+              37.76622769892315
+            ],
+            [
+              -122.50179086975986,
+              37.77025691050148
+            ],
+            [
+              -122.50841803362903,
+              37.77025691050148
+            ],
+            [
+              -122.50841803362903,
+              37.76622769892315
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

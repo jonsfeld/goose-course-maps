@@ -1,0 +1,2 @@
+# One course slug per line; push to a build/* branch to run.
+tpc_harding_park
