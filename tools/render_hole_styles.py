@@ -296,8 +296,8 @@ def render(slug, hole, out_path):
     zmin, zmax = np.nanmin(z), np.nanmax(z)
     contours = contour_paths(z, np.arange(math.floor(zmin), math.ceil(zmax) + 0.01, 0.5), step)
 
-    # aerial (optional)
-    naip_uri = None
+    # aerial (optional): a plain graded photo, and a blended one toned into the Yardage Book palette
+    naip_uri = blend_uri = None
     nj = cdir / f"derived/holes/hole_{hole}_naip.json"
     npng = cdir / f"derived/holes/hole_{hole}_naip.png"
     if nj.exists() and npng.exists():
@@ -310,16 +310,24 @@ def render(slug, hole, out_path):
         ux, uy = fr.px_to_utm(X, Y)
         col = (ux - bx0) / (bx1 - bx0) * img.shape[1] - 0.5
         row = (by1 - uy) / (by1 - by0) * img.shape[0] - 0.5
-        rgb = np.stack([ndimage.map_coordinates(img[..., c], [row, col], order=1, mode="constant", cval=np.nan) for c in range(3)], -1)
-        miss = np.isnan(rgb[..., 0])
-        rgb = np.nan_to_num(rgb, nan=0)
-        # grade: lift shadows, slight desaturation, warm toward paper, gentle contrast
-        lum = rgb @ np.array([0.299, 0.587, 0.114])
-        rgb = lum[..., None] + (rgb - lum[..., None]) * 0.82
+        raw = np.stack([ndimage.map_coordinates(img[..., c], [row, col], order=1, mode="constant", cval=np.nan) for c in range(3)], -1)
+        miss = np.isnan(raw[..., 0])
+        raw = np.nan_to_num(raw, nan=0)
+        lum = raw @ np.array([0.299, 0.587, 0.114])
+        # B: plain aerial, lightly graded
+        rgb = lum[..., None] + (raw - lum[..., None]) * 0.82
         rgb = 255 * (rgb / 255) ** 0.92
         rgb = rgb * 0.9 + np.array(PAPER) * 0.1
         rgb[miss] = PAPER
         naip_uri = jpg_b64(rgb)
+        # Blend: duotone from deep fairway-ink to paper, keeping a little of the photo's colour
+        t = np.clip((lum / 255 - 0.06) / 0.62, 0, 1) ** 0.8
+        dark = np.array([36, 52, 40]); light = np.array(PAPER)
+        base = dark * (1 - t[..., None]) + light * t[..., None]
+        out = base + (raw - lum[..., None]) * 0.5
+        out = out * 0.9 + light * 0.10
+        out[miss] = PAPER
+        blend_uri = jpg_b64(out, q=84)
 
     # green surface
     gfile = cdir / f"derived/holes/hole_{hole}_green_ground.csv.gz"
@@ -372,7 +380,8 @@ def render(slug, hole, out_path):
         parts = [seg] if seg.geom_type == "LineString" else list(seg.geoms)
         ends = [fr.to_px(*q) for g_ in parts for q in (g_.coords[0], g_.coords[-1])]
         cx, cy = max(ends, key=lambda e: e[0])
-        arc_svg.append(f'<text x="{cx + 4:.0f}" y="{cy + 4:.0f}" class="arcl">{yd}</text>')
+        lx = min(cx + 4, fr.W - 30)
+        arc_svg.append(f'<text x="{lx:.0f}" y="{cy + 4 if lx == cx + 4 else cy - 6:.0f}" class="arcl">{yd}</text>')
     arc_svg = "".join(arc_svg)
 
     common_top = f"""
@@ -381,36 +390,31 @@ def render(slug, hole, out_path):
       <g class="tee-mark"><circle cx="{tX:.1f}" cy="{tY:.1f}" r="6"/></g>
       <g class="flag" transform="translate({pX:.1f},{pY:.1f})"><line x1="0" y1="0" x2="0" y2="-26" stroke="{PIN}" stroke-width="2"/><path d="M0 -26 L16 -21 L9 -18 L16 -14 L0 -16 Z" fill="{FLAG}"/><circle r="2.6" fill="{INK}"/></g>"""
 
-    svg_a = f"""<svg viewBox="0 0 {W} {H}" class="hole a" role="img" aria-label="Hole {hole} yardage book view">
-      <rect width="{W}" height="{H}" fill="rgb{PAPER}"/>
-      <image href="{hill_uri}" width="{W}" height="{H}" preserveAspectRatio="none"/>
+    blend_img = f'<image class="img-blend" href="{blend_uri}" width="{W}" height="{H}" preserveAspectRatio="none"/>' if blend_uri else ""
+    aerial_img = f'<image class="img-aerial" href="{naip_uri}" width="{W}" height="{H}" preserveAspectRatio="none"/>' if naip_uri else ""
+    mode = "mode-blend" if blend_uri else "mode-book"
+    # One drawing, three looks: CSS on the mode class decides which layers show and how features are painted.
+    svg = f"""<svg viewBox="0 0 {W} {H}" class="hole {mode}" role="img" aria-label="Hole {hole} map">
+      <rect class="paper" width="{W}" height="{H}" fill="rgb{PAPER}"/>
+      {blend_img}{aerial_img}
+      <rect class="aerial-dim" width="{W}" height="{H}" fill="#0b1a10" opacity="0.08"/>
+      <image class="hill" href="{hill_uri}" width="{W}" height="{H}" preserveAspectRatio="none"/>
       <g class="contours">{cont_svg}</g>
-      <g fill="{WATER}" stroke="#9DB6C4" stroke-width="1">{layer("water")}</g>
+      <g class="f f-water">{layer("water")}</g>
       <g class="canopy">{can_svg}</g>
-      <g fill="{FAIRWAY}" stroke="#9FB896" stroke-width="1">{layer("fairway")}</g>
-      <g fill="{TEE}" stroke="#9FB896" stroke-width="1">{layer("tee_box")}</g>
-      <g fill="{GREEN}" stroke="#7FA376" stroke-width="1.2">{layer("green")}</g>
-      <g fill="{SAND}" stroke="#C9B98E" stroke-width="1">{layer("bunker")}</g>
-      <g fill="none" stroke="{RULE}" stroke-width="1.6" stroke-dasharray="1 4" stroke-linecap="round">{layer("cart_path")}</g>
+      <g class="f f-fairway">{layer("fairway")}</g>
+      <g class="f f-tee">{layer("tee_box")}</g>
+      <g class="f f-green">{layer("green")}</g>
+      <g class="f f-bunker">{layer("bunker")}</g>
+      <g class="f f-cart">{layer("cart_path")}</g>
       <g class="trees">{tree_svg}</g>
       {common_top}
     </svg>"""
 
-    svg_b = ""
-    if naip_uri:
-        svg_b = f"""<svg viewBox="0 0 {W} {H}" class="hole b" role="img" aria-label="Hole {hole} aerial view">
-      <image href="{naip_uri}" width="{W}" height="{H}" preserveAspectRatio="none"/>
-      <rect width="{W}" height="{H}" fill="#0b1a10" opacity="0.08"/>
-      <g fill="#9FD3E8" fill-opacity="0.18" stroke="#ffffff" stroke-opacity="0.75" stroke-width="1">{layer("water")}</g>
-      <g fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.85" stroke-width="1.1">{layer("fairway")}</g>
-      <g fill="none" stroke="#ffffff" stroke-opacity="0.7" stroke-width="1">{layer("tee_box")}</g>
-      <g fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-width="1.6">{layer("green")}</g>
-      <g fill="#ffffff" fill-opacity="0.10" stroke="#ffffff" stroke-opacity="0.9" stroke-width="1">{layer("bunker")}</g>
-      {common_top.replace('class="arc"', 'class="arc light"').replace('class="arcl"', 'class="arcl light"')}
-    </svg>"""
-
     meta = {"hole": hole, "par": h["par"], "yd": round(L / YD), "src": src, **gstats}
-    return svg_a, svg_b, green_svg, meta
+    meta["has_photo"] = bool(blend_uri)
+    meta["ntrees"] = len(trees)
+    return svg, green_svg, meta
 
 
 def render_green(S, gpoly, fr: Frame, feats, src):
@@ -429,7 +433,7 @@ def render_green(S, gpoly, fr: Frame, feats, src):
     from shapely import contains_xy
     inside = contains_xy(gpoly, ux, uy)
     # colour by slope class (percent)
-    stops = [(0.0, (226, 236, 220)), (1.0, (198, 222, 188)), (2.0, (233, 221, 168)), (3.0, (232, 190, 140)), (4.0, (214, 130, 96)), (6.0, (200, 90, 60))]
+    stops = [(0.0, (226, 236, 220)), (1.0, (198, 222, 188)), (2.0, (233, 221, 168)), (3.0, (232, 194, 146)), (4.0, (218, 148, 108)), (6.0, (204, 112, 80))]
     rgb = np.zeros(pct.shape + (3,))
     for i in range(len(stops) - 1):
         a0, c0 = stops[i]; a1, c1 = stops[i + 1]
@@ -508,58 +512,96 @@ HEAD = """<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name=
 <style>
 :root{--paper:#F3F1EA;--surface:#fff;--ink:#111311;--muted:#545850;--rule:#CFCABD;--fairway:#1D5C3B;--flag:#C8402A}
 *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:Geist,system-ui,sans-serif;font-weight:420;font-variant-numeric:tabular-nums}
-header{padding:28px 28px 4px;max-width:1240px;margin:auto} h1{font-weight:550;letter-spacing:-.04em;font-size:30px;margin:0}
-.sub{color:var(--muted);font-size:14px;margin-top:6px;max-width:780px;line-height:1.45}
-.tabs{display:flex;gap:0;margin-top:16px;border:1px solid var(--ink);border-radius:10px;overflow:hidden;width:max-content}
-.tabs button{font:inherit;font-weight:550;font-size:15px;padding:10px 18px;border:0;background:transparent;color:var(--ink);cursor:pointer;min-width:84px}
-.tabs button+button{border-left:1px solid var(--ink)} .tabs button[aria-selected=true]{background:var(--ink);color:var(--paper)}
+header{padding:28px 28px 4px;max-width:1100px;margin:auto} h1{font-weight:550;letter-spacing:-.04em;font-size:30px;margin:0}
+.sub{color:var(--muted);font-size:14px;margin-top:6px;max-width:760px;line-height:1.45}
+.seg{display:inline-flex;border:1px solid var(--ink);border-radius:10px;overflow:hidden}
+.seg button{font:inherit;font-weight:550;font-size:14px;padding:9px 16px;border:0;background:transparent;color:var(--ink);cursor:pointer;min-height:40px}
+.seg button+button{border-left:1px solid var(--ink)} .seg button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.controls{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px;align-items:center}
 section{display:none} section.on{display:block}
-.hhead{max-width:1240px;margin:18px auto 0;padding:0 28px;display:flex;gap:16px;align-items:baseline}
+.hhead{max-width:1100px;margin:18px auto 0;padding:0 28px;display:flex;gap:16px;align-items:baseline}
 .hhead b{font-weight:550;font-size:22px;letter-spacing:-.03em}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;padding:14px 28px 28px;max-width:1240px;margin:auto;align-items:start}
+.grid{display:grid;grid-template-columns:minmax(320px,1.15fr) minmax(300px,1fr);gap:24px;padding:14px 28px 28px;max-width:1100px;margin:auto;align-items:start}
+@media (max-width:760px){.grid{grid-template-columns:1fr}}
 .card{background:var(--surface);border:1px solid var(--rule);border-radius:14px;overflow:hidden}
 .cap{display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px 10px;border-bottom:1px solid var(--rule)}
 .cap b{font-weight:550;font-size:17px;letter-spacing:-.02em} .lbl{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .hole{display:block;width:100%;height:auto}
-.hd{display:flex;gap:18px;padding:12px 16px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)} .hd span b{color:var(--ink);font-weight:550;font-size:18px;letter-spacing:-.03em;display:block}
-.contours path{fill:none;stroke:#8B8A74;stroke-opacity:.16;stroke-width:.6} .contours path.major{stroke-opacity:.30;stroke-width:.8}
+.hd{display:flex;gap:18px;padding:12px 16px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted)} .hd span b{color:var(--ink);font-weight:550;font-size:16px;letter-spacing:-.02em;display:block}
+
+/* ---- shared marks ---- */
+.holeline{fill:none;stroke:var(--ink);stroke-width:1.3;stroke-dasharray:5 5;opacity:.8}
+.arc{fill:none;stroke:var(--ink);stroke-opacity:.5;stroke-width:1}
+.arcl{font-size:12px;font-weight:600;fill:var(--ink);paint-order:stroke;stroke:#F3F1EAcc;stroke-width:3px}
+.tee-mark circle{fill:var(--surface);stroke:var(--ink);stroke-width:1.6}
+.contours path{fill:none;stroke:#6E6C58;stroke-opacity:.16;stroke-width:.6} .contours path.major{stroke-opacity:.30;stroke-width:.8}
 .canopy path{fill:#C9D5BC;fill-opacity:.6;stroke:none}
 .trees circle{fill:#AFC2A0;fill-opacity:.75;stroke:#3F4A3A;stroke-opacity:.35;stroke-width:.5}
-.holeline{fill:none;stroke:var(--ink);stroke-width:1.3;stroke-dasharray:5 5;opacity:.75}
-.b .holeline{stroke:#fff;opacity:.95}
-.arc{fill:none;stroke:var(--ink);stroke-opacity:.45;stroke-width:1} .arc.light{stroke:#fff;stroke-opacity:.8}
-.arcl{font-size:12px;font-weight:600;fill:var(--muted)} .arcl.light{fill:#fff;paint-order:stroke;stroke:#00000066;stroke-width:2px}
-.tee-mark circle{fill:var(--surface);stroke:var(--ink);stroke-width:1.6}
+.f-cart path{fill:none;stroke:#CFCABD;stroke-width:1.6;stroke-dasharray:1 4;stroke-linecap:round}
+
+/* ---- Illustrated (Yardage Book) ---- */
+.mode-book .img-blend,.mode-book .img-aerial,.mode-book .aerial-dim{display:none}
+.mode-book .f-water path{fill:#D7E4EC;stroke:#9DB6C4;stroke-width:1}
+.mode-book .f-fairway path,.mode-book .f-tee path{fill:#D9E7D1;stroke:#9FB896;stroke-width:1}
+.mode-book .f-green path{fill:#BFD9B8;stroke:#7FA376;stroke-width:1.2}
+.mode-book .f-bunker path{fill:#EFE6CF;stroke:#C9B98E;stroke-width:1}
+
+/* ---- Blend: toned photo underneath, Yardage Book fills and lines on top ---- */
+.mode-blend .img-aerial,.mode-blend .aerial-dim,.mode-blend .trees,.mode-blend .canopy,.mode-blend .f-cart{display:none}
+.mode-blend .hill{opacity:.45} .mode-blend .contours{opacity:.8}
+.mode-blend .f-water path{fill:#D7E4EC;fill-opacity:.82;stroke:#8FAAB9;stroke-width:1}
+.mode-blend .f-fairway path,.mode-blend .f-tee path{fill:#D9E7D1;fill-opacity:.62;stroke:#5E7F56;stroke-opacity:.7;stroke-width:1}
+.mode-blend .f-green path{fill:#A9CFA0;fill-opacity:.92;stroke:#2F5A30;stroke-width:1.4}
+.mode-blend .f-bunker path{fill:#F1E8D2;fill-opacity:.95;stroke:#B8A57A;stroke-width:1}
+
+/* ---- Aerial ---- */
+.mode-aerial .img-blend,.mode-aerial .paper,.mode-aerial .hill,.mode-aerial .contours,.mode-aerial .canopy,.mode-aerial .trees,.mode-aerial .f-cart{display:none}
+.mode-aerial .f-water path{fill:#9FD3E8;fill-opacity:.18;stroke:#fff;stroke-opacity:.75;stroke-width:1}
+.mode-aerial .f-fairway path{fill:#fff;fill-opacity:.06;stroke:#fff;stroke-opacity:.85;stroke-width:1.1}
+.mode-aerial .f-tee path{fill:none;stroke:#fff;stroke-opacity:.7;stroke-width:1}
+.mode-aerial .f-green path{fill:#fff;fill-opacity:.08;stroke:#fff;stroke-width:1.6}
+.mode-aerial .f-bunker path{fill:#fff;fill-opacity:.10;stroke:#fff;stroke-opacity:.9;stroke-width:1}
+.mode-aerial .holeline{stroke:#fff;opacity:.95} .mode-aerial .arc{stroke:#fff;stroke-opacity:.85}
+.mode-aerial .arcl{fill:#fff;stroke:#00000066;stroke-width:2px}
+
+/* ---- green panel ---- */
 .greenpanel{display:block;width:100%;height:auto}
 .gcont path{fill:none;stroke:#3F4A3A;stroke-opacity:.25;stroke-width:.7}
 .garrows path{fill:none;stroke:var(--ink);stroke-opacity:.85;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
 .read{padding:14px 16px 16px;border-top:1px solid var(--rule);font-size:15px;line-height:1.45} .read .call{font-size:19px;font-weight:500;letter-spacing:-.01em}
 .legend{display:flex;gap:10px;flex-wrap:wrap;padding:0 16px 14px;font-size:12px;color:var(--muted)} .sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px;border:1px solid #0001}
-.note{max-width:1240px;margin:0 auto 40px;padding:0 28px;color:var(--muted);font-size:13px;line-height:1.5}
+.note{max-width:1100px;margin:0 auto 40px;padding:0 28px;color:var(--muted);font-size:13px;line-height:1.5}
 </style></head><body>
-<header><div class="lbl">Map style prototype · {course_name}</div><h1>Two ways to draw a hole</h1>
-<div class="sub">Same hole, same data, two looks, plus a directional green read. Tee at the bottom, green at the top; arcs show yards to the middle of the green. Pick a direction and it becomes the hole view in Goose.</div>
-<div class="tabs" role="tablist">{tabs}</div></header>
+<header><div class="lbl">Map style prototype · {course_name}</div><h1>The Goose hole view</h1>
+<div class="sub">Blend is the proposed default: the aerial photo toned into the Yardage Book palette, with flat fills, terrain shading and contours on top. Switch to Illustrated or Aerial at any time. Tee at the bottom, green at the top; arcs show yards to the middle of the green.</div>
+<div class="controls"><div class="seg" role="group" aria-label="Hole">{tabs}</div><div class="seg" role="group" aria-label="Map style">
+<button data-mode="mode-blend" aria-pressed="true">Blend</button><button data-mode="mode-book" aria-pressed="false">Illustrated</button><button data-mode="mode-aerial" aria-pressed="false">Aerial</button></div></div></header>
 """
 
 SECTION = """<section id="h{hole}" class="{on}">
 <div class="hhead"><b>Hole {hole} · Par {par} · {yd} yds</b><span class="lbl">tee to middle of green</span></div>
 <div class="grid">
- <div class="card"><div class="cap"><b>A · Yardage Book</b><span class="lbl">Illustrated</span></div>{svg_a}
-  <div class="hd"><span>Shading<b>1 m lidar terrain</b></span><span>Trees<b>{ntrees} from lidar</b></span></div></div>
- {card_b}
+ <div class="card"><div class="cap"><b>Hole view</b><span class="lbl stylename">Blend</span></div>{svg}
+  <div class="hd"><span>Photo<b>USGS NAIP</b></span><span>Terrain<b>1 m lidar</b></span><span>Trees<b>{ntrees} from lidar</b></span></div></div>
  <div class="card"><div class="cap"><b>Green read</b><span class="lbl">Directional</span></div>{green}
   <div class="read"><div class="call">Falls {fall_rel}, about {overall_pct}% overall.</div>
   <div style="color:var(--muted);margin-top:6px">{relief_cm} cm from high to low; {ge3}% of the green is 3% or steeper. Arrows point downhill; longer means steeper. Viewed from the fairway.</div></div>
-  <div class="legend"><span><i class="sw" style="background:#E2ECDC"></i>0–1%</span><span><i class="sw" style="background:#C6DEBC"></i>1–2%</span><span><i class="sw" style="background:#E9DDA8"></i>2–3%</span><span><i class="sw" style="background:#E8BE8C"></i>3–4%</span><span><i class="sw" style="background:#D68260"></i>4%+</span></div></div>
+  <div class="legend"><span><i class="sw" style="background:#E2ECDC"></i>0–1%</span><span><i class="sw" style="background:#C6DEBC"></i>1–2%</span><span><i class="sw" style="background:#E9DDA8"></i>2–3%</span><span><i class="sw" style="background:#E8BE8C"></i>3–4%</span><span><i class="sw" style="background:#DA946C"></i>4%+</span></div></div>
 </div>
 <div class="note">{source_note}</div>
 </section>"""
 
 TAIL = """<script>
-document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
- document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));
+const names={'mode-blend':'Blend','mode-book':'Illustrated','mode-aerial':'Aerial'};
+let mode='mode-blend';
+function apply(){document.querySelectorAll('svg.hole').forEach(s=>{s.classList.remove('mode-blend','mode-book','mode-aerial');s.classList.add(mode)});
+ document.querySelectorAll('.stylename').forEach(e=>e.textContent=names[mode]);
+ document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===mode));}
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;apply();});
+document.querySelectorAll('[data-h]').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('[data-h]').forEach(x=>x.setAttribute('aria-pressed',x===b));
  document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.h));});
+apply();
 </script></body></html>"""
 
 
@@ -572,22 +614,18 @@ def main():
     a = ap.parse_args()
     secs, tabs = [], []
     for i, hole in enumerate(a.holes):
-        svg_a, svg_b, green, m = render(a.course, hole, a.out)
-        ntrees = svg_a.count("<circle") - 1
-        card_b = (f'<div class="card"><div class="cap"><b>B · Aerial</b><span class="lbl">Photo + outlines</span></div>{svg_b}'
-                  f'<div class="hd"><span>Photo<b>USGS NAIP</b></span><span>Outlines<b>OpenStreetMap</b></span></div></div>') if svg_b else \
-                 '<div class="card"><div class="cap"><b>B · Aerial</b><span class="lbl">waiting for photo</span></div></div>'
+        svg, green, m = render(a.course, hole, a.out)
         if m["src"] == "lidar":
             note = (f"Green surface from {m['pts']:,} USGS lidar ground points on the green (2023 survey, about {m['density']:.0f} per m²), smoothed over about 1 m. "
                     "Lidar height error is a few centimetres, close to the size of the slopes on a green, so read this as the general break, not an exact line. "
                     "Greens rebuilt after 2023 will be out of date.")
         else:
             note = "Green surface from the 1 m elevation model (lidar ground points not loaded), so the read is coarse."
-        secs.append(SECTION.format(hole=hole, on="on" if i == 0 else "", par=m["par"], yd=m["yd"], svg_a=svg_a, card_b=card_b,
-                                   green=green, ntrees=ntrees, fall_rel=m["fall_rel"], overall_pct=m["overall_pct"],
+        secs.append(SECTION.format(hole=hole, on="on" if i == 0 else "", par=m["par"], yd=m["yd"], svg=svg,
+                                   green=green, ntrees=f"{m['ntrees']:,}", fall_rel=m["fall_rel"], overall_pct=m["overall_pct"],
                                    relief_cm=m["relief_cm"], ge3=m["share"]["ge3"], source_note=note))
-        tabs.append(f'<button role="tab" data-h="h{hole}" aria-selected="{str(i == 0).lower()}">Hole {hole}</button>')
-        print(json.dumps(m))
+        tabs.append(f'<button data-h="h{hole}" aria-pressed="{str(i == 0).lower()}">Hole {hole}</button>')
+        print(json.dumps({k: v for k, v in m.items() if k != "share"}))
     html = HEAD.replace("{course_name}", a.course_name or a.course).replace("{tabs}", "".join(tabs)) + "".join(secs) + TAIL
     Path(a.out).write_text(html)
     print(f"{len(html)/1e6:.1f} MB")
