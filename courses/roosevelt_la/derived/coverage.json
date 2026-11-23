@@ -101,9 +101,9 @@
       "woods": 0
     }
   ],
-  "trees_detected": 16673,
+  "trees_detected": 23076,
   "hole_data_built": true,
-  "lidar_project": null,
-  "lidar_year": null,
+  "lidar_project": "CA_LosAngeles_1_B23",
+  "lidar_year": 2023,
   "dem": "USGS 3DEP Elevation ImageServer (best available)"
 }

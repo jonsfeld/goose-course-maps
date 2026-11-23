@@ -14,5 +14,16 @@
       940
     ],
     "epsg": 32611
+  },
+  "point_cloud": {
+    "product": "USGS 3DEP lidar (EPT copy on AWS usgs-lidar-public)",
+    "project": "CA_LosAngeles_1_B23",
+    "year": 2023,
+    "epsg": 32611,
+    "file": "ept_CA_LosAngeles_1_B23.laz",
+    "candidates": [
+      "CA_LosAngeles_1_B23",
+      "USGS_LPC_CA_LosAngeles_2016_LAS_2018"
+    ]
   }
 }
