@@ -1,3 +1,3 @@
 # One course slug per line; push to a build/* branch to run.
-# run 5: trees from the USGS EPT copy on AWS
+# run 6: PDAL via conda-forge, non-blocking
 tpc_harding_park

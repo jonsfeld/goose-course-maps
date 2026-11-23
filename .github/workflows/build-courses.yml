@@ -25,7 +25,17 @@ jobs:
           cache: pip
           cache-dependency-path: tools/requirements.txt
       - run: pip install -r tools/requirements.txt
-      - run: sudo apt-get update -qq && sudo apt-get install -y -qq pdal
+      - name: Install PDAL (point-cloud tool) — must never block the build
+        continue-on-error: true
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-name: pdal
+          create-args: pdal
+          condarc: |
+            channels: [conda-forge]
+      - name: Expose PDAL on PATH
+        continue-on-error: true
+        run: echo "${MAMBA_ROOT_PREFIX:-$HOME/micromamba}/envs/pdal/bin" >> "$GITHUB_PATH"
       - name: Write helper
         run: |
           cat > /tmp/run.sh <<'SH'

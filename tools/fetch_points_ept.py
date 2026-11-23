@@ -128,7 +128,11 @@ def main() -> None:
          "offset_x": "auto", "offset_y": "auto", "offset_z": "auto"},
     ]}
     t0 = time.time()
-    subprocess.run(["pdal", "pipeline", "--stdin"], input=json.dumps(pipeline).encode(), check=True)
+    import shutil
+    pdal = shutil.which("pdal")
+    if not pdal:
+        raise SystemExit("[ept] pdal not installed")
+    subprocess.run([pdal, "pipeline", "--stdin"], input=json.dumps(pipeline).encode(), check=True)
     print(f"[ept] wrote {out.name} ({out.stat().st_size/1e6:.0f} MB) in {time.time()-t0:.0f}s, EPSG:{epsg}")
 
     notes = ensure_dir(course_dir(slug) / "notes") / "lidar_sources.json"
