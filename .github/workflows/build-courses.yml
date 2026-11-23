@@ -25,6 +25,7 @@ jobs:
           cache: pip
           cache-dependency-path: tools/requirements.txt
       - run: pip install -r tools/requirements.txt
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq pdal
       - name: Write helper
         run: |
           cat > /tmp/run.sh <<'SH'
@@ -46,7 +47,8 @@ jobs:
                 step 10m tools/build_hole_data.py --course "$slug"
                 step 3m  tools/coverage_report.py --course "$slug" ;;
               trees)
-                step 35m tools/fetch_lidar.py --course "$slug" --only lpc --max-tiles 12
+                step 20m tools/fetch_points_ept.py --course "$slug"
+                ls courses/"$slug"/sources/point_cloud/*.laz >/dev/null 2>&1 || step 35m tools/fetch_lidar.py --course "$slug" --only lpc --max-tiles 12
                 step 15m tools/build_chm.py --course "$slug"
                 step 10m tools/detect_trees.py --course "$slug"
                 step 10m tools/build_hole_data.py --course "$slug"

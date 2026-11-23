@@ -66,7 +66,13 @@ def build(slug: str) -> Path:
             # We use the LAZ header's georeferencing via pyproj.
             from pyproj import Transformer
 
-            src_crs = _extract_laz_crs(las)
+            try:
+                src_crs = _extract_laz_crs(las)
+            except ValueError:
+                import json as _json
+                rec = _json.loads((course_dir(slug) / "notes" / "lidar_sources.json").read_text()) if (course_dir(slug) / "notes" / "lidar_sources.json").exists() else {}
+                src_crs = f"EPSG:{(rec.get('point_cloud') or {}).get('epsg')}" if (rec.get("point_cloud") or {}).get("epsg") else "EPSG:26911"
+            print(f"[chm]   CRS {src_crs}, {len(las.x)} points")
             transformer = Transformer.from_crs(src_crs, "EPSG:4326", always_xy=True)
             lons, lats = transformer.transform(las.x, las.y)
             zs = np.asarray(las.z, dtype="float32")
@@ -133,8 +139,8 @@ def _extract_laz_crs(las: laspy.LasData) -> str:
                     return crs.to_string()
             except Exception:
                 pass
-    # Fallback — hardcoded for our current data source.
-    return "EPSG:26911"
+    # Fallback: the CRS our own EPT fetch recorded, else the LA tiles' UTM 11N.
+    raise ValueError("LAZ has no readable CRS")
 
 
 def main() -> None:
