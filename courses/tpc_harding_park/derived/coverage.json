@@ -1,0 +1,11 @@
+{
+  "course": "tpc_harding_park",
+  "feature_counts": {},
+  "hole_lines": 0,
+  "per_hole": [],
+  "trees_detected": 0,
+  "hole_data_built": false,
+  "lidar_project": null,
+  "lidar_year": null,
+  "dem": null
+}
