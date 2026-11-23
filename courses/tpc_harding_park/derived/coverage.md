@@ -1,6 +1,6 @@
 # Coverage — tpc_harding_park
 
-- OSM features: bunker 60, cart_path 63, course_boundary 1, driving_range 2, fairway 28, green 44, hole_line 27, tee_box 100, water 1, woods 3
+- OSM features: bunker 60, cart_path 67, course_boundary 1, driving_range 2, fairway 28, green 44, hole_line 27, tee_box 101, water 1, woods 3
 - Hole lines (golf=hole): 27
 - Lidar point cloud: None (None)
 - Trees detected from lidar: 0
@@ -9,9 +9,9 @@
 | Hole | Par | Green | Fairway | Tees | Bunkers | Water | Woods |
 |---|---|---|---|---|---|---|---|
 | 1 | 4 | 3 | 1 | 9 | 1 | 0 | 0 |
-| 1 | 4 | 5 | 4 | 4 | 6 | 0 | 0 |
-| 2 | 4 | 4 | 4 | 6 | 5 | 0 | 0 |
-| 2 | 3 | 5 | 2 | 6 | 3 | 0 | 0 |
+| 1 | 4 | 5 | 4 | 5 | 6 | 0 | 0 |
+| 2 | 4 | 4 | 3 | 6 | 5 | 0 | 0 |
+| 2 | 3 | 5 | 2 | 7 | 3 | 0 | 0 |
 | 3 | 3 | 3 | 3 | 3 | 5 | 0 | 0 |
 | 3 | 3 | 2 | 3 | 4 | 3 | 0 | 0 |
 | 4 | 5 | 1 | 3 | 10 | 2 | 0 | 0 |
@@ -23,11 +23,11 @@
 | 7 | 4 | 2 | 2 | 10 | 5 | 0 | 0 |
 | 7 | 4 | 4 | 5 | 10 | 2 | 0 | 0 |
 | 8 | 3 | 2 | 3 | 7 | 2 | 0 | 0 |
-| 8 | 4 | 3 | 3 | 5 | 2 | 0 | 0 |
+| 8 | 4 | 3 | 3 | 6 | 2 | 0 | 0 |
 | 9 | 5 | 2 | 3 | 7 | 7 | 0 | 0 |
-| 9 | 3 | 1 | 1 | 4 | 2 | 0 | 0 |
+| 9 | 3 | 2 | 2 | 4 | 2 | 0 | 0 |
 | 10 | 5 | 2 | 2 | 8 | 6 | 0 | 0 |
-| 11 | 3 | 2 | 2 | 8 | 5 | 0 | 0 |
+| 11 | 3 | 2 | 2 | 9 | 5 | 0 | 0 |
 | 12 | 5 | 3 | 2 | 7 | 6 | 0 | 0 |
 | 13 | 4 | 2 | 1 | 5 | 3 | 0 | 0 |
 | 14 | 4 | 2 | 2 | 7 | 2 | 0 | 1 |

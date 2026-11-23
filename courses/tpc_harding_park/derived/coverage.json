@@ -2,10 +2,10 @@
   "course": "tpc_harding_park",
   "feature_counts": {
     "course_boundary": 1,
-    "cart_path": 63,
+    "cart_path": 67,
     "woods": 3,
     "bunker": 60,
-    "tee_box": 100,
+    "tee_box": 101,
     "green": 44,
     "driving_range": 2,
     "fairway": 28,
@@ -29,7 +29,7 @@
       "par": 4,
       "green": 5,
       "fairway": 4,
-      "tees": 4,
+      "tees": 5,
       "bunkers": 6,
       "water": 0,
       "woods": 0
@@ -38,7 +38,7 @@
       "hole": "2",
       "par": 4,
       "green": 4,
-      "fairway": 4,
+      "fairway": 3,
       "tees": 6,
       "bunkers": 5,
       "water": 0,
@@ -49,7 +49,7 @@
       "par": 3,
       "green": 5,
       "fairway": 2,
-      "tees": 6,
+      "tees": 7,
       "bunkers": 3,
       "water": 0,
       "woods": 0
@@ -169,7 +169,7 @@
       "par": 4,
       "green": 3,
       "fairway": 3,
-      "tees": 5,
+      "tees": 6,
       "bunkers": 2,
       "water": 0,
       "woods": 0
@@ -187,8 +187,8 @@
     {
       "hole": "9",
       "par": 3,
-      "green": 1,
-      "fairway": 1,
+      "green": 2,
+      "fairway": 2,
       "tees": 4,
       "bunkers": 2,
       "water": 0,
@@ -209,7 +209,7 @@
       "par": 3,
       "green": 2,
       "fairway": 2,
-      "tees": 8,
+      "tees": 9,
       "bunkers": 5,
       "water": 0,
       "woods": 0
