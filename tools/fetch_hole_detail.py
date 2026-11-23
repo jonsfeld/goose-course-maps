@@ -104,8 +104,10 @@ def main() -> None:
                 print(f"[detail] hole {n}: {len(rows)-1} ground points around the green")
             except Exception as e:
                 print(f"[detail] hole {n}: green points FAILED: {e}")
-        else:
+        elif not ept_name:
             print("[detail] no EPT project in notes/lidar_sources.json; skipping green points")
+        else:
+            print(f"[detail] hole {n}: green points already fetched; kept")
 
         # 2. aerial clip of the hole, in UTM
         bx0, by0, bx1, by1 = Point(tx, ty).union(gpoly).buffer(150).bounds  # wide: the view is rotated
