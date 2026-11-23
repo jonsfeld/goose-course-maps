@@ -2,10 +2,10 @@
   greens = [(f["properties"]["osm_id"], shp_transform(lambda x, y, z=None: to_utm.transform(x, y), shape(f["geometry"])))
 [detail] hole 14: green osm 854119627 (524 m2)
 [detail] hole 14: 208109 ground points around the green
-[detail] hole 14: aerial clip 1332x1423 (2.6 MB)
+[detail] hole 14: aerial clip FAILED: 504 Server Error: Gateway Time-out for url: https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer/exportImage?bbox=544750.3783511058%2C4174424.3818016234%2C545354.4459184416%2C4175058.8294517146&bboxSR=32610&imageSR=32610&size=1812%2C1903&format=png&pixelType=U8&bandIds=0%2C1%2C2&interpolation=RSP_CubicConvolution&f=image
 [detail] hole 16: green osm 854089825 (645 m2)
 [detail] hole 16: 209428 ground points around the green
-[detail] hole 16: aerial clip 1288x874 (1.5 MB)
+[detail] hole 16: aerial clip 1767x1354 (3.0 MB)
 [detail] hole 18: green osm 853522217 (555 m2)
 [detail] hole 18: 251629 ground points around the green
-[detail] hole 18: aerial clip 1561x742 (1.5 MB)
+[detail] hole 18: aerial clip 2041x1222 (3.3 MB)
