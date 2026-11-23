@@ -107,7 +107,7 @@ def main() -> None:
             print("[detail] no EPT project in notes/lidar_sources.json; skipping green points")
 
         # 2. aerial clip of the hole, in UTM
-        bx0, by0, bx1, by1 = Point(tx, ty).union(gpoly).buffer(70).bounds
+        bx0, by0, bx1, by1 = Point(tx, ty).union(gpoly).buffer(150).bounds  # wide: the view is rotated
         w = min(4000, int((bx1 - bx0) * a.px_per_m))
         hgt = min(4000, int((by1 - by0) * a.px_per_m))
         params = {"bbox": f"{bx0},{by0},{bx1},{by1}", "bboxSR": epsg, "imageSR": epsg,
