@@ -1,0 +1,2 @@
+# <course_slug> <hole> <hole> ...   (push to a build/* branch to run)
+tpc_harding_park 14 16 18
