@@ -1,81 +1,30 @@
-=== tpc_harding_park ===
---- tools/fetch_osm_features.py --course tpc_harding_park
+--- tools/fetch_osm_features.py --course tpc_harding_park (limit 6m)
 [osm] querying Overpass for bbox (-122.49949,37.71643)-(-122.48383,37.72725)
-Traceback (most recent call last):
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/fetch_osm_features.py", line 212, in <module>
-    main()
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/fetch_osm_features.py", line 208, in main
-    convert(args.course)
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/fetch_osm_features.py", line 112, in convert
-    r.raise_for_status()
-  File "/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/requests/models.py", line 1167, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter?data=%0A%5Bout%3Ajson%5D%5Btimeout%3A90%5D%3B%0A%28%0A++way%5B%22golf%22%5D%2837.716428054424746%2C-122.4994909656125%2C37.727246649114264%2C-122.48382516105241%29%3B%0A++relation%5B%22golf%22%5D%2837.716428054424746%2C-122.4994909656125%2C37.727246649114264%2C-122.48382516105241%29%3B%0A++way%5B%22leisure%22%3D%22golf_course%22%5D%2837.716428054424746%2C-122.4994909656125%2C37.727246649114264%2C-122.48382516105241%29%3B%0A++relation%5B%22leisure%22%3D%22golf_course%22%5D%2837.716428054424746%2C-122.4994909656125%2C37.727246649114264%2C-122.48382516105241%29%3B%0A++way%5B%22natural%22%3D%22water%22%5D%2837.716428054424746%2C-122.4994909656125%2C37.727246649114264%2C-122.48382516105241%29%3B%0A++relation%5B%22natural%22%3D%22water%22%5D%2837.716428054424746%2C-122.4994909656125%2C37.727246649114264%2C-122.48382516105241%29%3B%0A++way%5B%22natural%22~%22%5E%28wood%7Ctree_row%7Cscrub%29%24%22%5D%2837.716428054424746%2C-122.4994909656125%2C37.727246649114264%2C-122.48382516105241%29%3B%0A++way%5B%22landuse%22%3D%22forest%22%5D%2837.716428054424746%2C-122.4994909656125%2C37.727246649114264%2C-122.48382516105241%29%3B%0A++relation%5B%22natural%22%3D%22wood%22%5D%2837.716428054424746%2C-122.4994909656125%2C37.727246649114264%2C-122.48382516105241%29%3B%0A%29%3B%0Aout+geom%3B%0A
-!!! FAILED: tools/fetch_osm_features.py --course tpc_harding_park
---- tools/fetch_lidar.py --course tpc_harding_park
+[osm] https://overpass-api.de/api/interpreter -> HTTP 502, retrying
+[osm] got 329 elements
+[osm] feature counts: {'course_boundary': 1, 'cart_path': 63, 'woods': 3, 'bunker': 60, 'tee_box': 100, 'green': 44, 'driving_range': 2, 'fairway': 28, 'water': 1, 'hole_line': 27}
+[osm] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/derived/features_osm.geojson (329 features)
+[osm] raw OSM saved to /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/sources/osm_features.json
+--- tools/fetch_lidar.py --course tpc_harding_park --only dem (limit 6m)
 [dem] 1380x1196 px (~1 m) -> /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/sources/dem/3dep_1m.tif (7.2 MB)
-[lpc] 22 tiles across 4 projects; using newest: CA_SanFrancisco_B23 (12 tiles)
-Traceback (most recent call last):
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/fetch_lidar.py", line 144, in <module>
-    main()
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/fetch_lidar.py", line 137, in main
-    record["point_cloud"] = {"product": None} if a.skip_lpc else fetch_lpc(a.course, bbox, a.max_tiles)
-                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/fetch_lidar.py", line 118, in fetch_lpc
-    resp.raise_for_status()
-  File "/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/requests/models.py", line 1167, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/Elevation/LPC/Projects/CA_SanFrancisco_B23/CA_SanFrancisco_1_B23/LAZ/USGS_LPC_CA_SanFrancisco_B23_04350200.laz
-!!! FAILED: tools/fetch_lidar.py --course tpc_harding_park
---- tools/fetch_naip_clip.py --course tpc_harding_park
+[lidar] provenance -> /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/notes/lidar_sources.json
+--- tools/fetch_naip_clip.py --course tpc_harding_park (limit 6m)
 [naip] bbox -122.49949,37.71643,-122.48383,37.72725
 [naip] requesting 2048x2048 clip from https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer/exportImage
 [naip] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/sources/imagery/naip_clip.tif (16.8 MB)
---- tools/merge_clip_dem.py --course tpc_harding_park
+--- tools/merge_clip_dem.py --course tpc_harding_park (limit 5m)
 [dem] merging 1 tiles from /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/sources/dem
 [dem] merged mosaic CRS: EPSG:32610
 [dem] clipping to bbox -122.49949,37.71643,-122.48383,37.72725
 [dem] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/derived/dem_clipped.tif (4.7 MB, 1740x1202)
---- tools/derive_terrain.py --course tpc_harding_park
+--- tools/derive_terrain.py --course tpc_harding_park (limit 5m)
 [terrain] DEM (1202, 1740), cellsize ~0.895 m
 [terrain] wrote slope.tif (valid range 0.00° – 88.84°, mean 4.31°)
 [terrain] wrote aspect.tif
 [terrain] wrote hillshade.tif (az=315.0°, alt=45.0°)
---- tools/build_chm.py --course tpc_harding_park
-Traceback (most recent call last):
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_chm.py", line 148, in <module>
-    main()
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_chm.py", line 144, in main
-    build(args.course)
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_chm.py", line 43, in build
-    raise FileNotFoundError("No LAZ tiles under sources/point_cloud/")
-FileNotFoundError: No LAZ tiles under sources/point_cloud/
-!!! FAILED: tools/build_chm.py --course tpc_harding_park
---- tools/detect_trees.py --course tpc_harding_park
-Traceback (most recent call last):
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/detect_trees.py", line 142, in <module>
-    main()
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/detect_trees.py", line 138, in main
-    detect(args.course)
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/detect_trees.py", line 33, in detect
-    raise FileNotFoundError(f"{chm_path} not found; run build_chm.py first")
-FileNotFoundError: /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/derived/canopy_height_model.tif not found; run build_chm.py first
-!!! FAILED: tools/detect_trees.py --course tpc_harding_park
---- tools/render_osm_features.py --course tpc_harding_park
-Traceback (most recent call last):
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/render_osm_features.py", line 124, in <module>
-    main()
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/render_osm_features.py", line 120, in main
-    render(args.course)
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/render_osm_features.py", line 45, in render
-    with feat_path.open() as f:
-         ^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/pathlib.py", line 1044, in open
-    return io.open(self, mode, buffering, encoding, errors, newline)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/derived/features_osm.geojson'
-!!! FAILED: tools/render_osm_features.py --course tpc_harding_park
---- tools/build_hole_data.py --course tpc_harding_park
+--- tools/render_osm_features.py --course tpc_harding_park (limit 3m)
+[osm-preview] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/derived/features_osm_preview.png
+--- tools/build_hole_data.py --course tpc_harding_park (limit 10m)
 Traceback (most recent call last):
   File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py", line 433, in <module>
     main()
@@ -83,31 +32,43 @@ Traceback (most recent call last):
     build(args.course)
   File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py", line 297, in build
     raise FileNotFoundError(p)
-FileNotFoundError: /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/derived/features_osm.geojson
-!!! FAILED: tools/build_hole_data.py --course tpc_harding_park
---- tools/build_goose_payload.py --course tpc_harding_park
-Traceback (most recent call last):
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_goose_payload.py", line 462, in <module>
-    main()
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_goose_payload.py", line 458, in main
-    build(args.course, args.name_suffix, args.upsert)
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_goose_payload.py", line 209, in build
-    with osm_path.open() as f:
-         ^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/pathlib.py", line 1044, in open
-    return io.open(self, mode, buffering, encoding, errors, newline)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/derived/features_osm.geojson'
-!!! FAILED: tools/build_goose_payload.py --course tpc_harding_park
---- tools/coverage_report.py --course tpc_harding_park
+FileNotFoundError: /home/runner/work/goose-course-maps/goose-course-maps/courses/tpc_harding_park/derived/canopy_height_model.tif
+!!! FAILED or timed out: tools/build_hole_data.py --course tpc_harding_park
+--- tools/coverage_report.py --course tpc_harding_park (limit 3m)
 # Coverage — tpc_harding_park
 
-- OSM features: 
-- Hole lines (golf=hole): 0
+- OSM features: bunker 60, cart_path 63, course_boundary 1, driving_range 2, fairway 28, green 44, hole_line 27, tee_box 100, water 1, woods 3
+- Hole lines (golf=hole): 27
 - Lidar point cloud: None (None)
 - Trees detected from lidar: 0
 - Per-hole terrain built: no
 
 | Hole | Par | Green | Fairway | Tees | Bunkers | Water | Woods |
 |---|---|---|---|---|---|---|---|
-23M	courses/tpc_harding_park/sources
+| 1 | 4 | 3 | 1 | 9 | 1 | 0 | 0 |
+| 1 | 4 | 5 | 4 | 4 | 6 | 0 | 0 |
+| 2 | 4 | 4 | 4 | 6 | 5 | 0 | 0 |
+| 2 | 3 | 5 | 2 | 6 | 3 | 0 | 0 |
+| 3 | 3 | 3 | 3 | 3 | 5 | 0 | 0 |
+| 3 | 3 | 2 | 3 | 4 | 3 | 0 | 0 |
+| 4 | 5 | 1 | 3 | 10 | 2 | 0 | 0 |
+| 4 | 3 | 2 | 3 | 6 | 1 | 0 | 0 |
+| 5 | 4 | 2 | 4 | 7 | 1 | 0 | 0 |
+| 5 | 3 | 3 | 3 | 5 | 5 | 0 | 0 |
+| 6 | 4 | 3 | 5 | 6 | 4 | 0 | 0 |
+| 6 | 3 | 3 | 5 | 9 | 2 | 0 | 0 |
+| 7 | 4 | 2 | 2 | 10 | 5 | 0 | 0 |
+| 7 | 4 | 4 | 5 | 10 | 2 | 0 | 0 |
+| 8 | 3 | 2 | 3 | 7 | 2 | 0 | 0 |
+| 8 | 4 | 3 | 3 | 5 | 2 | 0 | 0 |
+| 9 | 5 | 2 | 3 | 7 | 7 | 0 | 0 |
+| 9 | 3 | 1 | 1 | 4 | 2 | 0 | 0 |
+| 10 | 5 | 2 | 2 | 8 | 6 | 0 | 0 |
+| 11 | 3 | 2 | 2 | 8 | 5 | 0 | 0 |
+| 12 | 5 | 3 | 2 | 7 | 6 | 0 | 0 |
+| 13 | 4 | 2 | 1 | 5 | 3 | 0 | 0 |
+| 14 | 4 | 2 | 2 | 7 | 2 | 0 | 1 |
+| 15 | 4 | 2 | 1 | 5 | 2 | 0 | 0 |
+| 16 | 4 | 2 | 2 | 5 | 4 | 0 | 0 |
+| 17 | 3 | 2 | 1 | 4 | 3 | 0 | 0 |
+| 18 | 4 | 1 | 1 | 4 | 4 | 1 | 0 |
