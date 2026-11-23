@@ -1,3 +1,4 @@
 # One course slug per line; push to a build/* branch to run.
-# run 7: PDAL binary via PDAL_BIN
-tpc_harding_park
+# run 8: Presidio + Golden Gate Park 9
+presidio_sf
+ggp9_sf
