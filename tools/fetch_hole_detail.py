@@ -51,6 +51,7 @@ def main() -> None:
     ap.add_argument("--course", required=True)
     ap.add_argument("--holes", nargs="+", type=int, required=True)
     ap.add_argument("--px-per-m", type=float, default=3.0, help="aerial clip resolution (NAIP native is ~0.6 m)")
+    ap.add_argument("--skip-existing", action="store_true", help="keep green points already fetched")
     a = ap.parse_args()
     cdir = course_dir(a.course)
     hd = json.loads((cdir / "derived" / "hole_data.json").read_text())
@@ -81,7 +82,7 @@ def main() -> None:
         print(f"[detail] hole {n}: green osm {gid} ({gpoly.area:.0f} m2)")
 
         # 1. green ground points
-        if ept_name:
+        if ept_name and not (a.skip_existing and (out / f"hole_{n}_green_ground.csv.gz").exists()):
             minx, miny, maxx, maxy = gpoly.buffer(12).bounds
             mx0, my0 = to_merc.transform(minx, miny)
             mx1, my1 = to_merc.transform(maxx, maxy)
@@ -114,10 +115,19 @@ def main() -> None:
                   "size": f"{w},{hgt}", "format": "png", "pixelType": "U8", "bandIds": "0,1,2",
                   "interpolation": "RSP_CubicConvolution", "f": "image"}
         try:
-            r = requests.get(NAIP, params=params, headers=UA, timeout=180)
-            r.raise_for_status()
-            if "image" not in r.headers.get("content-type", ""):
-                raise RuntimeError(r.text[:300])
+            import time
+            for attempt in range(4):  # the USGS image server times out (504) under load
+                try:
+                    r = requests.get(NAIP, params=params, headers=UA, timeout=180)
+                    r.raise_for_status()
+                    if "image" not in r.headers.get("content-type", ""):
+                        raise RuntimeError(r.text[:300])
+                    break
+                except Exception as e:
+                    if attempt == 3:
+                        raise
+                    print(f"[detail] hole {n}: aerial attempt {attempt + 1} failed ({e}); retrying")
+                    time.sleep(20 * (attempt + 1))
             (out / f"hole_{n}_naip.png").write_bytes(r.content)
             (out / f"hole_{n}_naip.json").write_text(json.dumps(
                 {"epsg": epsg, "bounds": [bx0, by0, bx1, by1], "size": [w, hgt], "source": "USGS NAIP ImageServer",

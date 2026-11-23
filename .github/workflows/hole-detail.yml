@@ -39,7 +39,7 @@ jobs:
         run: |
           mkdir -p build-logs
           grep -v '^\s*#' HOLE_DETAIL_REQUEST.txt | tr -d '\r' | awk 'NF' | while read -r slug holes; do
-            timeout 30m python3 tools/fetch_hole_detail.py --course "$slug" --holes $holes 2>&1 | tee "build-logs/${slug}_hole_detail.log" || true
+            timeout 30m python3 tools/fetch_hole_detail.py --course "$slug" --skip-existing --holes $holes 2>&1 | tee "build-logs/${slug}_hole_detail.log" || true
           done
       - name: Commit results
         run: |
