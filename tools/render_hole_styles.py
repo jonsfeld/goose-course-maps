@@ -410,7 +410,7 @@ def render(slug, hole, out_path):
       {common_top}
     </svg>"""
 
-    meta = {"hole": hole, "par": h["par"], "yd": round(L / YD), "src": src, **gstats}
+    meta = {"hole": hole, "par": h["par"], "yd": round(h["hole_line"].get("length_yd") or L / YD), "src": src, **gstats}
     meta["has_photo"] = bool(blend_uri)
     meta["ntrees"] = len(trees)
     return svg, green_svg, meta
@@ -590,44 +590,69 @@ SECTION = """<section id="h{hole}" class="{on}">
 <div class="note">{source_note}</div>
 </section>"""
 
-TAIL = """<script>
+SITE_TAIL = """<main id="hole"><div class="note" style="margin-top:24px">Loading…</div></main>
+<script>
+const COURSES = {courses_json};
 const names={'mode-blend':'Blend','mode-book':'Illustrated','mode-aerial':'Aerial'};
-let mode='mode-blend';
-function apply(){document.querySelectorAll('svg.hole').forEach(s=>{s.classList.remove('mode-blend','mode-book','mode-aerial');s.classList.add(mode)});
+let mode='mode-blend', course=Object.keys(COURSES)[0], hole=COURSES[course].holes[0];
+try{const s=JSON.parse(localStorage.getItem('goose-maps')||'{}'); if(s.mode)mode=s.mode; if(COURSES[s.course]){course=s.course; if(COURSES[course].holes.includes(s.hole))hole=s.hole;}}catch(e){}
+const cache={};
+function save(){try{localStorage.setItem('goose-maps',JSON.stringify({mode,course,hole}))}catch(e){}}
+function applyMode(){document.querySelectorAll('svg.hole').forEach(s=>{s.classList.remove('mode-blend','mode-book','mode-aerial');s.classList.add(mode)});
  document.querySelectorAll('.stylename').forEach(e=>e.textContent=names[mode]);
  document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===mode));}
-document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;apply();});
-document.querySelectorAll('[data-h]').forEach(b=>b.onclick=()=>{
- document.querySelectorAll('[data-h]').forEach(x=>x.setAttribute('aria-pressed',x===b));
- document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.h));});
-apply();
+function drawControls(){
+ document.getElementById('courses').innerHTML=Object.entries(COURSES).map(([k,c])=>`<button data-c="${k}" aria-pressed="${k===course}">${c.name}</button>`).join('');
+ document.getElementById('holes').innerHTML=COURSES[course].holes.map(n=>`<button data-n="${n}" aria-pressed="${n===hole}">${n}</button>`).join('');
+ document.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{course=b.dataset.c;hole=COURSES[course].holes[0];drawControls();load();});
+ document.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{hole=+b.dataset.n;drawControls();load();});}
+async function load(){
+ save(); const key=`holes/${course}-${hole}.html`; const el=document.getElementById('hole');
+ if(!cache[key]){el.style.opacity=.4; try{const r=await fetch(key); cache[key]=r.ok?await r.text():'<div class="note">Could not load this hole.</div>';}catch(e){cache[key]='<div class="note">Could not load this hole.</div>';}}
+ el.innerHTML=cache[key]; el.style.opacity=1; applyMode();
+ const ns=COURSES[course].holes, i=ns.indexOf(hole); [ns[i+1],ns[i-1]].forEach(n=>{if(n){const k=`holes/${course}-${n}.html`; if(!cache[k])fetch(k).then(r=>r.text()).then(t=>cache[k]=t).catch(()=>{});}});}
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;applyMode();save();});
+document.addEventListener('keydown',e=>{const ns=COURSES[course].holes,i=ns.indexOf(hole);
+ if(e.key==='ArrowRight'&&i<ns.length-1){hole=ns[i+1];drawControls();load();} if(e.key==='ArrowLeft'&&i>0){hole=ns[i-1];drawControls();load();}});
+drawControls(); applyMode(); load();
 </script></body></html>"""
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--course", required=True)
-    ap.add_argument("--holes", nargs="+", type=int, required=True)
-    ap.add_argument("--course-name", default="")
-    ap.add_argument("--out", required=True)
+    ap.add_argument("--course", action="append", required=True, help="slug=Display Name (repeatable)")
+    ap.add_argument("--out-dir", required=True)
     a = ap.parse_args()
-    secs, tabs = [], []
-    for i, hole in enumerate(a.holes):
-        svg, green, m = render(a.course, hole, a.out)
-        if m["src"] == "lidar":
-            note = (f"Green surface from {m['pts']:,} USGS lidar ground points on the green (2023 survey, about {m['density']:.0f} per m²), smoothed over about 1 m. "
-                    "Lidar height error is a few centimetres, close to the size of the slopes on a green, so read this as the general break, not an exact line. "
-                    "Greens rebuilt after 2023 will be out of date.")
-        else:
-            note = "Green surface from the 1 m elevation model (lidar ground points not loaded), so the read is coarse."
-        secs.append(SECTION.format(hole=hole, on="on" if i == 0 else "", par=m["par"], yd=m["yd"], svg=svg,
-                                   green=green, ntrees=f"{m['ntrees']:,}", fall_rel=m["fall_rel"], overall_pct=m["overall_pct"],
-                                   relief_cm=m["relief_cm"], ge3=m["share"]["ge3"], source_note=note))
-        tabs.append(f'<button data-h="h{hole}" aria-pressed="{str(i == 0).lower()}">Hole {hole}</button>')
-        print(json.dumps({k: v for k, v in m.items() if k != "share"}))
-    html = HEAD.replace("{course_name}", a.course_name or a.course).replace("{tabs}", "".join(tabs)) + "".join(secs) + TAIL
-    Path(a.out).write_text(html)
-    print(f"{len(html)/1e6:.1f} MB")
+    out = Path(a.out_dir); (out / "holes").mkdir(parents=True, exist_ok=True)
+    courses = {}
+    for spec in a.course:
+        slug, _, name = spec.partition("=")
+        cdir = course_dir(slug)
+        hd = json.loads((cdir / "derived/hole_data.json").read_text())
+        fc = json.loads((cdir / "derived/features_osm.geojson").read_text())
+        nums = sorted(pick_holes(hd["holes"], fc))
+        courses[slug] = {"name": name or slug, "holes": nums}
+        for n in nums:
+            svg, green, m = render(slug, n, None)
+            if m["src"] == "lidar":
+                note = (f"Green surface from {m['pts']:,} USGS lidar ground points on the green (about {m['density']:.0f} per m²), smoothed over about 1 m. "
+                        "Lidar height error is a few centimetres, close to the size of the slopes on a green, so read this as the general break, not an exact line. "
+                        "Greens rebuilt since the survey will be out of date.")
+            else:
+                note = "Green surface from the 1 m elevation model (lidar ground points not loaded), so the read is coarse."
+            frag = SECTION.format(hole=n, on="on", par=m["par"], yd=m["yd"], svg=svg, green=green, ntrees=f"{m['ntrees']:,}",
+                                  fall_rel=m["fall_rel"], overall_pct=m["overall_pct"], relief_cm=m["relief_cm"],
+                                  ge3=m["share"]["ge3"], source_note=note)
+            if not m["has_photo"]:
+                frag = frag.replace("<span>Photo<b>USGS NAIP</b></span>", "<span>Photo<b>not loaded</b></span>")
+            (out / "holes" / f"{slug}-{n}.html").write_text(frag)
+            print(slug, n, m["par"], m["yd"], m["src"], "photo" if m["has_photo"] else "no photo", m["fall_rel"], m["overall_pct"])
+    head = HEAD.replace("{course_name}", " · ".join(c["name"] for c in courses.values()))
+    head = head.replace('<div class="seg" role="group" aria-label="Hole">{tabs}</div>',
+                        '<div class="seg" role="group" aria-label="Course" id="courses"></div><div class="seg holes" role="group" aria-label="Hole" id="holes"></div>')
+    head = head.replace("</style>", ".seg.holes{flex-wrap:wrap;max-width:100%} .seg.holes button{min-width:40px;padding:9px 10px}\n</style>")
+    (out / "index.html").write_text(head + SITE_TAIL.replace("{courses_json}", json.dumps(courses)))
+    print("pages:", len(list((out / "holes").glob("*.html"))))
 
 
 if __name__ == "__main__":
