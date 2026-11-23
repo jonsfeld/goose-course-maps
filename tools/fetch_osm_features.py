@@ -27,6 +27,7 @@ Writes:
 from __future__ import annotations
 
 import argparse
+import time
 import json
 from pathlib import Path
 
@@ -103,13 +104,22 @@ def convert(slug: str) -> Path:
 out geom;
 """
     print(f"[osm] querying Overpass for bbox ({minx:.5f},{miny:.5f})-({maxx:.5f},{maxy:.5f})")
-    r = requests.get(
-        OVERPASS_URL,
-        params={"data": query},
-        timeout=120,
-        headers={"User-Agent": "goose-course-maps/0.1"},
-    )
-    r.raise_for_status()
+    raw = None
+    endpoints = [OVERPASS_URL, "https://overpass.kumi.systems/api/interpreter",
+                 "https://overpass.private.coffee/api/interpreter"]
+    for attempt in range(6):
+        url = endpoints[attempt % len(endpoints)]
+        try:
+            r = requests.post(url, data={"data": query}, timeout=180,
+                              headers={"User-Agent": "goose-course-maps/0.2"})
+            if r.ok:
+                break
+            print(f"[osm] {url} -> HTTP {r.status_code}, retrying")
+        except requests.RequestException as e:
+            print(f"[osm] {url} -> {e}, retrying")
+        time.sleep(15 * (attempt + 1))
+    else:
+        raise SystemExit("[osm] all Overpass endpoints failed")
     raw = r.json()
     print(f"[osm] got {len(raw.get('elements', []))} elements")
 

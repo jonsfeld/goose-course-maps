@@ -83,6 +83,38 @@ def _year(item: dict) -> int:
     return int(d[:4])
 
 
+def _mirrors(url: str) -> list[str]:
+    """USGS stages the same LAZ files on rockyweb and on its public S3 bucket."""
+    out = []
+    if "rockyweb.usgs.gov/vdelivery/Datasets/Staged/" in url:
+        out.append(url.replace("https://rockyweb.usgs.gov/vdelivery/Datasets/Staged/",
+                               "https://prd-tnm.s3.amazonaws.com/StagedProducts/"))
+    out.append(url)
+    return out
+
+
+def _download(url: str, dest: Path) -> None:
+    last = None
+    for attempt in range(6):
+        for u in _mirrors(url):
+            try:
+                with requests.get(u, headers=UA, timeout=900, stream=True) as resp:
+                    if resp.status_code in (429, 502, 503):
+                        last = f"HTTP {resp.status_code} from {u}"
+                        continue
+                    resp.raise_for_status()
+                    tmp = dest.with_suffix(".part")
+                    with tmp.open("wb") as f:
+                        for chunk in resp.iter_content(1 << 20):
+                            f.write(chunk)
+                    tmp.rename(dest)
+                    return
+            except requests.RequestException as e:
+                last = f"{e} ({u})"
+        time.sleep(20 * (attempt + 1))
+    raise SystemExit(f"[lpc] failed to download {url}: {last}")
+
+
 def fetch_lpc(slug: str, bbox, max_tiles: int) -> dict:
     minx, miny, maxx, maxy = bbox
     items, offset = [], 0
@@ -114,11 +146,7 @@ def fetch_lpc(slug: str, bbox, max_tiles: int) -> dict:
         dest = out_dir / url.split("/")[-1]
         if dest.exists() and dest.stat().st_size > 0:
             continue
-        with requests.get(url, headers=UA, timeout=900, stream=True) as resp:
-            resp.raise_for_status()
-            with dest.open("wb") as f:
-                for chunk in resp.iter_content(1 << 20):
-                    f.write(chunk)
+        _download(url, dest)
         print(f"[lpc]   {dest.name} {dest.stat().st_size/1e6:.0f} MB")
     return {"product": "USGS 3DEP Lidar Point Cloud", "project": newest, "year": _year(chosen[0]),
             "tiles": [i["downloadURL"] for i in chosen],
