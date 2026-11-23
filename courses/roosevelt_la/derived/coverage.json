@@ -1,0 +1,109 @@
+{
+  "course": "roosevelt_la",
+  "feature_counts": {
+    "course_boundary": 1,
+    "green": 9,
+    "bunker": 10,
+    "tee_box": 11,
+    "fairway": 8,
+    "hole_line": 9
+  },
+  "hole_lines": 9,
+  "per_hole": [
+    {
+      "hole": "1",
+      "par": 4,
+      "green": 2,
+      "fairway": 2,
+      "tees": 2,
+      "bunkers": 1,
+      "water": 0,
+      "woods": 0
+    },
+    {
+      "hole": "2",
+      "par": 4,
+      "green": 2,
+      "fairway": 2,
+      "tees": 2,
+      "bunkers": 0,
+      "water": 0,
+      "woods": 0
+    },
+    {
+      "hole": "3",
+      "par": 3,
+      "green": 2,
+      "fairway": 1,
+      "tees": 1,
+      "bunkers": 1,
+      "water": 0,
+      "woods": 0
+    },
+    {
+      "hole": "4",
+      "par": 4,
+      "green": 3,
+      "fairway": 2,
+      "tees": 1,
+      "bunkers": 1,
+      "water": 0,
+      "woods": 0
+    },
+    {
+      "hole": "5",
+      "par": 4,
+      "green": 1,
+      "fairway": 2,
+      "tees": 3,
+      "bunkers": 2,
+      "water": 0,
+      "woods": 0
+    },
+    {
+      "hole": "6",
+      "par": 4,
+      "green": 2,
+      "fairway": 2,
+      "tees": 3,
+      "bunkers": 0,
+      "water": 0,
+      "woods": 0
+    },
+    {
+      "hole": "7",
+      "par": 3,
+      "green": 2,
+      "fairway": 2,
+      "tees": 2,
+      "bunkers": 2,
+      "water": 0,
+      "woods": 0
+    },
+    {
+      "hole": "8",
+      "par": 4,
+      "green": 2,
+      "fairway": 1,
+      "tees": 2,
+      "bunkers": 3,
+      "water": 0,
+      "woods": 0
+    },
+    {
+      "hole": "9",
+      "par": 3,
+      "green": 2,
+      "fairway": 2,
+      "tees": 1,
+      "bunkers": 0,
+      "water": 0,
+      "woods": 0
+    }
+  ],
+  "trees_detected": 16673,
+  "hole_data_built": true,
+  "lidar_project": null,
+  "lidar_year": null,
+  "dem": "USGS 3DEP Elevation ImageServer (best available)"
+}
