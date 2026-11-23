@@ -67,20 +67,36 @@ def _polygon_from_way(way) -> list:
     return [ring]
 
 
-def _polygon_from_relation(rel) -> list:
-    """Combine relation member ways into a single outer ring where possible.
-    Real OSM multipolygon relations can have multiple outer/inner rings; this
-    simplification keeps the largest outer ring.
+def _geometry_from_relation(rel) -> dict | None:
+    """Stitch a multipolygon relation's member ways into full rings.
+
+    Outer (and untagged) members are joined end-to-end and polygonized; inner
+    members become holes. Returns a GeoJSON Polygon or MultiPolygon, so a lake
+    split across several outlines (e.g. Lake Merced's north and south lakes)
+    keeps every part.
     """
-    outers = [m for m in rel.get("members", []) if m.get("role") in ("outer", "") and "geometry" in m]
-    if not outers:
-        return []
-    # Pick the biggest member by node count as the primary outer
-    biggest = max(outers, key=lambda m: len(m["geometry"]))
-    ring = _ring_from_way(biggest["geometry"])
-    if ring and ring[0] != ring[-1]:
-        ring.append(ring[0])
-    return [ring]
+    from shapely.geometry import LineString, MultiPolygon, Polygon, mapping
+    from shapely.ops import polygonize, unary_union
+
+    def lines(role_ok):
+        out = []
+        for m in rel.get("members", []):
+            if m.get("type") == "way" and "geometry" in m and role_ok(m.get("role", "")):
+                pts = [(g["lon"], g["lat"]) for g in m["geometry"]]
+                if len(pts) >= 2:
+                    out.append(LineString(pts))
+        return out
+
+    outer = list(polygonize(unary_union(lines(lambda r: r in ("outer", "")))))
+    if not outer:
+        return None
+    inner = list(polygonize(unary_union(lines(lambda r: r == "inner"))))
+    shape_ = unary_union(outer)
+    if inner:
+        shape_ = shape_.difference(unary_union(inner))
+    if shape_.is_empty:
+        return None
+    return mapping(shape_)
 
 
 def convert(slug: str) -> Path:
@@ -168,10 +184,9 @@ out geom;
             coords = _polygon_from_way(el)
             geom = {"type": "Polygon", "coordinates": coords}
         elif el["type"] == "relation":
-            coords = _polygon_from_relation(el)
-            if not coords:
+            geom = _geometry_from_relation(el)
+            if not geom:
                 continue
-            geom = {"type": "Polygon", "coordinates": coords}
         else:
             continue
 

@@ -57,8 +57,10 @@ jobs:
           done
           git config user.name "goose-course-builder"
           git config user.email "actions@users.noreply.github.com"
-          git add -f courses/*/derived/*.json courses/*/derived/*.geojson courses/*/derived/*.md courses/*/derived/*.png 2>/dev/null || true
-          git add -f courses/*/derived/dem_clipped.tif courses/*/derived/canopy_height_model.tif courses/*/derived/slope.tif 2>/dev/null || true
+          for pat in 'courses/*/derived/*.json' 'courses/*/derived/*.geojson' 'courses/*/derived/*.md' 'courses/*/derived/*.png' \
+                     'courses/*/derived/dem_clipped.tif' 'courses/*/derived/canopy_height_model.tif' 'courses/*/derived/slope.tif'; do
+            git add -f $pat 2>/dev/null || true   # one pattern at a time: a missing file must not block the rest
+          done
           git add courses/*/notes courses/*/goose_payload.json courses/*/goose_upsert.sql build-logs 2>/dev/null || true
           git commit -q -m "Build results ($stage): $(grep -v '^\s*#' BUILD_REQUEST.txt | awk 'NF' | tr '\n' ' ')" || echo "nothing to commit"
           git pull -q --rebase || true
