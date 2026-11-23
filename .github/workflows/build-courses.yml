@@ -1,22 +1,22 @@
 # Builds course maps from public data (OpenStreetMap, USGS 3DEP lidar, NAIP)
-# on GitHub's servers, then commits the derived results back to the branch.
+# on GitHub's servers and commits the derived results back to the branch.
 #
 # To run: on a branch named build/<anything>, edit BUILD_REQUEST.txt
-# (one course slug per line) and push.
+# (one course slug per line) and push. A new push cancels a run in progress.
 name: build-courses
 on:
   push:
     branches: ["build/**"]
-    paths: ["BUILD_REQUEST.txt"]
+    paths: ["BUILD_REQUEST.txt", ".github/workflows/build-courses.yml"]
 permissions:
   contents: write
 concurrency:
   group: build-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -25,34 +25,46 @@ jobs:
           cache: pip
           cache-dependency-path: tools/requirements.txt
       - run: pip install -r tools/requirements.txt
-      - name: Build each requested course
+      - name: Write helper
         run: |
-          set -u
+          cat > /tmp/run.sh <<'SH'
+          # usage: run.sh <stage> ; runs that stage for every requested course
+          stage="$1"
           mkdir -p build-logs
           for slug in $(grep -v '^\s*#' BUILD_REQUEST.txt | tr -d '\r' | awk 'NF'); do
             log="build-logs/${slug}.log"
-            echo "=== ${slug} ===" | tee "$log"
-            step() { echo "--- $*" | tee -a "$log"; ( cd "$GITHUB_WORKSPACE" && python3 "$@" ) >>"$log" 2>&1 || echo "!!! FAILED: $*" | tee -a "$log"; }
-            step tools/fetch_osm_features.py --course "$slug"
-            step tools/fetch_lidar.py --course "$slug"
-            step tools/fetch_naip_clip.py --course "$slug"
-            step tools/merge_clip_dem.py --course "$slug"
-            step tools/derive_terrain.py --course "$slug"
-            step tools/build_chm.py --course "$slug"
-            step tools/detect_trees.py --course "$slug"
-            step tools/render_osm_features.py --course "$slug"
-            step tools/build_hole_data.py --course "$slug"
-            step tools/build_goose_payload.py --course "$slug"
-            step tools/coverage_report.py --course "$slug"
-            du -sh "courses/${slug}/sources" 2>/dev/null | tee -a "$log" || true
+            [ "$stage" = surface ] && : > "$log"
+            step() { local lim="$1"; shift; echo "--- $* (limit ${lim})" | tee -a "$log"; timeout "$lim" python3 "$@" >>"$log" 2>&1 || echo "!!! FAILED or timed out: $*" | tee -a "$log"; }
+            case "$stage" in
+              surface)
+                step 6m  tools/fetch_osm_features.py --course "$slug"
+                step 6m  tools/fetch_lidar.py --course "$slug" --only dem
+                step 6m  tools/fetch_naip_clip.py --course "$slug"
+                step 5m  tools/merge_clip_dem.py --course "$slug"
+                step 5m  tools/derive_terrain.py --course "$slug"
+                step 3m  tools/render_osm_features.py --course "$slug"
+                step 10m tools/build_hole_data.py --course "$slug"
+                step 3m  tools/coverage_report.py --course "$slug" ;;
+              trees)
+                step 35m tools/fetch_lidar.py --course "$slug" --only lpc --max-tiles 12
+                step 15m tools/build_chm.py --course "$slug"
+                step 10m tools/detect_trees.py --course "$slug"
+                step 10m tools/build_hole_data.py --course "$slug"
+                step 5m  tools/build_goose_payload.py --course "$slug"
+                step 3m  tools/coverage_report.py --course "$slug"
+                du -sh "courses/${slug}/sources" 2>/dev/null | tee -a "$log" || true ;;
+            esac
           done
-      - name: Commit results
-        run: |
           git config user.name "goose-course-builder"
           git config user.email "actions@users.noreply.github.com"
-          # Keep derived rasters small enough to commit for the app (DEM, slope, CHM are a few MB per course)
           git add -f courses/*/derived/*.json courses/*/derived/*.geojson courses/*/derived/*.md courses/*/derived/*.png 2>/dev/null || true
           git add -f courses/*/derived/dem_clipped.tif courses/*/derived/canopy_height_model.tif courses/*/derived/slope.tif 2>/dev/null || true
           git add courses/*/notes courses/*/goose_payload.json courses/*/goose_upsert.sql build-logs 2>/dev/null || true
-          git commit -m "Build results: $(grep -v '^\s*#' BUILD_REQUEST.txt | awk 'NF' | tr '\n' ' ')" || echo "nothing to commit"
-          git push
+          git commit -q -m "Build results ($stage): $(grep -v '^\s*#' BUILD_REQUEST.txt | awk 'NF' | tr '\n' ' ')" || echo "nothing to commit"
+          git pull -q --rebase || true
+          git push -q
+          SH
+      - name: Surface layers (map, elevation, imagery, terrain) — saved first
+        run: bash /tmp/run.sh surface
+      - name: Trees (lidar point clouds) — slow, time-limited
+        run: bash /tmp/run.sh trees

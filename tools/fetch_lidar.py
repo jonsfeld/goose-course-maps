@@ -95,10 +95,10 @@ def _mirrors(url: str) -> list[str]:
 
 def _download(url: str, dest: Path) -> None:
     last = None
-    for attempt in range(6):
+    for attempt in range(4):
         for u in _mirrors(url):
             try:
-                with requests.get(u, headers=UA, timeout=900, stream=True) as resp:
+                with requests.get(u, headers=UA, timeout=(20, 120), stream=True) as resp:
                     if resp.status_code in (429, 502, 503):
                         last = f"HTTP {resp.status_code} from {u}"
                         continue
@@ -111,7 +111,7 @@ def _download(url: str, dest: Path) -> None:
                     return
             except requests.RequestException as e:
                 last = f"{e} ({u})"
-        time.sleep(20 * (attempt + 1))
+        time.sleep(15 * (attempt + 1))
     raise SystemExit(f"[lpc] failed to download {url}: {last}")
 
 
@@ -141,15 +141,31 @@ def fetch_lpc(slug: str, bbox, max_tiles: int) -> dict:
     chosen = projects[newest][:max_tiles]
     print(f"[lpc] {len(items)} tiles across {len(projects)} projects; using newest: {newest} ({len(chosen)} tiles)")
     out_dir = ensure_dir(course_dir(slug) / "sources" / "point_cloud")
-    for i in chosen:
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    t0 = time.time()
+
+    def one(i):
         url = i["downloadURL"]
         dest = out_dir / url.split("/")[-1]
         if dest.exists() and dest.stat().st_size > 0:
-            continue
+            return dest.name, dest.stat().st_size, 0.0
+        s0 = time.time()
         _download(url, dest)
-        print(f"[lpc]   {dest.name} {dest.stat().st_size/1e6:.0f} MB")
+        return dest.name, dest.stat().st_size, time.time() - s0
+
+    failed = []
+    with ThreadPoolExecutor(max_workers=4) as ex:
+        futs = {ex.submit(one, i): i for i in chosen}
+        for f in as_completed(futs):
+            try:
+                name, size, secs = f.result()
+                print(f"[lpc]   {name} {size/1e6:.0f} MB in {secs:.0f}s", flush=True)
+            except BaseException as e:  # SystemExit from _download included
+                failed.append(futs[f]["downloadURL"])
+                print(f"[lpc]   FAILED {futs[f]['downloadURL'].split('/')[-1]}: {e}", flush=True)
+    print(f"[lpc] {len(chosen) - len(failed)}/{len(chosen)} tiles in {time.time() - t0:.0f}s", flush=True)
     return {"product": "USGS 3DEP Lidar Point Cloud", "project": newest, "year": _year(chosen[0]),
-            "tiles": [i["downloadURL"] for i in chosen],
+            "tiles": [i["downloadURL"] for i in chosen], "failed_tiles": failed,
             "other_projects": sorted(k for k in projects if k != newest)}
 
 
@@ -157,12 +173,18 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--course", required=True)
     ap.add_argument("--skip-lpc", action="store_true")
+    ap.add_argument("--only", choices=["dem", "lpc"], default=None)
     ap.add_argument("--max-tiles", type=int, default=16)
     a = ap.parse_args()
     bbox = bbox_from_course(a.course)
     record = {"bbox": bbox, "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
-    record["dem"] = fetch_dem(a.course, bbox)
-    record["point_cloud"] = {"product": None} if a.skip_lpc else fetch_lpc(a.course, bbox, a.max_tiles)
+    notes_path = course_dir(a.course) / "notes" / "lidar_sources.json"
+    if notes_path.exists():
+        record = {**json.loads(notes_path.read_text()), **record}
+    if a.only in (None, "dem"):
+        record["dem"] = fetch_dem(a.course, bbox)
+    if a.only in (None, "lpc") and not a.skip_lpc:
+        record["point_cloud"] = fetch_lpc(a.course, bbox, a.max_tiles)
     notes = ensure_dir(course_dir(a.course) / "notes")
     (notes / "lidar_sources.json").write_text(json.dumps(record, indent=2))
     print(f"[lidar] provenance -> {notes / 'lidar_sources.json'}")
