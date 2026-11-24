@@ -14,8 +14,9 @@
           "lat": 37.768555,
           "lng": -122.5046599
         },
-        "length_m": 141.5,
-        "length_yd": 154.8
+        "length_m": 130.9,
+        "length_yd": 143.1,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 23.26,
@@ -27,127 +28,119 @@
             "elev_m": 23.26
           },
           {
-            "yd_from_tee": 5.0,
+            "yd_from_tee": 4.9,
             "elev_m": 25.0
           },
           {
-            "yd_from_tee": 10.0,
-            "elev_m": 24.6
+            "yd_from_tee": 9.9,
+            "elev_m": 24.43
           },
           {
-            "yd_from_tee": 15.0,
-            "elev_m": 24.09
+            "yd_from_tee": 14.8,
+            "elev_m": 24.11
           },
           {
-            "yd_from_tee": 20.0,
-            "elev_m": 24.31
+            "yd_from_tee": 19.7,
+            "elev_m": 24.27
           },
           {
-            "yd_from_tee": 25.0,
-            "elev_m": 24.34
+            "yd_from_tee": 24.7,
+            "elev_m": 24.46
           },
           {
-            "yd_from_tee": 30.0,
-            "elev_m": 24.67
+            "yd_from_tee": 29.6,
+            "elev_m": 24.8
           },
           {
-            "yd_from_tee": 34.9,
-            "elev_m": 24.94
+            "yd_from_tee": 34.6,
+            "elev_m": 25.01
           },
           {
-            "yd_from_tee": 39.9,
-            "elev_m": 25.03
+            "yd_from_tee": 39.5,
+            "elev_m": 25.06
           },
           {
-            "yd_from_tee": 44.9,
-            "elev_m": 25.09
+            "yd_from_tee": 44.4,
+            "elev_m": 25.23
           },
           {
-            "yd_from_tee": 49.9,
-            "elev_m": 25.35
+            "yd_from_tee": 49.4,
+            "elev_m": 25.47
           },
           {
-            "yd_from_tee": 54.9,
-            "elev_m": 25.51
+            "yd_from_tee": 54.3,
+            "elev_m": 25.72
           },
           {
-            "yd_from_tee": 59.9,
-            "elev_m": 25.76
+            "yd_from_tee": 59.2,
+            "elev_m": 25.88
           },
           {
-            "yd_from_tee": 64.9,
-            "elev_m": 25.96
+            "yd_from_tee": 64.2,
+            "elev_m": 26.22
           },
           {
-            "yd_from_tee": 69.9,
-            "elev_m": 26.21
-          },
-          {
-            "yd_from_tee": 74.9,
+            "yd_from_tee": 69.1,
             "elev_m": 26.57
           },
           {
-            "yd_from_tee": 79.9,
+            "yd_from_tee": 74.0,
             "elev_m": 26.89
           },
           {
-            "yd_from_tee": 84.9,
-            "elev_m": 27.12
+            "yd_from_tee": 79.0,
+            "elev_m": 27.14
           },
           {
-            "yd_from_tee": 89.9,
-            "elev_m": 27.34
+            "yd_from_tee": 83.9,
+            "elev_m": 27.32
           },
           {
-            "yd_from_tee": 94.9,
-            "elev_m": 27.5
+            "yd_from_tee": 88.9,
+            "elev_m": 27.47
           },
           {
-            "yd_from_tee": 99.8,
-            "elev_m": 27.77
+            "yd_from_tee": 93.8,
+            "elev_m": 27.89
           },
           {
-            "yd_from_tee": 104.8,
-            "elev_m": 28.03
+            "yd_from_tee": 98.7,
+            "elev_m": 28.11
           },
           {
-            "yd_from_tee": 109.8,
-            "elev_m": 28.13
+            "yd_from_tee": 103.7,
+            "elev_m": 28.19
           },
           {
-            "yd_from_tee": 114.8,
-            "elev_m": 28.27
+            "yd_from_tee": 108.6,
+            "elev_m": 28.37
           },
           {
-            "yd_from_tee": 119.8,
-            "elev_m": 28.46
+            "yd_from_tee": 113.5,
+            "elev_m": 28.56
           },
           {
-            "yd_from_tee": 124.8,
-            "elev_m": 28.64
+            "yd_from_tee": 118.5,
+            "elev_m": 28.84
           },
           {
-            "yd_from_tee": 129.8,
-            "elev_m": 28.88
+            "yd_from_tee": 123.4,
+            "elev_m": 29.22
           },
           {
-            "yd_from_tee": 134.8,
-            "elev_m": 29.28
+            "yd_from_tee": 128.3,
+            "elev_m": 29.47
           },
           {
-            "yd_from_tee": 139.8,
-            "elev_m": 29.52
-          },
-          {
-            "yd_from_tee": 144.8,
+            "yd_from_tee": 133.3,
             "elev_m": 29.74
           },
           {
-            "yd_from_tee": 149.8,
+            "yd_from_tee": 138.2,
             "elev_m": 29.97
           },
           {
-            "yd_from_tee": 154.8,
+            "yd_from_tee": 143.1,
             "elev_m": 30.22
           }
         ]
@@ -1595,8 +1588,9 @@
           "lat": 37.7680617,
           "lng": -122.503182
         },
-        "length_m": 113.1,
-        "length_yd": 123.7
+        "length_m": 99.9,
+        "length_yd": 109.2,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 33.55,
@@ -1608,103 +1602,91 @@
             "elev_m": 33.55
           },
           {
-            "yd_from_tee": 4.9,
+            "yd_from_tee": 5.0,
             "elev_m": 33.57
           },
           {
             "yd_from_tee": 9.9,
-            "elev_m": 33.31
+            "elev_m": 33.29
           },
           {
-            "yd_from_tee": 14.8,
-            "elev_m": 33.16
+            "yd_from_tee": 14.9,
+            "elev_m": 32.93
           },
           {
-            "yd_from_tee": 19.8,
-            "elev_m": 32.56
+            "yd_from_tee": 19.9,
+            "elev_m": 32.28
           },
           {
-            "yd_from_tee": 24.7,
-            "elev_m": 32.0
+            "yd_from_tee": 24.8,
+            "elev_m": 31.56
           },
           {
-            "yd_from_tee": 29.7,
-            "elev_m": 31.09
+            "yd_from_tee": 29.8,
+            "elev_m": 30.81
           },
           {
-            "yd_from_tee": 34.6,
-            "elev_m": 30.79
-          },
-          {
-            "yd_from_tee": 39.6,
+            "yd_from_tee": 34.8,
             "elev_m": 30.41
           },
           {
-            "yd_from_tee": 44.5,
+            "yd_from_tee": 39.7,
             "elev_m": 29.87
           },
           {
-            "yd_from_tee": 49.5,
-            "elev_m": 29.56
+            "yd_from_tee": 44.7,
+            "elev_m": 29.51
           },
           {
-            "yd_from_tee": 54.4,
-            "elev_m": 29.31
+            "yd_from_tee": 49.6,
+            "elev_m": 29.2
           },
           {
-            "yd_from_tee": 59.4,
-            "elev_m": 28.87
+            "yd_from_tee": 54.6,
+            "elev_m": 28.57
           },
           {
-            "yd_from_tee": 64.3,
-            "elev_m": 28.39
+            "yd_from_tee": 59.6,
+            "elev_m": 28.22
           },
           {
-            "yd_from_tee": 69.3,
-            "elev_m": 28.12
+            "yd_from_tee": 64.5,
+            "elev_m": 28.7
           },
           {
-            "yd_from_tee": 74.2,
-            "elev_m": 28.85
-          },
-          {
-            "yd_from_tee": 79.1,
+            "yd_from_tee": 69.5,
             "elev_m": 28.49
           },
           {
-            "yd_from_tee": 84.1,
-            "elev_m": 27.0
+            "yd_from_tee": 74.5,
+            "elev_m": 26.7
           },
           {
-            "yd_from_tee": 89.0,
+            "yd_from_tee": 79.4,
             "elev_m": 26.11
           },
           {
-            "yd_from_tee": 94.0,
-            "elev_m": 26.45
+            "yd_from_tee": 84.4,
+            "elev_m": 26.55
           },
           {
-            "yd_from_tee": 98.9,
-            "elev_m": 26.61
+            "yd_from_tee": 89.4,
+            "elev_m": 26.65
           },
           {
-            "yd_from_tee": 103.9,
-            "elev_m": 26.69
+            "yd_from_tee": 94.3,
+            "elev_m": 26.73
           },
           {
-            "yd_from_tee": 108.8,
-            "elev_m": 26.77
+            "yd_from_tee": 99.3,
+            "elev_m": 26.91
           },
           {
-            "yd_from_tee": 113.8,
-            "elev_m": 27.1
+            "yd_from_tee": 104.3,
+            "elev_m": 27.43
           },
           {
-            "yd_from_tee": 118.7,
-            "elev_m": 27.46
-          },
-          {
-            "yd_from_tee": 123.7,
+            "yd_from_tee": 109.2,
             "elev_m": 27.52
           }
         ]
@@ -3205,8 +3187,9 @@
           "lat": 37.7692374,
           "lng": -122.5038392
         },
-        "length_m": 114.8,
-        "length_yd": 125.6
+        "length_m": 117.6,
+        "length_yd": 128.6,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 27.23,
@@ -3218,103 +3201,107 @@
             "elev_m": 27.23
           },
           {
-            "yd_from_tee": 5.0,
+            "yd_from_tee": 4.9,
             "elev_m": 27.19
           },
           {
-            "yd_from_tee": 10.0,
-            "elev_m": 27.15
+            "yd_from_tee": 9.9,
+            "elev_m": 27.1
           },
           {
-            "yd_from_tee": 15.1,
-            "elev_m": 26.89
+            "yd_from_tee": 14.8,
+            "elev_m": 27.03
           },
           {
-            "yd_from_tee": 20.1,
+            "yd_from_tee": 19.8,
             "elev_m": 26.28
           },
           {
-            "yd_from_tee": 25.1,
+            "yd_from_tee": 24.7,
             "elev_m": 25.98
           },
           {
-            "yd_from_tee": 30.1,
-            "elev_m": 26.01
+            "yd_from_tee": 29.7,
+            "elev_m": 25.96
           },
           {
-            "yd_from_tee": 35.2,
-            "elev_m": 26.27
+            "yd_from_tee": 34.6,
+            "elev_m": 26.24
           },
           {
-            "yd_from_tee": 40.2,
-            "elev_m": 26.14
+            "yd_from_tee": 39.6,
+            "elev_m": 26.18
           },
           {
-            "yd_from_tee": 45.2,
-            "elev_m": 25.7
+            "yd_from_tee": 44.5,
+            "elev_m": 25.79
           },
           {
-            "yd_from_tee": 50.2,
-            "elev_m": 25.75
+            "yd_from_tee": 49.5,
+            "elev_m": 25.65
           },
           {
-            "yd_from_tee": 55.2,
-            "elev_m": 25.86
+            "yd_from_tee": 54.4,
+            "elev_m": 25.83
           },
           {
-            "yd_from_tee": 60.3,
-            "elev_m": 25.59
+            "yd_from_tee": 59.4,
+            "elev_m": 25.81
           },
           {
-            "yd_from_tee": 65.3,
-            "elev_m": 24.97
+            "yd_from_tee": 64.3,
+            "elev_m": 25.19
           },
           {
-            "yd_from_tee": 70.3,
-            "elev_m": 24.18
+            "yd_from_tee": 69.2,
+            "elev_m": 24.68
           },
           {
-            "yd_from_tee": 75.3,
-            "elev_m": 23.6
+            "yd_from_tee": 74.2,
+            "elev_m": 23.82
           },
           {
-            "yd_from_tee": 80.4,
-            "elev_m": 23.23
+            "yd_from_tee": 79.1,
+            "elev_m": 23.39
           },
           {
-            "yd_from_tee": 85.4,
-            "elev_m": 23.26
+            "yd_from_tee": 84.1,
+            "elev_m": 23.17
           },
           {
-            "yd_from_tee": 90.4,
-            "elev_m": 23.59
+            "yd_from_tee": 89.0,
+            "elev_m": 23.35
           },
           {
-            "yd_from_tee": 95.4,
-            "elev_m": 23.81
+            "yd_from_tee": 94.0,
+            "elev_m": 23.63
           },
           {
-            "yd_from_tee": 100.4,
-            "elev_m": 24.14
+            "yd_from_tee": 98.9,
+            "elev_m": 23.95
           },
           {
-            "yd_from_tee": 105.5,
+            "yd_from_tee": 103.9,
+            "elev_m": 24.19
+          },
+          {
+            "yd_from_tee": 108.8,
             "elev_m": 24.36
           },
           {
-            "yd_from_tee": 110.5,
-            "elev_m": 24.61
+            "yd_from_tee": 113.8,
+            "elev_m": 24.66
           },
           {
-            "yd_from_tee": 115.5,
-            "elev_m": 24.79
+            "yd_from_tee": 118.7,
+            "elev_m": 24.8
           },
           {
-            "yd_from_tee": 120.5,
+            "yd_from_tee": 123.7,
             "elev_m": 24.78
           },
           {
-            "yd_from_tee": 125.6,
+            "yd_from_tee": 128.6,
             "elev_m": 24.75
           }
         ]
@@ -4388,8 +4375,9 @@
           "lat": 37.7684218,
           "lng": -122.5043103
         },
-        "length_m": 88.8,
-        "length_yd": 97.1
+        "length_m": 98.9,
+        "length_yd": 108.2,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 26.51,
@@ -4401,79 +4389,87 @@
             "elev_m": 26.51
           },
           {
-            "yd_from_tee": 5.1,
-            "elev_m": 26.52
+            "yd_from_tee": 5.2,
+            "elev_m": 26.51
           },
           {
-            "yd_from_tee": 10.2,
-            "elev_m": 26.6
+            "yd_from_tee": 10.3,
+            "elev_m": 26.59
           },
           {
-            "yd_from_tee": 15.3,
-            "elev_m": 26.68
+            "yd_from_tee": 15.5,
+            "elev_m": 26.64
           },
           {
-            "yd_from_tee": 20.4,
-            "elev_m": 27.27
+            "yd_from_tee": 20.6,
+            "elev_m": 27.02
           },
           {
-            "yd_from_tee": 25.6,
-            "elev_m": 27.85
+            "yd_from_tee": 25.8,
+            "elev_m": 27.57
           },
           {
-            "yd_from_tee": 30.7,
-            "elev_m": 28.2
+            "yd_from_tee": 30.9,
+            "elev_m": 27.97
           },
           {
-            "yd_from_tee": 35.8,
-            "elev_m": 28.28
-          },
-          {
-            "yd_from_tee": 40.9,
-            "elev_m": 28.43
-          },
-          {
-            "yd_from_tee": 46.0,
-            "elev_m": 28.38
-          },
-          {
-            "yd_from_tee": 51.1,
+            "yd_from_tee": 36.1,
             "elev_m": 28.26
           },
           {
-            "yd_from_tee": 56.2,
-            "elev_m": 28.6
+            "yd_from_tee": 41.2,
+            "elev_m": 28.29
           },
           {
-            "yd_from_tee": 61.3,
-            "elev_m": 29.17
+            "yd_from_tee": 46.4,
+            "elev_m": 28.45
           },
           {
-            "yd_from_tee": 66.4,
-            "elev_m": 29.73
+            "yd_from_tee": 51.5,
+            "elev_m": 28.33
           },
           {
-            "yd_from_tee": 71.5,
-            "elev_m": 29.43
+            "yd_from_tee": 56.7,
+            "elev_m": 28.23
           },
           {
-            "yd_from_tee": 76.7,
-            "elev_m": 29.49
+            "yd_from_tee": 61.8,
+            "elev_m": 28.46
           },
           {
-            "yd_from_tee": 81.8,
-            "elev_m": 29.88
+            "yd_from_tee": 67.0,
+            "elev_m": 29.06
           },
           {
-            "yd_from_tee": 86.9,
-            "elev_m": 30.11
+            "yd_from_tee": 72.1,
+            "elev_m": 29.64
           },
           {
-            "yd_from_tee": 92.0,
-            "elev_m": 30.3
+            "yd_from_tee": 77.3,
+            "elev_m": 29.55
           },
           {
-            "yd_from_tee": 97.1,
+            "yd_from_tee": 82.4,
+            "elev_m": 29.4
+          },
+          {
+            "yd_from_tee": 87.6,
+            "elev_m": 29.62
+          },
+          {
+            "yd_from_tee": 92.7,
+            "elev_m": 29.95
+          },
+          {
+            "yd_from_tee": 97.9,
+            "elev_m": 30.14
+          },
+          {
+            "yd_from_tee": 103.0,
+            "elev_m": 30.33
+          },
+          {
+            "yd_from_tee": 108.2,
             "elev_m": 30.46
           }
         ]
@@ -5757,8 +5753,9 @@
           "lat": 37.7686785,
           "lng": -122.5058723
         },
-        "length_m": 145.7,
-        "length_yd": 159.3
+        "length_m": 134.5,
+        "length_yd": 147.1,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 33.93,
@@ -5770,131 +5767,119 @@
             "elev_m": 33.93
           },
           {
-            "yd_from_tee": 5.0,
+            "yd_from_tee": 5.1,
             "elev_m": 33.82
           },
           {
-            "yd_from_tee": 10.0,
-            "elev_m": 32.88
+            "yd_from_tee": 10.1,
+            "elev_m": 32.72
           },
           {
-            "yd_from_tee": 14.9,
-            "elev_m": 32.21
+            "yd_from_tee": 15.2,
+            "elev_m": 32.02
           },
           {
-            "yd_from_tee": 19.9,
-            "elev_m": 31.95
+            "yd_from_tee": 20.3,
+            "elev_m": 31.55
           },
           {
-            "yd_from_tee": 24.9,
-            "elev_m": 30.77
+            "yd_from_tee": 25.4,
+            "elev_m": 30.56
           },
           {
-            "yd_from_tee": 29.9,
-            "elev_m": 30.37
+            "yd_from_tee": 30.4,
+            "elev_m": 29.72
           },
           {
-            "yd_from_tee": 34.9,
-            "elev_m": 29.57
+            "yd_from_tee": 35.5,
+            "elev_m": 29.34
           },
           {
-            "yd_from_tee": 39.8,
-            "elev_m": 29.3
-          },
-          {
-            "yd_from_tee": 44.8,
+            "yd_from_tee": 40.6,
             "elev_m": 28.79
           },
           {
-            "yd_from_tee": 49.8,
+            "yd_from_tee": 45.7,
             "elev_m": 28.04
           },
           {
-            "yd_from_tee": 54.8,
+            "yd_from_tee": 50.7,
             "elev_m": 27.62
           },
           {
-            "yd_from_tee": 59.8,
-            "elev_m": 27.43
+            "yd_from_tee": 55.8,
+            "elev_m": 27.36
           },
           {
-            "yd_from_tee": 64.7,
-            "elev_m": 27.61
+            "yd_from_tee": 60.9,
+            "elev_m": 28.03
           },
           {
-            "yd_from_tee": 69.7,
-            "elev_m": 27.56
+            "yd_from_tee": 65.9,
+            "elev_m": 27.6
           },
           {
-            "yd_from_tee": 74.7,
-            "elev_m": 27.62
+            "yd_from_tee": 71.0,
+            "elev_m": 27.63
           },
           {
-            "yd_from_tee": 79.7,
-            "elev_m": 27.73
+            "yd_from_tee": 76.1,
+            "elev_m": 27.79
           },
           {
-            "yd_from_tee": 84.6,
-            "elev_m": 27.91
+            "yd_from_tee": 81.2,
+            "elev_m": 27.88
           },
           {
-            "yd_from_tee": 89.6,
-            "elev_m": 27.94
+            "yd_from_tee": 86.2,
+            "elev_m": 27.85
           },
           {
-            "yd_from_tee": 94.6,
+            "yd_from_tee": 91.3,
             "elev_m": 27.77
           },
           {
-            "yd_from_tee": 99.6,
-            "elev_m": 27.7
-          },
-          {
-            "yd_from_tee": 104.6,
+            "yd_from_tee": 96.4,
             "elev_m": 27.56
           },
           {
-            "yd_from_tee": 109.5,
+            "yd_from_tee": 101.5,
             "elev_m": 27.54
           },
           {
-            "yd_from_tee": 114.5,
-            "elev_m": 27.44
+            "yd_from_tee": 106.5,
+            "elev_m": 27.39
           },
           {
-            "yd_from_tee": 119.5,
-            "elev_m": 27.49
+            "yd_from_tee": 111.6,
+            "elev_m": 27.42
           },
           {
-            "yd_from_tee": 124.5,
-            "elev_m": 27.21
+            "yd_from_tee": 116.7,
+            "elev_m": 27.07
           },
           {
-            "yd_from_tee": 129.5,
-            "elev_m": 26.77
+            "yd_from_tee": 121.8,
+            "elev_m": 26.53
           },
           {
-            "yd_from_tee": 134.4,
-            "elev_m": 26.27
+            "yd_from_tee": 126.8,
+            "elev_m": 25.87
           },
           {
-            "yd_from_tee": 139.4,
-            "elev_m": 25.61
+            "yd_from_tee": 131.9,
+            "elev_m": 25.34
           },
           {
-            "yd_from_tee": 144.4,
-            "elev_m": 25.23
+            "yd_from_tee": 137.0,
+            "elev_m": 24.81
           },
           {
-            "yd_from_tee": 149.4,
-            "elev_m": 24.73
-          },
-          {
-            "yd_from_tee": 154.4,
+            "yd_from_tee": 142.0,
             "elev_m": 24.34
           },
           {
-            "yd_from_tee": 159.3,
+            "yd_from_tee": 147.1,
             "elev_m": 24.0
           }
         ]
@@ -6643,8 +6628,9 @@
           "lat": 37.767915,
           "lng": -122.5051573
         },
-        "length_m": 150.6,
-        "length_yd": 164.7
+        "length_m": 139.6,
+        "length_yd": 152.6,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 20.11,
@@ -6656,135 +6642,127 @@
             "elev_m": 20.11
           },
           {
-            "yd_from_tee": 5.0,
+            "yd_from_tee": 4.9,
             "elev_m": 20.16
           },
           {
-            "yd_from_tee": 10.0,
+            "yd_from_tee": 9.8,
             "elev_m": 20.06
           },
           {
-            "yd_from_tee": 15.0,
-            "elev_m": 20.31
+            "yd_from_tee": 14.8,
+            "elev_m": 20.35
           },
           {
-            "yd_from_tee": 20.0,
-            "elev_m": 20.5
+            "yd_from_tee": 19.7,
+            "elev_m": 20.54
           },
           {
-            "yd_from_tee": 25.0,
-            "elev_m": 20.58
+            "yd_from_tee": 24.6,
+            "elev_m": 20.65
           },
           {
-            "yd_from_tee": 30.0,
-            "elev_m": 20.96
+            "yd_from_tee": 29.5,
+            "elev_m": 21.05
           },
           {
-            "yd_from_tee": 34.9,
-            "elev_m": 21.54
+            "yd_from_tee": 34.5,
+            "elev_m": 21.74
           },
           {
-            "yd_from_tee": 39.9,
-            "elev_m": 21.89
+            "yd_from_tee": 39.4,
+            "elev_m": 22.27
           },
           {
-            "yd_from_tee": 44.9,
-            "elev_m": 22.39
+            "yd_from_tee": 44.3,
+            "elev_m": 22.35
           },
           {
-            "yd_from_tee": 49.9,
-            "elev_m": 22.74
+            "yd_from_tee": 49.2,
+            "elev_m": 22.71
           },
           {
-            "yd_from_tee": 54.9,
-            "elev_m": 22.89
+            "yd_from_tee": 54.2,
+            "elev_m": 23.09
           },
           {
-            "yd_from_tee": 59.9,
-            "elev_m": 22.84
+            "yd_from_tee": 59.1,
+            "elev_m": 23.12
           },
           {
-            "yd_from_tee": 64.9,
-            "elev_m": 23.15
+            "yd_from_tee": 64.0,
+            "elev_m": 23.27
           },
           {
-            "yd_from_tee": 69.9,
-            "elev_m": 23.13
+            "yd_from_tee": 68.9,
+            "elev_m": 23.24
           },
           {
-            "yd_from_tee": 74.9,
-            "elev_m": 23.34
-          },
-          {
-            "yd_from_tee": 79.9,
+            "yd_from_tee": 73.9,
             "elev_m": 23.5
           },
           {
-            "yd_from_tee": 84.9,
+            "yd_from_tee": 78.8,
             "elev_m": 23.82
           },
           {
-            "yd_from_tee": 89.9,
+            "yd_from_tee": 83.7,
             "elev_m": 24.05
           },
           {
-            "yd_from_tee": 94.8,
+            "yd_from_tee": 88.6,
             "elev_m": 24.15
           },
           {
-            "yd_from_tee": 99.8,
-            "elev_m": 24.22
+            "yd_from_tee": 93.6,
+            "elev_m": 24.19
           },
           {
-            "yd_from_tee": 104.8,
-            "elev_m": 24.36
+            "yd_from_tee": 98.5,
+            "elev_m": 24.43
           },
           {
-            "yd_from_tee": 109.8,
-            "elev_m": 24.58
+            "yd_from_tee": 103.4,
+            "elev_m": 24.6
           },
           {
-            "yd_from_tee": 114.8,
+            "yd_from_tee": 108.3,
             "elev_m": 24.71
           },
           {
-            "yd_from_tee": 119.8,
-            "elev_m": 24.79
+            "yd_from_tee": 113.2,
+            "elev_m": 24.89
           },
           {
-            "yd_from_tee": 124.8,
-            "elev_m": 24.97
+            "yd_from_tee": 118.2,
+            "elev_m": 25.12
           },
           {
-            "yd_from_tee": 129.8,
-            "elev_m": 25.22
+            "yd_from_tee": 123.1,
+            "elev_m": 25.34
           },
           {
-            "yd_from_tee": 134.8,
-            "elev_m": 25.43
+            "yd_from_tee": 128.0,
+            "elev_m": 25.6
           },
           {
-            "yd_from_tee": 139.8,
-            "elev_m": 25.69
+            "yd_from_tee": 132.9,
+            "elev_m": 26.02
           },
           {
-            "yd_from_tee": 144.8,
-            "elev_m": 26.05
+            "yd_from_tee": 137.9,
+            "elev_m": 26.35
           },
           {
-            "yd_from_tee": 149.8,
-            "elev_m": 26.44
-          },
-          {
-            "yd_from_tee": 154.7,
+            "yd_from_tee": 142.8,
             "elev_m": 26.91
           },
           {
-            "yd_from_tee": 159.7,
+            "yd_from_tee": 147.7,
             "elev_m": 27.44
           },
           {
-            "yd_from_tee": 164.7,
+            "yd_from_tee": 152.6,
             "elev_m": 27.79
           }
         ]
@@ -8097,8 +8075,9 @@
           "lat": 37.7672041,
           "lng": -122.5057194
         },
-        "length_m": 129.4,
-        "length_yd": 141.6
+        "length_m": 120.8,
+        "length_yd": 132.1,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 33.91,
@@ -8114,111 +8093,103 @@
             "elev_m": 33.64
           },
           {
-            "yd_from_tee": 10.1,
-            "elev_m": 33.4
+            "yd_from_tee": 10.2,
+            "elev_m": 33.33
           },
           {
             "yd_from_tee": 15.2,
-            "elev_m": 32.69
+            "elev_m": 32.49
           },
           {
-            "yd_from_tee": 20.2,
-            "elev_m": 32.14
+            "yd_from_tee": 20.3,
+            "elev_m": 32.12
           },
           {
-            "yd_from_tee": 25.3,
-            "elev_m": 32.04
+            "yd_from_tee": 25.4,
+            "elev_m": 31.93
           },
           {
-            "yd_from_tee": 30.3,
-            "elev_m": 31.84
+            "yd_from_tee": 30.5,
+            "elev_m": 31.73
           },
           {
-            "yd_from_tee": 35.4,
-            "elev_m": 31.34
+            "yd_from_tee": 35.6,
+            "elev_m": 31.04
           },
           {
-            "yd_from_tee": 40.4,
-            "elev_m": 30.74
+            "yd_from_tee": 40.7,
+            "elev_m": 30.34
           },
           {
-            "yd_from_tee": 45.5,
-            "elev_m": 30.1
+            "yd_from_tee": 45.7,
+            "elev_m": 29.71
           },
           {
-            "yd_from_tee": 50.6,
-            "elev_m": 29.45
+            "yd_from_tee": 50.8,
+            "elev_m": 29.01
           },
           {
-            "yd_from_tee": 55.6,
-            "elev_m": 28.85
+            "yd_from_tee": 55.9,
+            "elev_m": 28.16
           },
           {
-            "yd_from_tee": 60.7,
-            "elev_m": 27.98
-          },
-          {
-            "yd_from_tee": 65.7,
+            "yd_from_tee": 61.0,
             "elev_m": 27.38
           },
           {
-            "yd_from_tee": 70.8,
+            "yd_from_tee": 66.1,
             "elev_m": 26.99
           },
           {
-            "yd_from_tee": 75.8,
+            "yd_from_tee": 71.1,
             "elev_m": 26.45
           },
           {
-            "yd_from_tee": 80.9,
-            "elev_m": 26.27
+            "yd_from_tee": 76.2,
+            "elev_m": 26.24
           },
           {
-            "yd_from_tee": 85.9,
-            "elev_m": 25.98
+            "yd_from_tee": 81.3,
+            "elev_m": 25.9
           },
           {
-            "yd_from_tee": 91.0,
-            "elev_m": 25.74
+            "yd_from_tee": 86.4,
+            "elev_m": 25.71
           },
           {
-            "yd_from_tee": 96.1,
-            "elev_m": 25.61
+            "yd_from_tee": 91.5,
+            "elev_m": 25.57
           },
           {
-            "yd_from_tee": 101.1,
-            "elev_m": 25.6
+            "yd_from_tee": 96.5,
+            "elev_m": 25.72
           },
           {
-            "yd_from_tee": 106.2,
-            "elev_m": 25.83
+            "yd_from_tee": 101.6,
+            "elev_m": 25.88
           },
           {
-            "yd_from_tee": 111.2,
-            "elev_m": 25.84
-          },
-          {
-            "yd_from_tee": 116.3,
+            "yd_from_tee": 106.7,
             "elev_m": 25.82
           },
           {
-            "yd_from_tee": 121.3,
-            "elev_m": 25.93
+            "yd_from_tee": 111.8,
+            "elev_m": 25.92
           },
           {
-            "yd_from_tee": 126.4,
-            "elev_m": 26.02
+            "yd_from_tee": 116.9,
+            "elev_m": 25.99
           },
           {
-            "yd_from_tee": 131.4,
-            "elev_m": 26.2
+            "yd_from_tee": 122.0,
+            "elev_m": 26.17
           },
           {
-            "yd_from_tee": 136.5,
+            "yd_from_tee": 127.0,
             "elev_m": 26.4
           },
           {
-            "yd_from_tee": 141.6,
+            "yd_from_tee": 132.1,
             "elev_m": 26.57
           }
         ]
@@ -9156,8 +9127,9 @@
           "lat": 37.7678952,
           "lng": -122.5060108
         },
-        "length_m": 71.5,
-        "length_yd": 78.2
+        "length_m": 79.9,
+        "length_yd": 87.3,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 27.3,
@@ -9169,63 +9141,71 @@
             "elev_m": 27.3
           },
           {
-            "yd_from_tee": 5.2,
-            "elev_m": 27.25
+            "yd_from_tee": 5.1,
+            "elev_m": 27.27
           },
           {
-            "yd_from_tee": 10.4,
-            "elev_m": 26.79
+            "yd_from_tee": 10.3,
+            "elev_m": 26.93
           },
           {
-            "yd_from_tee": 15.6,
-            "elev_m": 26.26
+            "yd_from_tee": 15.4,
+            "elev_m": 26.35
           },
           {
-            "yd_from_tee": 20.9,
-            "elev_m": 25.06
+            "yd_from_tee": 20.6,
+            "elev_m": 25.83
           },
           {
-            "yd_from_tee": 26.1,
-            "elev_m": 24.05
+            "yd_from_tee": 25.7,
+            "elev_m": 24.6
           },
           {
-            "yd_from_tee": 31.3,
-            "elev_m": 23.32
+            "yd_from_tee": 30.8,
+            "elev_m": 23.68
           },
           {
-            "yd_from_tee": 36.5,
+            "yd_from_tee": 36.0,
+            "elev_m": 23.15
+          },
+          {
+            "yd_from_tee": 41.1,
             "elev_m": 22.48
           },
           {
-            "yd_from_tee": 41.7,
+            "yd_from_tee": 46.2,
             "elev_m": 22.28
           },
           {
-            "yd_from_tee": 46.9,
-            "elev_m": 22.36
+            "yd_from_tee": 51.4,
+            "elev_m": 22.38
           },
           {
-            "yd_from_tee": 52.1,
-            "elev_m": 21.95
+            "yd_from_tee": 56.5,
+            "elev_m": 22.04
           },
           {
-            "yd_from_tee": 57.4,
-            "elev_m": 21.77
+            "yd_from_tee": 61.7,
+            "elev_m": 21.83
           },
           {
-            "yd_from_tee": 62.6,
+            "yd_from_tee": 66.8,
             "elev_m": 21.78
           },
           {
-            "yd_from_tee": 67.8,
-            "elev_m": 21.49
+            "yd_from_tee": 71.9,
+            "elev_m": 21.54
           },
           {
-            "yd_from_tee": 73.0,
-            "elev_m": 21.56
+            "yd_from_tee": 77.1,
+            "elev_m": 21.54
           },
           {
-            "yd_from_tee": 78.2,
+            "yd_from_tee": 82.2,
+            "elev_m": 21.59
+          },
+          {
+            "yd_from_tee": 87.3,
             "elev_m": 22.0
           }
         ]
@@ -10035,8 +10015,9 @@
           "lat": 37.7688974,
           "lng": -122.5071452
         },
-        "length_m": 141.6,
-        "length_yd": 154.8
+        "length_m": 150.0,
+        "length_yd": 164.0,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 21.29,
@@ -10049,126 +10030,134 @@
           },
           {
             "yd_from_tee": 5.0,
-            "elev_m": 21.01
+            "elev_m": 21.07
           },
           {
-            "yd_from_tee": 10.0,
-            "elev_m": 20.6
+            "yd_from_tee": 9.9,
+            "elev_m": 20.72
           },
           {
-            "yd_from_tee": 15.0,
-            "elev_m": 20.39
+            "yd_from_tee": 14.9,
+            "elev_m": 20.44
           },
           {
-            "yd_from_tee": 20.0,
-            "elev_m": 19.86
+            "yd_from_tee": 19.9,
+            "elev_m": 20.02
           },
           {
-            "yd_from_tee": 25.0,
-            "elev_m": 19.41
+            "yd_from_tee": 24.9,
+            "elev_m": 19.55
           },
           {
-            "yd_from_tee": 30.0,
-            "elev_m": 18.91
+            "yd_from_tee": 29.8,
+            "elev_m": 19.12
           },
           {
-            "yd_from_tee": 35.0,
-            "elev_m": 18.54
+            "yd_from_tee": 34.8,
+            "elev_m": 18.63
           },
           {
-            "yd_from_tee": 40.0,
-            "elev_m": 18.2
+            "yd_from_tee": 39.8,
+            "elev_m": 18.41
           },
           {
-            "yd_from_tee": 45.0,
-            "elev_m": 17.88
+            "yd_from_tee": 44.7,
+            "elev_m": 17.99
           },
           {
-            "yd_from_tee": 49.9,
-            "elev_m": 17.81
+            "yd_from_tee": 49.7,
+            "elev_m": 18.01
           },
           {
-            "yd_from_tee": 54.9,
-            "elev_m": 17.66
+            "yd_from_tee": 54.7,
+            "elev_m": 17.65
           },
           {
-            "yd_from_tee": 59.9,
-            "elev_m": 17.64
+            "yd_from_tee": 59.7,
+            "elev_m": 17.6
           },
           {
-            "yd_from_tee": 64.9,
-            "elev_m": 17.43
+            "yd_from_tee": 64.6,
+            "elev_m": 17.45
           },
           {
-            "yd_from_tee": 69.9,
-            "elev_m": 17.01
+            "yd_from_tee": 69.6,
+            "elev_m": 17.54
           },
           {
-            "yd_from_tee": 74.9,
+            "yd_from_tee": 74.6,
+            "elev_m": 16.74
+          },
+          {
+            "yd_from_tee": 79.5,
             "elev_m": 16.78
           },
           {
-            "yd_from_tee": 79.9,
-            "elev_m": 16.69
+            "yd_from_tee": 84.5,
+            "elev_m": 17.02
           },
           {
-            "yd_from_tee": 84.9,
+            "yd_from_tee": 89.5,
             "elev_m": 16.95
           },
           {
-            "yd_from_tee": 89.9,
-            "elev_m": 17.34
+            "yd_from_tee": 94.5,
+            "elev_m": 17.3
           },
           {
-            "yd_from_tee": 94.9,
-            "elev_m": 17.37
+            "yd_from_tee": 99.4,
+            "elev_m": 17.36
           },
           {
-            "yd_from_tee": 99.9,
-            "elev_m": 17.41
+            "yd_from_tee": 104.4,
+            "elev_m": 17.4
           },
           {
-            "yd_from_tee": 104.9,
-            "elev_m": 17.26
+            "yd_from_tee": 109.4,
+            "elev_m": 17.45
           },
           {
-            "yd_from_tee": 109.9,
-            "elev_m": 16.87
+            "yd_from_tee": 114.3,
+            "elev_m": 17.07
           },
           {
-            "yd_from_tee": 114.9,
-            "elev_m": 16.33
+            "yd_from_tee": 119.3,
+            "elev_m": 16.44
           },
           {
-            "yd_from_tee": 119.9,
-            "elev_m": 16.47
+            "yd_from_tee": 124.3,
+            "elev_m": 16.35
           },
           {
-            "yd_from_tee": 124.9,
-            "elev_m": 16.85
+            "yd_from_tee": 129.2,
+            "elev_m": 16.65
           },
           {
-            "yd_from_tee": 129.9,
-            "elev_m": 17.35
+            "yd_from_tee": 134.2,
+            "elev_m": 17.05
           },
           {
-            "yd_from_tee": 134.9,
-            "elev_m": 17.67
+            "yd_from_tee": 139.2,
+            "elev_m": 17.47
           },
           {
-            "yd_from_tee": 139.9,
-            "elev_m": 17.89
+            "yd_from_tee": 144.2,
+            "elev_m": 17.75
           },
           {
-            "yd_from_tee": 144.9,
+            "yd_from_tee": 149.1,
+            "elev_m": 17.92
+          },
+          {
+            "yd_from_tee": 154.1,
             "elev_m": 18.15
           },
           {
-            "yd_from_tee": 149.8,
+            "yd_from_tee": 159.1,
             "elev_m": 18.24
           },
           {
-            "yd_from_tee": 154.8,
+            "yd_from_tee": 164.0,
             "elev_m": 18.38
           }
         ]

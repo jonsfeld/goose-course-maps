@@ -257,29 +257,91 @@ def _tee_shot_corridor(chm: Raster, hole_line: LineString, lat_center: float) ->
 # --------------------------------------------------------------------------
 
 def _assign_features(features, holes):
-    """Each non-hole_line feature gets hole_id = ref of nearest hole_line."""
-    assigned = {h["properties"]["hole_ref"]: {"hole_line": h, "greens": [], "tees": [],
-                                              "bunkers": [], "fairways": []} for h in holes}
-    hole_by_ref = {h["properties"]["hole_ref"]: h for h in holes}
+    """Each non-hole_line feature goes to the nearest hole line.
+
+    Keyed by the hole line's position, not its number: courses that share hole numbers with a
+    neighbour (TPC Harding Park + Fleming 9) used to collapse into one bucket per number, so
+    Harding holes picked up Fleming greens (fixed 2026-11-23).
+    """
+    assigned = [{"hole_line": h, "greens": [], "tees": [], "bunkers": [], "fairways": []} for h in holes]
+    lines = [shape(h["geometry"]) for h in holes]
     for feat in features:
         kind = feat["properties"]["kind"]
         if kind in ("hole_line", "course_boundary"):
             continue
         poly = shape(feat["geometry"])
-        # Distance to every hole_line — keep the nearest
-        best_ref = None; best_dist = float("inf")
-        for href, h in hole_by_ref.items():
-            line = shape(h["geometry"])
-            d = poly.distance(line)  # in degrees
-            if d < best_dist:
-                best_dist = d; best_ref = href
-        if best_ref is None:
+        dists = [poly.distance(line) for line in lines]  # in degrees
+        if not dists:
             continue
-        feat["properties"]["hole_ref"] = best_ref
+        best = min(range(len(dists)), key=dists.__getitem__)
+        feat["properties"]["hole_ref"] = holes[best]["properties"]["hole_ref"]
         bucket = {"green": "greens", "tee_box": "tees", "bunker": "bunkers", "fairway": "fairways"}.get(kind)
         if bucket:
-            assigned[best_ref][bucket].append(feat)
+            assigned[best][bucket].append(feat)
     return assigned
+
+
+def _back_tee(line, all_tees, other_starts, lat_c):
+    """The back-most tee box in line with this hole.
+
+    OSM hole lines often start at a forward tee. Look among this hole's own tee boxes for ones up to
+    70 m behind the line's start, within 20 degrees of the hole's direction, that don't start
+    another hole, and use the farthest one. Returns a Point (lon/lat) or None.
+    """
+    mlat, mlon = _meters_per_deg(lat_c)
+    sx, sy = line.coords[0][:2]
+    nx, ny = line.coords[1][:2] if len(line.coords) > 1 else line.coords[-1][:2]
+    dx, dy = (nx - sx) * mlon, (ny - sy) * mlat
+    n = math.hypot(dx, dy) or 1.0
+    ux, uy = dx / n, dy / n
+    best, best_back = None, 5.0  # must be at least 5 m behind the line start
+    for poly in all_tees:
+        c = poly.centroid
+        vx, vy = (c.x - sx) * mlon, (c.y - sy) * mlat
+        back = -(vx * ux + vy * uy)          # metres behind the start, along the hole direction
+        side = abs(vx * uy - vy * ux)        # metres off the hole's axis
+        if back <= best_back or back > 70 or side > max(10.0, back * math.tan(math.radians(20))):
+            continue
+        if any(c.distance(o) * mlat < 15 for o in other_starts):
+            continue
+        best, best_back = c, back
+    return best
+
+def _scorecard(c):
+    p = c / "notes" / "scorecard.json"
+    return json.loads(p.read_text()) if p.exists() else None
+
+
+def _fit_tee_to_card(line, tee_polys, other_starts, lo, hi):
+    """When the line's length is off the published scorecard, try each nearby tee box (within 90 m
+    of the line start, on the hole's axis, not starting another hole) as the tee, and keep the one
+    whose length lands inside the card's range, or closest to it. Returns a new LineString or None."""
+    def length(ln):
+        cs = [c[:2] for c in ln.coords]
+        return sum(_haversine_m(cs[i][0], cs[i][1], cs[i + 1][0], cs[i + 1][1]) for i in range(len(cs) - 1)) * 1.09361
+    def miss(L):
+        return 0.0 if lo * 0.96 <= L <= hi * 1.04 else min(abs(L - lo), abs(L - hi))
+    if miss(length(line)) == 0:
+        return None
+    mlat, mlon = _meters_per_deg(line.coords[0][1])
+    sx, sy = line.coords[0][:2]
+    nx, ny = line.coords[1][:2]
+    ux, uy = (nx - sx) * mlon, (ny - sy) * mlat
+    n = math.hypot(ux, uy) or 1.0
+    ux, uy = ux / n, uy / n
+    best, best_miss = None, miss(length(line))
+    for poly in tee_polys:
+        c = poly.centroid
+        vx, vy = (c.x - sx) * mlon, (c.y - sy) * mlat
+        along, side = vx * ux + vy * uy, abs(vx * uy - vy * ux)
+        if math.hypot(vx, vy) > 90 or side > 25 or any(c.distance(o) * mlat < 15 for o in other_starts):
+            continue
+        rest = [p[:2] for p in line.coords[1:]] if along > 0 else [p[:2] for p in line.coords]
+        cand = LineString([(c.x, c.y)] + rest)
+        m = miss(length(cand))
+        if m < best_miss:
+            best, best_miss = cand, m
+    return best
 
 
 # --------------------------------------------------------------------------
@@ -306,6 +368,19 @@ def build(slug: str) -> Path:
     chm = Raster(chm_path, fill_nodata_with=0.0)
 
     assigned = _assign_features(features, holes)
+    all_tees = [shape(f["geometry"]) for f in features if f["properties"]["kind"] == "tee_box"]
+    all_greens = [f for f in features if f["properties"]["kind"] == "green"]
+    starts = [Point(shape(h["geometry"]).coords[0][:2]) for h in holes]
+    # Scorecard applies to the main course: the first hole line for each number (same rule as
+    # pick_holes: Harding before Fleming), matched by number.
+    card = _scorecard(c)
+    card_holes, seen = {}, set()
+    if card:
+        for i, h in enumerate(holes):
+            n = int(h["properties"]["hole_ref"])
+            if n not in seen and 1 <= n <= len(card["pars"]) and h["properties"].get("par") in (None, card["pars"][n - 1]):
+                card_holes[i] = n - 1
+                seen.add(n)
 
     output = {
         "course_slug": slug,
@@ -313,11 +388,24 @@ def build(slug: str) -> Path:
         "holes": [],
     }
 
-    for h in holes:
+    for idx, h in enumerate(holes):
         ref = h["properties"]["hole_ref"]
         par = h["properties"]["par"]
         line = shape(h["geometry"])
-        tee_pt = Point(line.coords[0])      # first vertex = tee
+        # Tee: the back-most tee box in line with the hole (OSM lines often start at a forward tee).
+        own_tees = [shape(f["geometry"]) for f in assigned[idx]["tees"]]
+        back = _back_tee(line, own_tees, [p for i, p in enumerate(starts) if i != idx], (line.coords[0][1] + line.coords[-1][1]) / 2)
+        tee_source = "hole_line_start"
+        if back is not None:
+            line = LineString([(back.x, back.y)] + [c[:2] for c in line.coords])
+            tee_source = "back_tee_box"
+        # A published scorecard (notes/scorecard.json) referees the tee when the line's length is off it.
+        if card and card_holes.get(idx) is not None:
+            vals = [t[card_holes[idx]] for t in card["tees"].values()]
+            fitted = _fit_tee_to_card(line, all_tees, [p for i, p in enumerate(starts) if i != idx], min(vals), max(vals))
+            if fitted is not None:
+                line, tee_source = fitted, "scorecard_fit"
+        tee_pt = Point(line.coords[0])
         green_pt = Point(line.coords[-1])   # last vertex = green
 
         tee_elev = dem.sample(tee_pt.x, tee_pt.y)
@@ -327,7 +415,11 @@ def build(slug: str) -> Path:
         # Fairway centerline profile: sample DEM along line every ~5 yd
         lat_c = (tee_pt.y + green_pt.y) / 2
         mpdl_lat, mpdl_lon = _meters_per_deg(lat_c)
-        length_m = line.length * (mpdl_lat + mpdl_lon) / 2
+        # True ground length: sum each segment with its own lat/lon scale. (The old
+        # line.length * average(m/deg lat, m/deg lon) overstated east–west holes: Harding 10 read 635 y
+        # instead of ~550.)
+        cs = [c[:2] for c in line.coords]
+        length_m = sum(_haversine_m(cs[i][0], cs[i][1], cs[i + 1][0], cs[i + 1][1]) for i in range(len(cs) - 1))
         n_samples = max(5, int(length_m / CENTERLINE_SAMPLE_M))
         profile = []
         for i in range(n_samples + 1):
@@ -341,16 +433,17 @@ def build(slug: str) -> Path:
         corridor = _tee_shot_corridor(chm, line, lat_c)
 
         # Green slope analysis (use largest assigned green)
-        greens = sorted(assigned[ref]["greens"], key=lambda f: -_polygon_area_m2(shape(f["geometry"])))
+        # The green is the one at the end of this hole's line (not the largest one nearby).
+        greens = sorted(all_greens, key=lambda f: shape(f["geometry"]).distance(green_pt))
         green_entry = None
         green_stats = None
-        if greens:
+        if greens and shape(greens[0]["geometry"]).distance(green_pt) * _meters_per_deg(green_pt.y)[0] < 40:
             green_entry = greens[0]
             green_poly = shape(green_entry["geometry"])
             green_stats = _green_slope_stats(dem, green_poly)
 
         # Tee positions — list any tee_boxes assigned to this hole
-        tees = assigned[ref]["tees"]
+        tees = assigned[idx]["tees"]
         tee_positions = []
         for tp in tees:
             poly = shape(tp["geometry"])
@@ -363,7 +456,7 @@ def build(slug: str) -> Path:
 
         # Bunker list
         bunkers = []
-        for bk in assigned[ref]["bunkers"]:
+        for bk in assigned[idx]["bunkers"]:
             poly = shape(bk["geometry"])
             bunkers.append({
                 "osm_id": bk["properties"]["osm_id"],
@@ -373,7 +466,7 @@ def build(slug: str) -> Path:
 
         # Fairway list (just osm_ids + areas; full polygons stay in OSM features)
         fairways = []
-        for fw in assigned[ref]["fairways"]:
+        for fw in assigned[idx]["fairways"]:
             poly = shape(fw["geometry"])
             fairways.append({
                 "osm_id": fw["properties"]["osm_id"],
@@ -388,6 +481,7 @@ def build(slug: str) -> Path:
                 "green_center": {"lat": round(green_pt.y, 7), "lng": round(green_pt.x, 7)},
                 "length_m": round(length_m, 1),
                 "length_yd": round(length_m * 1.09361, 1),
+                "tee_source": tee_source,
             },
             "terrain": {
                 "tee_elevation_m": round(tee_elev, 2) if not math.isnan(tee_elev) else None,

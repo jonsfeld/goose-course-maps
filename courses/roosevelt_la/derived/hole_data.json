@@ -14,8 +14,9 @@
           "lat": 34.1203187,
           "lng": -118.2936956
         },
-        "length_m": 233.8,
-        "length_yd": 255.6
+        "length_m": 246.9,
+        "length_yd": 270.0,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 228.64,
@@ -36,198 +37,210 @@
           },
           {
             "yd_from_tee": 15.0,
-            "elev_m": 228.53
+            "elev_m": 228.54
           },
           {
-            "yd_from_tee": 20.1,
+            "yd_from_tee": 20.0,
+            "elev_m": 228.58
+          },
+          {
+            "yd_from_tee": 25.0,
             "elev_m": 228.59
           },
           {
-            "yd_from_tee": 25.1,
-            "elev_m": 228.57
-          },
-          {
-            "yd_from_tee": 30.1,
+            "yd_from_tee": 30.0,
             "elev_m": 228.52
           },
           {
-            "yd_from_tee": 35.1,
-            "elev_m": 228.55
+            "yd_from_tee": 35.0,
+            "elev_m": 228.49
           },
           {
-            "yd_from_tee": 40.1,
-            "elev_m": 228.81
+            "yd_from_tee": 40.0,
+            "elev_m": 228.7
           },
           {
-            "yd_from_tee": 45.1,
-            "elev_m": 229.14
+            "yd_from_tee": 45.0,
+            "elev_m": 228.96
           },
           {
-            "yd_from_tee": 50.1,
-            "elev_m": 229.47
+            "yd_from_tee": 50.0,
+            "elev_m": 229.32
           },
           {
-            "yd_from_tee": 55.1,
-            "elev_m": 229.87
+            "yd_from_tee": 55.0,
+            "elev_m": 229.63
           },
           {
-            "yd_from_tee": 60.2,
-            "elev_m": 229.98
+            "yd_from_tee": 60.0,
+            "elev_m": 229.89
           },
           {
-            "yd_from_tee": 65.2,
+            "yd_from_tee": 65.0,
+            "elev_m": 230.01
+          },
+          {
+            "yd_from_tee": 70.0,
             "elev_m": 230.17
           },
           {
-            "yd_from_tee": 70.2,
+            "yd_from_tee": 75.0,
             "elev_m": 230.42
           },
           {
-            "yd_from_tee": 75.2,
+            "yd_from_tee": 80.0,
             "elev_m": 230.62
           },
           {
-            "yd_from_tee": 80.2,
+            "yd_from_tee": 85.0,
             "elev_m": 230.86
           },
           {
-            "yd_from_tee": 85.2,
+            "yd_from_tee": 90.0,
             "elev_m": 231.11
           },
           {
-            "yd_from_tee": 90.2,
+            "yd_from_tee": 95.0,
             "elev_m": 231.36
           },
           {
-            "yd_from_tee": 95.2,
+            "yd_from_tee": 100.0,
             "elev_m": 231.5
           },
           {
-            "yd_from_tee": 100.3,
-            "elev_m": 231.57
+            "yd_from_tee": 105.0,
+            "elev_m": 231.63
           },
           {
-            "yd_from_tee": 105.3,
-            "elev_m": 231.77
+            "yd_from_tee": 110.0,
+            "elev_m": 231.7
           },
           {
-            "yd_from_tee": 110.3,
-            "elev_m": 231.92
+            "yd_from_tee": 115.0,
+            "elev_m": 231.88
           },
           {
-            "yd_from_tee": 115.3,
-            "elev_m": 232.09
+            "yd_from_tee": 120.0,
+            "elev_m": 232.06
           },
           {
-            "yd_from_tee": 120.3,
-            "elev_m": 232.29
+            "yd_from_tee": 125.0,
+            "elev_m": 232.22
           },
           {
-            "yd_from_tee": 125.3,
-            "elev_m": 232.44
+            "yd_from_tee": 130.0,
+            "elev_m": 232.37
           },
           {
-            "yd_from_tee": 130.3,
-            "elev_m": 232.58
+            "yd_from_tee": 135.0,
+            "elev_m": 232.52
           },
           {
-            "yd_from_tee": 135.3,
+            "yd_from_tee": 140.0,
+            "elev_m": 232.61
+          },
+          {
+            "yd_from_tee": 145.0,
             "elev_m": 232.68
           },
           {
-            "yd_from_tee": 140.4,
-            "elev_m": 232.77
+            "yd_from_tee": 150.0,
+            "elev_m": 232.83
           },
           {
-            "yd_from_tee": 145.4,
-            "elev_m": 232.93
+            "yd_from_tee": 155.0,
+            "elev_m": 232.96
           },
           {
-            "yd_from_tee": 150.4,
-            "elev_m": 233.07
+            "yd_from_tee": 160.0,
+            "elev_m": 233.08
           },
           {
-            "yd_from_tee": 155.4,
-            "elev_m": 233.25
+            "yd_from_tee": 165.0,
+            "elev_m": 233.27
           },
           {
-            "yd_from_tee": 160.4,
+            "yd_from_tee": 170.0,
             "elev_m": 233.44
           },
           {
-            "yd_from_tee": 165.4,
+            "yd_from_tee": 175.0,
             "elev_m": 233.62
           },
           {
-            "yd_from_tee": 170.4,
+            "yd_from_tee": 180.0,
             "elev_m": 233.83
           },
           {
-            "yd_from_tee": 175.4,
-            "elev_m": 233.97
+            "yd_from_tee": 185.0,
+            "elev_m": 233.99
           },
           {
-            "yd_from_tee": 180.5,
-            "elev_m": 234.19
+            "yd_from_tee": 190.0,
+            "elev_m": 234.16
           },
           {
-            "yd_from_tee": 185.5,
-            "elev_m": 234.43
+            "yd_from_tee": 195.0,
+            "elev_m": 234.38
           },
           {
-            "yd_from_tee": 190.5,
-            "elev_m": 234.6
+            "yd_from_tee": 200.0,
+            "elev_m": 234.56
           },
           {
-            "yd_from_tee": 195.5,
-            "elev_m": 234.87
+            "yd_from_tee": 205.0,
+            "elev_m": 234.76
           },
           {
-            "yd_from_tee": 200.5,
-            "elev_m": 235.07
+            "yd_from_tee": 210.0,
+            "elev_m": 235.03
           },
           {
-            "yd_from_tee": 205.5,
-            "elev_m": 235.36
+            "yd_from_tee": 215.0,
+            "elev_m": 235.25
           },
           {
-            "yd_from_tee": 210.5,
-            "elev_m": 235.56
+            "yd_from_tee": 220.0,
+            "elev_m": 235.46
           },
           {
-            "yd_from_tee": 215.5,
-            "elev_m": 235.9
+            "yd_from_tee": 225.0,
+            "elev_m": 235.76
           },
           {
-            "yd_from_tee": 220.6,
-            "elev_m": 236.25
+            "yd_from_tee": 230.0,
+            "elev_m": 236.02
           },
           {
-            "yd_from_tee": 225.6,
-            "elev_m": 236.56
+            "yd_from_tee": 235.0,
+            "elev_m": 236.34
           },
           {
-            "yd_from_tee": 230.6,
-            "elev_m": 236.97
+            "yd_from_tee": 240.0,
+            "elev_m": 236.7
           },
           {
-            "yd_from_tee": 235.6,
-            "elev_m": 237.48
+            "yd_from_tee": 245.0,
+            "elev_m": 237.05
           },
           {
-            "yd_from_tee": 240.6,
-            "elev_m": 238.2
+            "yd_from_tee": 250.0,
+            "elev_m": 237.61
           },
           {
-            "yd_from_tee": 245.6,
-            "elev_m": 238.14
-          },
-          {
-            "yd_from_tee": 250.6,
+            "yd_from_tee": 255.0,
             "elev_m": 238.18
           },
           {
-            "yd_from_tee": 255.6,
+            "yd_from_tee": 260.0,
+            "elev_m": 238.14
+          },
+          {
+            "yd_from_tee": 265.0,
+            "elev_m": 238.18
+          },
+          {
+            "yd_from_tee": 270.0,
             "elev_m": 238.24
           }
         ]
@@ -1259,8 +1272,9 @@
           "lat": 34.1210225,
           "lng": -118.289695
         },
-        "length_m": 372.2,
-        "length_yd": 407.1
+        "length_m": 342.8,
+        "length_yd": 374.9,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 240.24,
@@ -1272,7 +1286,7 @@
             "elev_m": 240.24
           },
           {
-            "yd_from_tee": 5.0,
+            "yd_from_tee": 4.9,
             "elev_m": 240.26
           },
           {
@@ -1280,323 +1294,299 @@
             "elev_m": 240.26
           },
           {
-            "yd_from_tee": 14.9,
-            "elev_m": 240.33
+            "yd_from_tee": 14.8,
+            "elev_m": 240.36
           },
           {
-            "yd_from_tee": 19.9,
-            "elev_m": 240.48
+            "yd_from_tee": 19.7,
+            "elev_m": 240.5
           },
           {
-            "yd_from_tee": 24.8,
-            "elev_m": 240.59
+            "yd_from_tee": 24.7,
+            "elev_m": 240.69
           },
           {
-            "yd_from_tee": 29.8,
-            "elev_m": 240.87
+            "yd_from_tee": 29.6,
+            "elev_m": 241.07
           },
           {
-            "yd_from_tee": 34.8,
-            "elev_m": 241.2
+            "yd_from_tee": 34.5,
+            "elev_m": 241.38
           },
           {
-            "yd_from_tee": 39.7,
-            "elev_m": 241.5
+            "yd_from_tee": 39.5,
+            "elev_m": 241.75
           },
           {
-            "yd_from_tee": 44.7,
-            "elev_m": 241.82
+            "yd_from_tee": 44.4,
+            "elev_m": 242.05
           },
           {
-            "yd_from_tee": 49.6,
-            "elev_m": 242.1
+            "yd_from_tee": 49.3,
+            "elev_m": 242.3
           },
           {
-            "yd_from_tee": 54.6,
-            "elev_m": 242.35
-          },
-          {
-            "yd_from_tee": 59.6,
+            "yd_from_tee": 54.3,
             "elev_m": 242.63
           },
           {
-            "yd_from_tee": 64.5,
+            "yd_from_tee": 59.2,
             "elev_m": 242.94
           },
           {
-            "yd_from_tee": 69.5,
+            "yd_from_tee": 64.1,
             "elev_m": 243.2
           },
           {
-            "yd_from_tee": 74.5,
-            "elev_m": 243.47
+            "yd_from_tee": 69.1,
+            "elev_m": 243.5
           },
           {
-            "yd_from_tee": 79.4,
-            "elev_m": 243.7
+            "yd_from_tee": 74.0,
+            "elev_m": 243.76
           },
           {
-            "yd_from_tee": 84.4,
-            "elev_m": 243.99
+            "yd_from_tee": 78.9,
+            "elev_m": 244.05
           },
           {
-            "yd_from_tee": 89.4,
-            "elev_m": 244.28
+            "yd_from_tee": 83.9,
+            "elev_m": 244.38
           },
           {
-            "yd_from_tee": 94.3,
-            "elev_m": 244.55
+            "yd_from_tee": 88.8,
+            "elev_m": 244.64
           },
           {
-            "yd_from_tee": 99.3,
-            "elev_m": 244.79
+            "yd_from_tee": 93.7,
+            "elev_m": 244.9
           },
           {
-            "yd_from_tee": 104.3,
-            "elev_m": 245.04
+            "yd_from_tee": 98.7,
+            "elev_m": 245.21
           },
           {
-            "yd_from_tee": 109.2,
-            "elev_m": 245.3
+            "yd_from_tee": 103.6,
+            "elev_m": 245.39
           },
           {
-            "yd_from_tee": 114.2,
-            "elev_m": 245.45
+            "yd_from_tee": 108.5,
+            "elev_m": 245.61
           },
           {
-            "yd_from_tee": 119.1,
-            "elev_m": 245.66
+            "yd_from_tee": 113.5,
+            "elev_m": 245.83
           },
           {
-            "yd_from_tee": 124.1,
-            "elev_m": 245.87
+            "yd_from_tee": 118.4,
+            "elev_m": 246.0
           },
           {
-            "yd_from_tee": 129.1,
-            "elev_m": 246.04
-          },
-          {
-            "yd_from_tee": 134.0,
+            "yd_from_tee": 123.3,
             "elev_m": 246.21
           },
           {
-            "yd_from_tee": 139.0,
+            "yd_from_tee": 128.3,
             "elev_m": 246.41
           },
           {
-            "yd_from_tee": 144.0,
+            "yd_from_tee": 133.2,
             "elev_m": 246.59
           },
           {
-            "yd_from_tee": 148.9,
-            "elev_m": 246.77
+            "yd_from_tee": 138.1,
+            "elev_m": 246.82
           },
           {
-            "yd_from_tee": 153.9,
-            "elev_m": 247.0
+            "yd_from_tee": 143.1,
+            "elev_m": 247.04
           },
           {
-            "yd_from_tee": 158.9,
-            "elev_m": 247.2
+            "yd_from_tee": 148.0,
+            "elev_m": 247.25
           },
           {
-            "yd_from_tee": 163.8,
-            "elev_m": 247.43
+            "yd_from_tee": 152.9,
+            "elev_m": 247.51
           },
           {
-            "yd_from_tee": 168.8,
-            "elev_m": 247.65
+            "yd_from_tee": 157.9,
+            "elev_m": 247.75
           },
           {
-            "yd_from_tee": 173.8,
-            "elev_m": 247.84
+            "yd_from_tee": 162.8,
+            "elev_m": 247.97
           },
           {
-            "yd_from_tee": 178.7,
-            "elev_m": 248.06
+            "yd_from_tee": 167.7,
+            "elev_m": 248.22
           },
           {
-            "yd_from_tee": 183.7,
-            "elev_m": 248.26
+            "yd_from_tee": 172.7,
+            "elev_m": 248.43
           },
           {
-            "yd_from_tee": 188.6,
-            "elev_m": 248.47
-          },
-          {
-            "yd_from_tee": 193.6,
+            "yd_from_tee": 177.6,
             "elev_m": 248.73
           },
           {
-            "yd_from_tee": 198.6,
+            "yd_from_tee": 182.5,
             "elev_m": 248.99
           },
           {
-            "yd_from_tee": 203.5,
+            "yd_from_tee": 187.5,
             "elev_m": 249.19
           },
           {
-            "yd_from_tee": 208.5,
-            "elev_m": 249.36
+            "yd_from_tee": 192.4,
+            "elev_m": 249.4
           },
           {
-            "yd_from_tee": 213.5,
-            "elev_m": 249.51
+            "yd_from_tee": 197.3,
+            "elev_m": 249.53
           },
           {
-            "yd_from_tee": 218.4,
-            "elev_m": 249.58
+            "yd_from_tee": 202.3,
+            "elev_m": 249.61
           },
           {
-            "yd_from_tee": 223.4,
-            "elev_m": 249.66
+            "yd_from_tee": 207.2,
+            "elev_m": 249.67
           },
           {
-            "yd_from_tee": 228.4,
-            "elev_m": 249.7
+            "yd_from_tee": 212.1,
+            "elev_m": 249.72
           },
           {
-            "yd_from_tee": 233.3,
-            "elev_m": 249.77
+            "yd_from_tee": 217.0,
+            "elev_m": 249.79
           },
           {
-            "yd_from_tee": 238.3,
-            "elev_m": 249.85
+            "yd_from_tee": 222.0,
+            "elev_m": 249.89
           },
           {
-            "yd_from_tee": 243.3,
-            "elev_m": 249.91
+            "yd_from_tee": 226.9,
+            "elev_m": 249.92
           },
           {
-            "yd_from_tee": 248.2,
-            "elev_m": 249.94
+            "yd_from_tee": 231.8,
+            "elev_m": 249.96
           },
           {
-            "yd_from_tee": 253.2,
-            "elev_m": 249.97
-          },
-          {
-            "yd_from_tee": 258.2,
+            "yd_from_tee": 236.8,
             "elev_m": 249.99
           },
           {
-            "yd_from_tee": 263.1,
+            "yd_from_tee": 241.7,
             "elev_m": 250.0
           },
           {
-            "yd_from_tee": 268.1,
-            "elev_m": 249.98
+            "yd_from_tee": 246.6,
+            "elev_m": 250.0
           },
           {
-            "yd_from_tee": 273.0,
+            "yd_from_tee": 251.6,
             "elev_m": 250.02
           },
           {
-            "yd_from_tee": 278.0,
+            "yd_from_tee": 256.5,
             "elev_m": 250.06
           },
           {
-            "yd_from_tee": 283.0,
-            "elev_m": 250.06
+            "yd_from_tee": 261.4,
+            "elev_m": 250.07
           },
           {
-            "yd_from_tee": 287.9,
-            "elev_m": 250.01
+            "yd_from_tee": 266.4,
+            "elev_m": 249.97
           },
           {
-            "yd_from_tee": 292.9,
-            "elev_m": 249.87
+            "yd_from_tee": 271.3,
+            "elev_m": 249.76
           },
           {
-            "yd_from_tee": 297.9,
-            "elev_m": 249.63
+            "yd_from_tee": 276.2,
+            "elev_m": 249.58
           },
           {
-            "yd_from_tee": 302.8,
-            "elev_m": 249.51
+            "yd_from_tee": 281.2,
+            "elev_m": 249.44
           },
           {
-            "yd_from_tee": 307.8,
-            "elev_m": 249.39
-          },
-          {
-            "yd_from_tee": 312.8,
+            "yd_from_tee": 286.1,
             "elev_m": 249.36
           },
           {
-            "yd_from_tee": 317.7,
-            "elev_m": 249.29
+            "yd_from_tee": 291.0,
+            "elev_m": 249.31
           },
           {
-            "yd_from_tee": 322.7,
-            "elev_m": 249.27
+            "yd_from_tee": 296.0,
+            "elev_m": 249.24
           },
           {
-            "yd_from_tee": 327.7,
-            "elev_m": 249.21
+            "yd_from_tee": 300.9,
+            "elev_m": 249.26
           },
           {
-            "yd_from_tee": 332.6,
+            "yd_from_tee": 305.8,
             "elev_m": 249.17
           },
           {
-            "yd_from_tee": 337.6,
+            "yd_from_tee": 310.8,
             "elev_m": 249.14
           },
           {
-            "yd_from_tee": 342.5,
-            "elev_m": 249.18
+            "yd_from_tee": 315.7,
+            "elev_m": 249.17
           },
           {
-            "yd_from_tee": 347.5,
-            "elev_m": 249.34
+            "yd_from_tee": 320.6,
+            "elev_m": 249.33
           },
           {
-            "yd_from_tee": 352.5,
-            "elev_m": 249.57
+            "yd_from_tee": 325.6,
+            "elev_m": 249.72
           },
           {
-            "yd_from_tee": 357.4,
-            "elev_m": 250.0
+            "yd_from_tee": 330.5,
+            "elev_m": 250.18
           },
           {
-            "yd_from_tee": 362.4,
-            "elev_m": 250.41
+            "yd_from_tee": 335.4,
+            "elev_m": 250.59
           },
           {
-            "yd_from_tee": 367.4,
-            "elev_m": 250.8
+            "yd_from_tee": 340.4,
+            "elev_m": 250.96
           },
           {
-            "yd_from_tee": 372.3,
-            "elev_m": 251.12
+            "yd_from_tee": 345.3,
+            "elev_m": 251.4
           },
           {
-            "yd_from_tee": 377.3,
-            "elev_m": 251.61
+            "yd_from_tee": 350.2,
+            "elev_m": 251.86
           },
           {
-            "yd_from_tee": 382.3,
-            "elev_m": 252.08
+            "yd_from_tee": 355.2,
+            "elev_m": 252.35
           },
           {
-            "yd_from_tee": 387.2,
-            "elev_m": 252.5
+            "yd_from_tee": 360.1,
+            "elev_m": 252.91
           },
           {
-            "yd_from_tee": 392.2,
+            "yd_from_tee": 365.0,
             "elev_m": 253.01
           },
           {
-            "yd_from_tee": 397.2,
-            "elev_m": 252.95
+            "yd_from_tee": 370.0,
+            "elev_m": 253.05
           },
           {
-            "yd_from_tee": 402.1,
-            "elev_m": 253.07
-          },
-          {
-            "yd_from_tee": 407.1,
+            "yd_from_tee": 374.9,
             "elev_m": 253.2
           }
         ]
@@ -2559,111 +2549,124 @@
       "par": 3,
       "hole_line": {
         "tee": {
-          "lat": 34.1213926,
-          "lng": -118.2898574
+          "lat": 34.1212775,
+          "lng": -118.2900138
         },
         "green_center": {
           "lat": 34.1219431,
           "lng": -118.2890339
         },
-        "length_m": 100.5,
-        "length_yd": 109.9
+        "length_m": 116.5,
+        "length_yd": 127.4,
+        "tee_source": "back_tee_box"
       },
       "terrain": {
-        "tee_elevation_m": 254.29,
+        "tee_elevation_m": 254.67,
         "green_elevation_m": 254.39,
-        "net_delta_m": 0.1,
+        "net_delta_m": -0.28,
         "fairway_centerline_profile": [
           {
             "yd_from_tee": 0.0,
+            "elev_m": 254.67
+          },
+          {
+            "yd_from_tee": 5.1,
+            "elev_m": 254.54
+          },
+          {
+            "yd_from_tee": 10.2,
+            "elev_m": 254.4
+          },
+          {
+            "yd_from_tee": 15.3,
+            "elev_m": 254.23
+          },
+          {
+            "yd_from_tee": 20.4,
             "elev_m": 254.29
           },
           {
-            "yd_from_tee": 5.0,
+            "yd_from_tee": 25.5,
             "elev_m": 254.31
           },
           {
-            "yd_from_tee": 10.0,
+            "yd_from_tee": 30.6,
             "elev_m": 254.19
           },
           {
-            "yd_from_tee": 15.0,
+            "yd_from_tee": 35.7,
             "elev_m": 253.77
           },
           {
-            "yd_from_tee": 20.0,
+            "yd_from_tee": 40.8,
             "elev_m": 253.8
           },
           {
-            "yd_from_tee": 25.0,
-            "elev_m": 253.75
+            "yd_from_tee": 45.9,
+            "elev_m": 253.7
           },
           {
-            "yd_from_tee": 30.0,
-            "elev_m": 253.72
+            "yd_from_tee": 51.0,
+            "elev_m": 253.66
           },
           {
-            "yd_from_tee": 35.0,
-            "elev_m": 253.56
+            "yd_from_tee": 56.1,
+            "elev_m": 253.54
           },
           {
-            "yd_from_tee": 40.0,
-            "elev_m": 253.45
+            "yd_from_tee": 61.2,
+            "elev_m": 253.37
           },
           {
-            "yd_from_tee": 45.0,
-            "elev_m": 253.34
+            "yd_from_tee": 66.2,
+            "elev_m": 253.32
           },
           {
-            "yd_from_tee": 50.0,
-            "elev_m": 253.35
+            "yd_from_tee": 71.3,
+            "elev_m": 253.38
           },
           {
-            "yd_from_tee": 54.9,
-            "elev_m": 253.36
+            "yd_from_tee": 76.4,
+            "elev_m": 253.3
           },
           {
-            "yd_from_tee": 59.9,
+            "yd_from_tee": 81.5,
+            "elev_m": 253.27
+          },
+          {
+            "yd_from_tee": 86.6,
+            "elev_m": 253.17
+          },
+          {
+            "yd_from_tee": 91.7,
+            "elev_m": 253.17
+          },
+          {
+            "yd_from_tee": 96.8,
             "elev_m": 253.25
           },
           {
-            "yd_from_tee": 64.9,
-            "elev_m": 253.22
+            "yd_from_tee": 101.9,
+            "elev_m": 253.27
           },
           {
-            "yd_from_tee": 69.9,
-            "elev_m": 253.19
+            "yd_from_tee": 107.0,
+            "elev_m": 253.59
           },
           {
-            "yd_from_tee": 74.9,
-            "elev_m": 253.19
+            "yd_from_tee": 112.1,
+            "elev_m": 254.08
           },
           {
-            "yd_from_tee": 79.9,
-            "elev_m": 253.21
+            "yd_from_tee": 117.2,
+            "elev_m": 254.23
           },
           {
-            "yd_from_tee": 84.9,
-            "elev_m": 253.34
-          },
-          {
-            "yd_from_tee": 89.9,
-            "elev_m": 253.72
-          },
-          {
-            "yd_from_tee": 94.9,
-            "elev_m": 254.24
-          },
-          {
-            "yd_from_tee": 99.9,
-            "elev_m": 254.26
-          },
-          {
-            "yd_from_tee": 104.9,
+            "yd_from_tee": 122.3,
             "elev_m": 254.28
           },
           {
-            "yd_from_tee": 109.9,
+            "yd_from_tee": 127.4,
             "elev_m": 254.39
           }
         ]
@@ -3467,10 +3470,10 @@
       ],
       "fairways": [],
       "tee_shot_corridor": {
-        "length_m": 100.5,
-        "length_yd": 109.9,
-        "narrowest_clear_yd": 17.0,
-        "median_clear_yd": 39.9,
+        "length_m": 120.2,
+        "length_yd": 131.4,
+        "narrowest_clear_yd": 14.2,
+        "median_clear_yd": 37.7,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
         "pinch_at_yd": 0.0
@@ -3488,8 +3491,9 @@
           "lat": 34.119644,
           "lng": -118.2909985
         },
-        "length_m": 306.3,
-        "length_yd": 334.9
+        "length_m": 299.9,
+        "length_yd": 328.0,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 251.87,
@@ -3501,275 +3505,267 @@
             "elev_m": 251.87
           },
           {
-            "yd_from_tee": 4.9,
+            "yd_from_tee": 5.0,
             "elev_m": 251.69
           },
           {
             "yd_from_tee": 9.9,
-            "elev_m": 250.59
+            "elev_m": 250.45
           },
           {
-            "yd_from_tee": 14.8,
-            "elev_m": 250.2
+            "yd_from_tee": 14.9,
+            "elev_m": 250.19
           },
           {
-            "yd_from_tee": 19.7,
-            "elev_m": 250.08
+            "yd_from_tee": 19.9,
+            "elev_m": 250.05
           },
           {
-            "yd_from_tee": 24.6,
-            "elev_m": 249.96
+            "yd_from_tee": 24.8,
+            "elev_m": 249.95
           },
           {
-            "yd_from_tee": 29.6,
-            "elev_m": 249.83
+            "yd_from_tee": 29.8,
+            "elev_m": 249.78
           },
           {
-            "yd_from_tee": 34.5,
-            "elev_m": 249.67
+            "yd_from_tee": 34.8,
+            "elev_m": 249.57
           },
           {
-            "yd_from_tee": 39.4,
-            "elev_m": 249.04
+            "yd_from_tee": 39.8,
+            "elev_m": 248.89
           },
           {
-            "yd_from_tee": 44.3,
-            "elev_m": 248.59
+            "yd_from_tee": 44.7,
+            "elev_m": 248.49
           },
           {
-            "yd_from_tee": 49.3,
-            "elev_m": 248.28
+            "yd_from_tee": 49.7,
+            "elev_m": 248.22
           },
           {
-            "yd_from_tee": 54.2,
-            "elev_m": 248.1
+            "yd_from_tee": 54.7,
+            "elev_m": 248.06
           },
           {
-            "yd_from_tee": 59.1,
-            "elev_m": 247.9
+            "yd_from_tee": 59.6,
+            "elev_m": 247.84
           },
           {
-            "yd_from_tee": 64.0,
-            "elev_m": 247.74
+            "yd_from_tee": 64.6,
+            "elev_m": 247.69
           },
           {
-            "yd_from_tee": 69.0,
-            "elev_m": 247.56
+            "yd_from_tee": 69.6,
+            "elev_m": 247.55
           },
           {
-            "yd_from_tee": 73.9,
-            "elev_m": 247.48
-          },
-          {
-            "yd_from_tee": 78.8,
+            "yd_from_tee": 74.5,
             "elev_m": 247.43
           },
           {
-            "yd_from_tee": 83.7,
-            "elev_m": 247.31
+            "yd_from_tee": 79.5,
+            "elev_m": 247.37
           },
           {
-            "yd_from_tee": 88.7,
-            "elev_m": 247.18
+            "yd_from_tee": 84.5,
+            "elev_m": 247.22
           },
           {
-            "yd_from_tee": 93.6,
-            "elev_m": 247.0
+            "yd_from_tee": 89.5,
+            "elev_m": 247.09
           },
           {
-            "yd_from_tee": 98.5,
+            "yd_from_tee": 94.4,
             "elev_m": 247.01
           },
           {
-            "yd_from_tee": 103.4,
-            "elev_m": 247.04
+            "yd_from_tee": 99.4,
+            "elev_m": 247.12
           },
           {
-            "yd_from_tee": 108.4,
-            "elev_m": 247.06
+            "yd_from_tee": 104.4,
+            "elev_m": 247.03
           },
           {
-            "yd_from_tee": 113.3,
-            "elev_m": 247.01
+            "yd_from_tee": 109.3,
+            "elev_m": 247.03
           },
           {
-            "yd_from_tee": 118.2,
-            "elev_m": 246.98
+            "yd_from_tee": 114.3,
+            "elev_m": 246.99
           },
           {
-            "yd_from_tee": 123.1,
-            "elev_m": 246.84
+            "yd_from_tee": 119.3,
+            "elev_m": 246.9
           },
           {
-            "yd_from_tee": 128.1,
-            "elev_m": 246.51
+            "yd_from_tee": 124.2,
+            "elev_m": 246.63
           },
           {
-            "yd_from_tee": 133.0,
-            "elev_m": 246.03
+            "yd_from_tee": 129.2,
+            "elev_m": 246.18
           },
           {
-            "yd_from_tee": 137.9,
-            "elev_m": 245.59
+            "yd_from_tee": 134.2,
+            "elev_m": 245.66
           },
           {
-            "yd_from_tee": 142.8,
+            "yd_from_tee": 139.2,
             "elev_m": 245.49
           },
           {
-            "yd_from_tee": 147.8,
-            "elev_m": 245.36
+            "yd_from_tee": 144.1,
+            "elev_m": 245.34
           },
           {
-            "yd_from_tee": 152.7,
+            "yd_from_tee": 149.1,
             "elev_m": 245.27
           },
           {
-            "yd_from_tee": 157.6,
+            "yd_from_tee": 154.1,
             "elev_m": 245.28
           },
           {
-            "yd_from_tee": 162.5,
+            "yd_from_tee": 159.0,
             "elev_m": 245.22
           },
           {
-            "yd_from_tee": 167.5,
+            "yd_from_tee": 164.0,
             "elev_m": 245.27
           },
           {
-            "yd_from_tee": 172.4,
-            "elev_m": 245.21
+            "yd_from_tee": 169.0,
+            "elev_m": 245.25
           },
           {
-            "yd_from_tee": 177.3,
+            "yd_from_tee": 173.9,
             "elev_m": 245.28
           },
           {
-            "yd_from_tee": 182.2,
-            "elev_m": 245.42
+            "yd_from_tee": 178.9,
+            "elev_m": 245.46
           },
           {
-            "yd_from_tee": 187.2,
+            "yd_from_tee": 183.9,
             "elev_m": 245.6
           },
           {
-            "yd_from_tee": 192.1,
-            "elev_m": 245.74
+            "yd_from_tee": 188.9,
+            "elev_m": 245.73
           },
           {
-            "yd_from_tee": 197.0,
-            "elev_m": 245.88
+            "yd_from_tee": 193.8,
+            "elev_m": 245.92
           },
           {
-            "yd_from_tee": 201.9,
-            "elev_m": 246.02
+            "yd_from_tee": 198.8,
+            "elev_m": 246.06
           },
           {
-            "yd_from_tee": 206.9,
-            "elev_m": 246.21
+            "yd_from_tee": 203.8,
+            "elev_m": 246.26
           },
           {
-            "yd_from_tee": 211.8,
-            "elev_m": 246.36
+            "yd_from_tee": 208.7,
+            "elev_m": 246.38
           },
           {
-            "yd_from_tee": 216.7,
-            "elev_m": 246.54
+            "yd_from_tee": 213.7,
+            "elev_m": 246.63
           },
           {
-            "yd_from_tee": 221.6,
-            "elev_m": 246.8
+            "yd_from_tee": 218.7,
+            "elev_m": 246.85
           },
           {
-            "yd_from_tee": 226.6,
-            "elev_m": 247.01
+            "yd_from_tee": 223.6,
+            "elev_m": 247.1
           },
           {
-            "yd_from_tee": 231.5,
-            "elev_m": 247.18
+            "yd_from_tee": 228.6,
+            "elev_m": 247.27
           },
           {
-            "yd_from_tee": 236.4,
-            "elev_m": 247.36
+            "yd_from_tee": 233.6,
+            "elev_m": 247.26
           },
           {
-            "yd_from_tee": 241.3,
-            "elev_m": 247.19
+            "yd_from_tee": 238.6,
+            "elev_m": 247.23
           },
           {
-            "yd_from_tee": 246.3,
-            "elev_m": 247.86
+            "yd_from_tee": 243.5,
+            "elev_m": 248.38
           },
           {
-            "yd_from_tee": 251.2,
-            "elev_m": 248.34
+            "yd_from_tee": 248.5,
+            "elev_m": 248.24
           },
           {
-            "yd_from_tee": 256.1,
-            "elev_m": 248.08
+            "yd_from_tee": 253.5,
+            "elev_m": 248.16
           },
           {
-            "yd_from_tee": 261.0,
-            "elev_m": 248.3
+            "yd_from_tee": 258.4,
+            "elev_m": 248.5
           },
           {
-            "yd_from_tee": 266.0,
-            "elev_m": 248.57
+            "yd_from_tee": 263.4,
+            "elev_m": 248.78
           },
           {
-            "yd_from_tee": 270.9,
-            "elev_m": 248.91
+            "yd_from_tee": 268.4,
+            "elev_m": 249.05
           },
           {
-            "yd_from_tee": 275.8,
-            "elev_m": 249.19
+            "yd_from_tee": 273.3,
+            "elev_m": 249.4
           },
           {
-            "yd_from_tee": 280.7,
-            "elev_m": 249.46
+            "yd_from_tee": 278.3,
+            "elev_m": 249.69
           },
           {
-            "yd_from_tee": 285.7,
-            "elev_m": 249.81
+            "yd_from_tee": 283.3,
+            "elev_m": 249.98
           },
           {
-            "yd_from_tee": 290.6,
-            "elev_m": 250.06
+            "yd_from_tee": 288.3,
+            "elev_m": 250.24
           },
           {
-            "yd_from_tee": 295.5,
-            "elev_m": 250.3
-          },
-          {
-            "yd_from_tee": 300.4,
+            "yd_from_tee": 293.2,
             "elev_m": 250.66
           },
           {
-            "yd_from_tee": 305.4,
-            "elev_m": 251.17
+            "yd_from_tee": 298.2,
+            "elev_m": 251.08
           },
           {
-            "yd_from_tee": 310.3,
-            "elev_m": 251.57
+            "yd_from_tee": 303.2,
+            "elev_m": 251.47
           },
           {
-            "yd_from_tee": 315.2,
-            "elev_m": 252.02
+            "yd_from_tee": 308.1,
+            "elev_m": 252.01
           },
           {
-            "yd_from_tee": 320.1,
-            "elev_m": 252.66
+            "yd_from_tee": 313.1,
+            "elev_m": 252.54
           },
           {
-            "yd_from_tee": 325.1,
+            "yd_from_tee": 318.1,
             "elev_m": 252.92
           },
           {
-            "yd_from_tee": 330.0,
+            "yd_from_tee": 323.0,
             "elev_m": 252.99
           },
           {
-            "yd_from_tee": 334.9,
+            "yd_from_tee": 328.0,
             "elev_m": 253.06
           }
         ]
@@ -4738,223 +4734,264 @@
       "par": 4,
       "hole_line": {
         "tee": {
-          "lat": 34.1194087,
-          "lng": -118.2897276
+          "lat": 34.1192752,
+          "lng": -118.2902024
         },
         "green_center": {
           "lat": 34.1209439,
           "lng": -118.2884784
         },
-        "length_m": 225.1,
-        "length_yd": 246.1
+        "length_m": 272.9,
+        "length_yd": 298.4,
+        "tee_source": "back_tee_box"
       },
       "terrain": {
-        "tee_elevation_m": 245.5,
+        "tee_elevation_m": 249.97,
         "green_elevation_m": 250.97,
-        "net_delta_m": 5.47,
+        "net_delta_m": 1.0,
         "fairway_centerline_profile": [
           {
             "yd_from_tee": 0.0,
-            "elev_m": 245.5
+            "elev_m": 249.97
           },
           {
-            "yd_from_tee": 4.9,
-            "elev_m": 244.64
+            "yd_from_tee": 5.0,
+            "elev_m": 249.5
           },
           {
-            "yd_from_tee": 9.8,
-            "elev_m": 244.19
-          },
-          {
-            "yd_from_tee": 14.8,
-            "elev_m": 243.71
-          },
-          {
-            "yd_from_tee": 19.7,
-            "elev_m": 243.3
-          },
-          {
-            "yd_from_tee": 24.6,
-            "elev_m": 242.88
-          },
-          {
-            "yd_from_tee": 29.5,
-            "elev_m": 242.54
-          },
-          {
-            "yd_from_tee": 34.5,
-            "elev_m": 242.16
-          },
-          {
-            "yd_from_tee": 39.4,
-            "elev_m": 241.99
-          },
-          {
-            "yd_from_tee": 44.3,
-            "elev_m": 241.81
-          },
-          {
-            "yd_from_tee": 49.2,
-            "elev_m": 241.97
-          },
-          {
-            "yd_from_tee": 54.2,
-            "elev_m": 242.22
-          },
-          {
-            "yd_from_tee": 59.1,
-            "elev_m": 242.53
-          },
-          {
-            "yd_from_tee": 64.0,
-            "elev_m": 243.09
-          },
-          {
-            "yd_from_tee": 68.9,
-            "elev_m": 243.57
-          },
-          {
-            "yd_from_tee": 73.8,
-            "elev_m": 244.0
-          },
-          {
-            "yd_from_tee": 78.8,
-            "elev_m": 244.37
-          },
-          {
-            "yd_from_tee": 83.7,
-            "elev_m": 244.59
-          },
-          {
-            "yd_from_tee": 88.6,
-            "elev_m": 244.83
-          },
-          {
-            "yd_from_tee": 93.5,
-            "elev_m": 245.06
-          },
-          {
-            "yd_from_tee": 98.5,
-            "elev_m": 245.27
-          },
-          {
-            "yd_from_tee": 103.4,
-            "elev_m": 245.62
-          },
-          {
-            "yd_from_tee": 108.3,
-            "elev_m": 246.02
-          },
-          {
-            "yd_from_tee": 113.2,
-            "elev_m": 246.39
-          },
-          {
-            "yd_from_tee": 118.1,
-            "elev_m": 246.76
-          },
-          {
-            "yd_from_tee": 123.1,
-            "elev_m": 246.98
-          },
-          {
-            "yd_from_tee": 128.0,
-            "elev_m": 247.15
-          },
-          {
-            "yd_from_tee": 132.9,
-            "elev_m": 247.4
-          },
-          {
-            "yd_from_tee": 137.8,
-            "elev_m": 247.7
-          },
-          {
-            "yd_from_tee": 142.8,
-            "elev_m": 248.07
-          },
-          {
-            "yd_from_tee": 147.7,
-            "elev_m": 248.4
-          },
-          {
-            "yd_from_tee": 152.6,
-            "elev_m": 248.58
-          },
-          {
-            "yd_from_tee": 157.5,
-            "elev_m": 248.71
-          },
-          {
-            "yd_from_tee": 162.5,
-            "elev_m": 248.82
-          },
-          {
-            "yd_from_tee": 167.4,
-            "elev_m": 248.81
-          },
-          {
-            "yd_from_tee": 172.3,
-            "elev_m": 248.82
-          },
-          {
-            "yd_from_tee": 177.2,
-            "elev_m": 248.85
-          },
-          {
-            "yd_from_tee": 182.1,
-            "elev_m": 248.92
-          },
-          {
-            "yd_from_tee": 187.1,
-            "elev_m": 248.98
-          },
-          {
-            "yd_from_tee": 192.0,
+            "yd_from_tee": 9.9,
             "elev_m": 249.06
           },
           {
-            "yd_from_tee": 196.9,
-            "elev_m": 249.15
+            "yd_from_tee": 14.9,
+            "elev_m": 248.58
           },
           {
-            "yd_from_tee": 201.8,
-            "elev_m": 249.3
+            "yd_from_tee": 19.9,
+            "elev_m": 248.08
           },
           {
-            "yd_from_tee": 206.8,
-            "elev_m": 249.41
+            "yd_from_tee": 24.9,
+            "elev_m": 247.63
           },
           {
-            "yd_from_tee": 211.7,
-            "elev_m": 249.59
+            "yd_from_tee": 29.8,
+            "elev_m": 247.16
           },
           {
-            "yd_from_tee": 216.6,
-            "elev_m": 249.82
+            "yd_from_tee": 34.8,
+            "elev_m": 246.7
           },
           {
-            "yd_from_tee": 221.5,
-            "elev_m": 250.04
+            "yd_from_tee": 39.8,
+            "elev_m": 246.35
           },
           {
-            "yd_from_tee": 226.4,
+            "yd_from_tee": 44.8,
+            "elev_m": 246.13
+          },
+          {
+            "yd_from_tee": 49.7,
+            "elev_m": 246.08
+          },
+          {
+            "yd_from_tee": 54.7,
+            "elev_m": 245.5
+          },
+          {
+            "yd_from_tee": 59.7,
+            "elev_m": 244.6
+          },
+          {
+            "yd_from_tee": 64.7,
+            "elev_m": 244.19
+          },
+          {
+            "yd_from_tee": 69.6,
+            "elev_m": 243.63
+          },
+          {
+            "yd_from_tee": 74.6,
+            "elev_m": 243.19
+          },
+          {
+            "yd_from_tee": 79.6,
+            "elev_m": 242.78
+          },
+          {
+            "yd_from_tee": 84.6,
+            "elev_m": 242.47
+          },
+          {
+            "yd_from_tee": 89.5,
+            "elev_m": 242.13
+          },
+          {
+            "yd_from_tee": 94.5,
+            "elev_m": 241.93
+          },
+          {
+            "yd_from_tee": 99.5,
+            "elev_m": 241.82
+          },
+          {
+            "yd_from_tee": 104.4,
+            "elev_m": 242.03
+          },
+          {
+            "yd_from_tee": 109.4,
+            "elev_m": 242.28
+          },
+          {
+            "yd_from_tee": 114.4,
+            "elev_m": 242.74
+          },
+          {
+            "yd_from_tee": 119.4,
+            "elev_m": 243.22
+          },
+          {
+            "yd_from_tee": 124.3,
+            "elev_m": 243.72
+          },
+          {
+            "yd_from_tee": 129.3,
+            "elev_m": 244.11
+          },
+          {
+            "yd_from_tee": 134.3,
+            "elev_m": 244.48
+          },
+          {
+            "yd_from_tee": 139.3,
+            "elev_m": 244.74
+          },
+          {
+            "yd_from_tee": 144.2,
+            "elev_m": 244.91
+          },
+          {
+            "yd_from_tee": 149.2,
+            "elev_m": 245.12
+          },
+          {
+            "yd_from_tee": 154.2,
+            "elev_m": 245.47
+          },
+          {
+            "yd_from_tee": 159.2,
+            "elev_m": 245.79
+          },
+          {
+            "yd_from_tee": 164.1,
+            "elev_m": 246.22
+          },
+          {
+            "yd_from_tee": 169.1,
+            "elev_m": 246.61
+          },
+          {
+            "yd_from_tee": 174.1,
+            "elev_m": 246.86
+          },
+          {
+            "yd_from_tee": 179.1,
+            "elev_m": 247.06
+          },
+          {
+            "yd_from_tee": 184.0,
+            "elev_m": 247.28
+          },
+          {
+            "yd_from_tee": 189.0,
+            "elev_m": 247.53
+          },
+          {
+            "yd_from_tee": 194.0,
+            "elev_m": 248.0
+          },
+          {
+            "yd_from_tee": 198.9,
+            "elev_m": 248.32
+          },
+          {
+            "yd_from_tee": 203.9,
+            "elev_m": 248.5
+          },
+          {
+            "yd_from_tee": 208.9,
+            "elev_m": 248.66
+          },
+          {
+            "yd_from_tee": 213.9,
+            "elev_m": 248.8
+          },
+          {
+            "yd_from_tee": 218.8,
+            "elev_m": 248.82
+          },
+          {
+            "yd_from_tee": 223.8,
+            "elev_m": 248.82
+          },
+          {
+            "yd_from_tee": 228.8,
+            "elev_m": 248.84
+          },
+          {
+            "yd_from_tee": 233.8,
+            "elev_m": 248.91
+          },
+          {
+            "yd_from_tee": 238.7,
+            "elev_m": 248.96
+          },
+          {
+            "yd_from_tee": 243.7,
+            "elev_m": 249.05
+          },
+          {
+            "yd_from_tee": 248.7,
+            "elev_m": 249.12
+          },
+          {
+            "yd_from_tee": 253.7,
+            "elev_m": 249.27
+          },
+          {
+            "yd_from_tee": 258.6,
+            "elev_m": 249.38
+          },
+          {
+            "yd_from_tee": 263.6,
+            "elev_m": 249.55
+          },
+          {
+            "yd_from_tee": 268.6,
+            "elev_m": 249.76
+          },
+          {
+            "yd_from_tee": 273.5,
+            "elev_m": 249.98
+          },
+          {
+            "yd_from_tee": 278.5,
             "elev_m": 250.2
           },
           {
-            "yd_from_tee": 231.4,
+            "yd_from_tee": 283.5,
             "elev_m": 250.6
           },
           {
-            "yd_from_tee": 236.3,
+            "yd_from_tee": 288.5,
             "elev_m": 250.82
           },
           {
-            "yd_from_tee": 241.2,
+            "yd_from_tee": 293.4,
             "elev_m": 250.88
           },
           {
-            "yd_from_tee": 246.1,
+            "yd_from_tee": 298.4,
             "elev_m": 250.97
           }
         ]
@@ -5812,13 +5849,13 @@
         }
       ],
       "tee_shot_corridor": {
-        "length_m": 225.1,
-        "length_yd": 246.1,
-        "narrowest_clear_yd": 33.4,
+        "length_m": 275.1,
+        "length_yd": 300.9,
+        "narrowest_clear_yd": 32.8,
         "median_clear_yd": 56.9,
         "max_overhead_m": 0.0,
         "p90_overhead_m": 0.0,
-        "pinch_at_yd": 240.5
+        "pinch_at_yd": 0.0
       }
     },
     {
@@ -5833,8 +5870,9 @@
           "lat": 34.1190069,
           "lng": -118.2867828
         },
-        "length_m": 236.5,
-        "length_yd": 258.7
+        "length_m": 246.8,
+        "length_yd": 269.9,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 248.15,
@@ -5850,207 +5888,215 @@
             "elev_m": 247.78
           },
           {
-            "yd_from_tee": 9.9,
+            "yd_from_tee": 10.0,
             "elev_m": 247.06
           },
           {
-            "yd_from_tee": 14.9,
+            "yd_from_tee": 15.0,
             "elev_m": 246.49
           },
           {
-            "yd_from_tee": 19.9,
+            "yd_from_tee": 20.0,
             "elev_m": 245.89
           },
           {
-            "yd_from_tee": 24.9,
-            "elev_m": 245.16
+            "yd_from_tee": 25.0,
+            "elev_m": 245.36
           },
           {
-            "yd_from_tee": 29.8,
-            "elev_m": 244.65
+            "yd_from_tee": 30.0,
+            "elev_m": 244.72
           },
           {
-            "yd_from_tee": 34.8,
-            "elev_m": 243.99
+            "yd_from_tee": 35.0,
+            "elev_m": 244.2
           },
           {
-            "yd_from_tee": 39.8,
-            "elev_m": 243.41
+            "yd_from_tee": 40.0,
+            "elev_m": 243.53
           },
           {
-            "yd_from_tee": 44.8,
-            "elev_m": 243.18
+            "yd_from_tee": 45.0,
+            "elev_m": 243.2
           },
           {
-            "yd_from_tee": 49.7,
-            "elev_m": 243.09
+            "yd_from_tee": 50.0,
+            "elev_m": 243.12
           },
           {
-            "yd_from_tee": 54.7,
-            "elev_m": 242.33
+            "yd_from_tee": 55.0,
+            "elev_m": 242.85
           },
           {
-            "yd_from_tee": 59.7,
-            "elev_m": 241.42
+            "yd_from_tee": 60.0,
+            "elev_m": 241.78
           },
           {
-            "yd_from_tee": 64.7,
-            "elev_m": 240.89
+            "yd_from_tee": 65.0,
+            "elev_m": 241.09
           },
           {
-            "yd_from_tee": 69.6,
-            "elev_m": 240.44
+            "yd_from_tee": 70.0,
+            "elev_m": 240.69
           },
           {
-            "yd_from_tee": 74.6,
-            "elev_m": 240.07
+            "yd_from_tee": 75.0,
+            "elev_m": 240.24
           },
           {
-            "yd_from_tee": 79.6,
-            "elev_m": 239.53
+            "yd_from_tee": 80.0,
+            "elev_m": 239.8
           },
           {
-            "yd_from_tee": 84.6,
-            "elev_m": 239.05
+            "yd_from_tee": 85.0,
+            "elev_m": 239.39
           },
           {
-            "yd_from_tee": 89.5,
-            "elev_m": 238.55
+            "yd_from_tee": 90.0,
+            "elev_m": 238.9
           },
           {
-            "yd_from_tee": 94.5,
-            "elev_m": 238.14
+            "yd_from_tee": 95.0,
+            "elev_m": 238.5
           },
           {
-            "yd_from_tee": 99.5,
-            "elev_m": 237.64
+            "yd_from_tee": 100.0,
+            "elev_m": 237.98
           },
           {
-            "yd_from_tee": 104.5,
+            "yd_from_tee": 105.0,
+            "elev_m": 237.58
+          },
+          {
+            "yd_from_tee": 110.0,
             "elev_m": 237.01
           },
           {
-            "yd_from_tee": 109.4,
-            "elev_m": 236.56
+            "yd_from_tee": 115.0,
+            "elev_m": 236.4
           },
           {
-            "yd_from_tee": 114.4,
-            "elev_m": 236.04
+            "yd_from_tee": 119.9,
+            "elev_m": 235.98
           },
           {
-            "yd_from_tee": 119.4,
-            "elev_m": 235.57
+            "yd_from_tee": 124.9,
+            "elev_m": 235.51
           },
           {
-            "yd_from_tee": 124.4,
-            "elev_m": 235.22
+            "yd_from_tee": 129.9,
+            "elev_m": 235.16
           },
           {
-            "yd_from_tee": 129.3,
+            "yd_from_tee": 134.9,
             "elev_m": 234.71
           },
           {
-            "yd_from_tee": 134.3,
-            "elev_m": 234.25
+            "yd_from_tee": 139.9,
+            "elev_m": 234.35
           },
           {
-            "yd_from_tee": 139.3,
+            "yd_from_tee": 144.9,
             "elev_m": 233.86
           },
           {
-            "yd_from_tee": 144.3,
+            "yd_from_tee": 149.9,
             "elev_m": 233.41
           },
           {
-            "yd_from_tee": 149.2,
-            "elev_m": 232.9
+            "yd_from_tee": 154.9,
+            "elev_m": 233.01
           },
           {
-            "yd_from_tee": 154.2,
-            "elev_m": 232.55
+            "yd_from_tee": 159.9,
+            "elev_m": 232.57
           },
           {
-            "yd_from_tee": 159.2,
-            "elev_m": 232.11
+            "yd_from_tee": 164.9,
+            "elev_m": 232.24
           },
           {
-            "yd_from_tee": 164.2,
-            "elev_m": 231.66
+            "yd_from_tee": 169.9,
+            "elev_m": 231.79
           },
           {
-            "yd_from_tee": 169.1,
-            "elev_m": 231.32
+            "yd_from_tee": 174.9,
+            "elev_m": 231.44
           },
           {
-            "yd_from_tee": 174.1,
-            "elev_m": 230.99
+            "yd_from_tee": 179.9,
+            "elev_m": 231.07
           },
           {
-            "yd_from_tee": 179.1,
-            "elev_m": 230.75
+            "yd_from_tee": 184.9,
+            "elev_m": 230.83
           },
           {
-            "yd_from_tee": 184.1,
-            "elev_m": 230.47
+            "yd_from_tee": 189.9,
+            "elev_m": 230.63
           },
           {
-            "yd_from_tee": 189.0,
-            "elev_m": 230.14
+            "yd_from_tee": 194.9,
+            "elev_m": 230.27
           },
           {
-            "yd_from_tee": 194.0,
-            "elev_m": 229.89
+            "yd_from_tee": 199.9,
+            "elev_m": 230.04
           },
           {
-            "yd_from_tee": 199.0,
-            "elev_m": 229.76
+            "yd_from_tee": 204.9,
+            "elev_m": 229.81
           },
           {
-            "yd_from_tee": 204.0,
-            "elev_m": 229.51
+            "yd_from_tee": 209.9,
+            "elev_m": 229.68
           },
           {
-            "yd_from_tee": 208.9,
-            "elev_m": 229.28
+            "yd_from_tee": 214.9,
+            "elev_m": 229.44
           },
           {
-            "yd_from_tee": 213.9,
-            "elev_m": 229.09
+            "yd_from_tee": 219.9,
+            "elev_m": 229.21
           },
           {
-            "yd_from_tee": 218.9,
-            "elev_m": 228.82
+            "yd_from_tee": 224.9,
+            "elev_m": 229.01
           },
           {
-            "yd_from_tee": 223.9,
-            "elev_m": 228.57
+            "yd_from_tee": 229.9,
+            "elev_m": 228.74
           },
           {
-            "yd_from_tee": 228.8,
-            "elev_m": 228.35
+            "yd_from_tee": 234.9,
+            "elev_m": 228.55
           },
           {
-            "yd_from_tee": 233.8,
-            "elev_m": 228.1
+            "yd_from_tee": 239.9,
+            "elev_m": 228.27
           },
           {
-            "yd_from_tee": 238.8,
-            "elev_m": 227.82
+            "yd_from_tee": 244.9,
+            "elev_m": 228.02
           },
           {
-            "yd_from_tee": 243.7,
+            "yd_from_tee": 249.9,
+            "elev_m": 227.79
+          },
+          {
+            "yd_from_tee": 254.9,
             "elev_m": 227.66
           },
           {
-            "yd_from_tee": 248.7,
-            "elev_m": 227.53
+            "yd_from_tee": 259.9,
+            "elev_m": 227.49
           },
           {
-            "yd_from_tee": 253.7,
+            "yd_from_tee": 264.9,
             "elev_m": 227.39
           },
           {
-            "yd_from_tee": 258.7,
+            "yd_from_tee": 269.9,
             "elev_m": 227.34
           }
         ]
@@ -6722,175 +6768,164 @@
       "par": 3,
       "hole_line": {
         "tee": {
-          "lat": 34.1190047,
-          "lng": -118.287042
+          "lat": 34.1190012,
+          "lng": -118.2870507
         },
         "green_center": {
           "lat": 34.1191105,
           "lng": -118.2887607
         },
-        "length_m": 174.7,
-        "length_yd": 191.0
+        "length_m": 157.6,
+        "length_yd": 172.4,
+        "tee_source": "scorecard_fit"
       },
       "terrain": {
-        "tee_elevation_m": 230.96,
+        "tee_elevation_m": 231.17,
         "green_elevation_m": 237.92,
-        "net_delta_m": 6.96,
+        "net_delta_m": 6.75,
         "fairway_centerline_profile": [
           {
             "yd_from_tee": 0.0,
-            "elev_m": 230.96
+            "elev_m": 231.17
           },
           {
-            "yd_from_tee": 5.0,
-            "elev_m": 231.83
+            "yd_from_tee": 4.9,
+            "elev_m": 232.33
           },
           {
-            "yd_from_tee": 10.1,
-            "elev_m": 233.07
+            "yd_from_tee": 9.8,
+            "elev_m": 233.29
           },
           {
-            "yd_from_tee": 15.1,
-            "elev_m": 233.37
-          },
-          {
-            "yd_from_tee": 20.1,
-            "elev_m": 233.44
-          },
-          {
-            "yd_from_tee": 25.1,
-            "elev_m": 233.44
-          },
-          {
-            "yd_from_tee": 30.2,
-            "elev_m": 233.31
-          },
-          {
-            "yd_from_tee": 35.2,
+            "yd_from_tee": 14.8,
             "elev_m": 233.4
           },
           {
-            "yd_from_tee": 40.2,
-            "elev_m": 233.6
+            "yd_from_tee": 19.7,
+            "elev_m": 233.44
           },
           {
-            "yd_from_tee": 45.2,
-            "elev_m": 233.82
+            "yd_from_tee": 24.6,
+            "elev_m": 233.39
           },
           {
-            "yd_from_tee": 50.3,
-            "elev_m": 233.99
+            "yd_from_tee": 29.5,
+            "elev_m": 233.32
           },
           {
-            "yd_from_tee": 55.3,
+            "yd_from_tee": 34.5,
+            "elev_m": 233.54
+          },
+          {
+            "yd_from_tee": 39.4,
+            "elev_m": 233.75
+          },
+          {
+            "yd_from_tee": 44.3,
+            "elev_m": 233.96
+          },
+          {
+            "yd_from_tee": 49.2,
             "elev_m": 234.19
           },
           {
-            "yd_from_tee": 60.3,
-            "elev_m": 234.51
+            "yd_from_tee": 54.2,
+            "elev_m": 234.39
           },
           {
-            "yd_from_tee": 65.4,
+            "yd_from_tee": 59.1,
             "elev_m": 234.72
           },
           {
-            "yd_from_tee": 70.4,
-            "elev_m": 234.92
+            "yd_from_tee": 64.0,
+            "elev_m": 234.95
           },
           {
-            "yd_from_tee": 75.4,
-            "elev_m": 235.29
+            "yd_from_tee": 68.9,
+            "elev_m": 235.09
           },
           {
-            "yd_from_tee": 80.4,
-            "elev_m": 235.48
+            "yd_from_tee": 73.9,
+            "elev_m": 235.54
           },
           {
-            "yd_from_tee": 85.5,
+            "yd_from_tee": 78.8,
             "elev_m": 235.61
           },
           {
-            "yd_from_tee": 90.5,
-            "elev_m": 235.58
+            "yd_from_tee": 83.7,
+            "elev_m": 235.57
           },
           {
-            "yd_from_tee": 95.5,
-            "elev_m": 235.8
+            "yd_from_tee": 88.6,
+            "elev_m": 235.78
           },
           {
-            "yd_from_tee": 100.5,
-            "elev_m": 235.79
-          },
-          {
-            "yd_from_tee": 105.6,
+            "yd_from_tee": 93.6,
             "elev_m": 235.75
           },
           {
-            "yd_from_tee": 110.6,
-            "elev_m": 235.89
+            "yd_from_tee": 98.5,
+            "elev_m": 235.76
           },
           {
-            "yd_from_tee": 115.6,
-            "elev_m": 235.95
+            "yd_from_tee": 103.4,
+            "elev_m": 235.94
           },
           {
-            "yd_from_tee": 120.7,
+            "yd_from_tee": 108.3,
             "elev_m": 236.02
           },
           {
-            "yd_from_tee": 125.7,
+            "yd_from_tee": 113.3,
             "elev_m": 236.2
           },
           {
-            "yd_from_tee": 130.7,
-            "elev_m": 236.3
+            "yd_from_tee": 118.2,
+            "elev_m": 236.31
           },
           {
-            "yd_from_tee": 135.7,
-            "elev_m": 236.37
+            "yd_from_tee": 123.1,
+            "elev_m": 236.39
           },
           {
-            "yd_from_tee": 140.8,
-            "elev_m": 236.46
+            "yd_from_tee": 128.0,
+            "elev_m": 236.47
           },
           {
-            "yd_from_tee": 145.8,
-            "elev_m": 236.51
+            "yd_from_tee": 133.0,
+            "elev_m": 236.56
           },
           {
-            "yd_from_tee": 150.8,
-            "elev_m": 236.68
+            "yd_from_tee": 137.9,
+            "elev_m": 236.8
           },
           {
-            "yd_from_tee": 155.8,
-            "elev_m": 237.01
+            "yd_from_tee": 142.8,
+            "elev_m": 237.19
           },
           {
-            "yd_from_tee": 160.9,
-            "elev_m": 237.37
+            "yd_from_tee": 147.7,
+            "elev_m": 237.69
           },
           {
-            "yd_from_tee": 165.9,
-            "elev_m": 237.78
+            "yd_from_tee": 152.7,
+            "elev_m": 237.7
           },
           {
-            "yd_from_tee": 170.9,
-            "elev_m": 237.72
-          },
-          {
-            "yd_from_tee": 176.0,
+            "yd_from_tee": 157.6,
             "elev_m": 237.76
           },
           {
-            "yd_from_tee": 181.0,
-            "elev_m": 237.77
+            "yd_from_tee": 162.5,
+            "elev_m": 237.76
           },
           {
-            "yd_from_tee": 186.0,
+            "yd_from_tee": 167.4,
             "elev_m": 237.86
           },
           {
-            "yd_from_tee": 191.0,
+            "yd_from_tee": 172.4,
             "elev_m": 237.92
           }
         ]
@@ -7551,12 +7586,12 @@
         }
       ],
       "tee_shot_corridor": {
-        "length_m": 174.7,
-        "length_yd": 191.0,
+        "length_m": 173.8,
+        "length_yd": 190.1,
         "narrowest_clear_yd": 1.1,
-        "median_clear_yd": 41.6,
-        "max_overhead_m": 21.8,
-        "p90_overhead_m": 1.5,
+        "median_clear_yd": 39.9,
+        "max_overhead_m": 20.8,
+        "p90_overhead_m": 0.2,
         "pinch_at_yd": 0.0
       }
     },
@@ -7572,8 +7607,9 @@
           "lat": 34.1194745,
           "lng": -118.2917331
         },
-        "length_m": 301.8,
-        "length_yd": 330.0
+        "length_m": 285.1,
+        "length_yd": 311.8,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 238.9,
@@ -7594,262 +7630,246 @@
           },
           {
             "yd_from_tee": 14.8,
-            "elev_m": 238.85
+            "elev_m": 238.84
           },
           {
-            "yd_from_tee": 19.7,
+            "yd_from_tee": 19.8,
             "elev_m": 238.83
           },
           {
-            "yd_from_tee": 24.6,
-            "elev_m": 238.86
-          },
-          {
-            "yd_from_tee": 29.6,
+            "yd_from_tee": 24.7,
             "elev_m": 238.88
           },
           {
-            "yd_from_tee": 34.5,
-            "elev_m": 238.92
+            "yd_from_tee": 29.7,
+            "elev_m": 238.89
           },
           {
-            "yd_from_tee": 39.4,
+            "yd_from_tee": 34.6,
+            "elev_m": 238.9
+          },
+          {
+            "yd_from_tee": 39.6,
             "elev_m": 238.93
           },
           {
-            "yd_from_tee": 44.3,
+            "yd_from_tee": 44.5,
             "elev_m": 238.92
           },
           {
-            "yd_from_tee": 49.3,
-            "elev_m": 238.93
+            "yd_from_tee": 49.5,
+            "elev_m": 238.97
           },
           {
-            "yd_from_tee": 54.2,
-            "elev_m": 238.98
-          },
-          {
-            "yd_from_tee": 59.1,
-            "elev_m": 239.03
-          },
-          {
-            "yd_from_tee": 64.0,
-            "elev_m": 239.01
-          },
-          {
-            "yd_from_tee": 69.0,
-            "elev_m": 238.98
-          },
-          {
-            "yd_from_tee": 73.9,
-            "elev_m": 238.92
-          },
-          {
-            "yd_from_tee": 78.8,
+            "yd_from_tee": 54.4,
             "elev_m": 239.02
           },
           {
-            "yd_from_tee": 83.7,
+            "yd_from_tee": 59.4,
+            "elev_m": 239.03
+          },
+          {
+            "yd_from_tee": 64.3,
+            "elev_m": 238.99
+          },
+          {
+            "yd_from_tee": 69.3,
+            "elev_m": 238.92
+          },
+          {
+            "yd_from_tee": 74.2,
+            "elev_m": 239.02
+          },
+          {
+            "yd_from_tee": 79.2,
             "elev_m": 239.12
           },
           {
-            "yd_from_tee": 88.7,
+            "yd_from_tee": 84.1,
             "elev_m": 239.25
           },
           {
-            "yd_from_tee": 93.6,
+            "yd_from_tee": 89.1,
             "elev_m": 239.4
           },
           {
-            "yd_from_tee": 98.5,
-            "elev_m": 239.52
+            "yd_from_tee": 94.0,
+            "elev_m": 239.53
           },
           {
-            "yd_from_tee": 103.4,
-            "elev_m": 239.65
+            "yd_from_tee": 99.0,
+            "elev_m": 239.72
           },
           {
-            "yd_from_tee": 108.4,
-            "elev_m": 239.79
+            "yd_from_tee": 103.9,
+            "elev_m": 239.88
           },
           {
-            "yd_from_tee": 113.3,
-            "elev_m": 239.95
+            "yd_from_tee": 108.9,
+            "elev_m": 240.08
           },
           {
-            "yd_from_tee": 118.2,
-            "elev_m": 240.29
+            "yd_from_tee": 113.8,
+            "elev_m": 240.4
           },
           {
-            "yd_from_tee": 123.1,
-            "elev_m": 240.66
+            "yd_from_tee": 118.8,
+            "elev_m": 240.85
           },
           {
-            "yd_from_tee": 128.1,
-            "elev_m": 241.07
+            "yd_from_tee": 123.7,
+            "elev_m": 241.32
           },
           {
-            "yd_from_tee": 133.0,
-            "elev_m": 241.44
+            "yd_from_tee": 128.7,
+            "elev_m": 241.7
           },
           {
-            "yd_from_tee": 137.9,
-            "elev_m": 241.8
+            "yd_from_tee": 133.6,
+            "elev_m": 242.14
           },
           {
-            "yd_from_tee": 142.9,
-            "elev_m": 242.24
+            "yd_from_tee": 138.6,
+            "elev_m": 242.67
           },
           {
-            "yd_from_tee": 147.8,
-            "elev_m": 242.77
+            "yd_from_tee": 143.5,
+            "elev_m": 243.14
           },
           {
-            "yd_from_tee": 152.7,
-            "elev_m": 243.23
+            "yd_from_tee": 148.5,
+            "elev_m": 243.46
           },
           {
-            "yd_from_tee": 157.6,
-            "elev_m": 243.51
-          },
-          {
-            "yd_from_tee": 162.6,
+            "yd_from_tee": 153.4,
             "elev_m": 243.67
           },
           {
-            "yd_from_tee": 167.5,
+            "yd_from_tee": 158.4,
             "elev_m": 243.71
           },
           {
-            "yd_from_tee": 172.4,
-            "elev_m": 243.71
+            "yd_from_tee": 163.3,
+            "elev_m": 243.61
           },
           {
-            "yd_from_tee": 177.3,
-            "elev_m": 243.62
+            "yd_from_tee": 168.2,
+            "elev_m": 243.61
           },
           {
-            "yd_from_tee": 182.3,
-            "elev_m": 243.49
+            "yd_from_tee": 173.2,
+            "elev_m": 243.48
           },
           {
-            "yd_from_tee": 187.2,
-            "elev_m": 243.45
+            "yd_from_tee": 178.1,
+            "elev_m": 243.5
           },
           {
-            "yd_from_tee": 192.1,
-            "elev_m": 243.58
+            "yd_from_tee": 183.1,
+            "elev_m": 243.57
           },
           {
-            "yd_from_tee": 197.0,
+            "yd_from_tee": 188.0,
             "elev_m": 243.7
           },
           {
-            "yd_from_tee": 202.0,
-            "elev_m": 243.75
+            "yd_from_tee": 193.0,
+            "elev_m": 243.76
           },
           {
-            "yd_from_tee": 206.9,
-            "elev_m": 243.83
+            "yd_from_tee": 197.9,
+            "elev_m": 243.93
           },
           {
-            "yd_from_tee": 211.8,
-            "elev_m": 244.0
+            "yd_from_tee": 202.9,
+            "elev_m": 244.08
           },
           {
-            "yd_from_tee": 216.7,
-            "elev_m": 244.14
+            "yd_from_tee": 207.8,
+            "elev_m": 244.17
           },
           {
-            "yd_from_tee": 221.7,
-            "elev_m": 244.23
+            "yd_from_tee": 212.8,
+            "elev_m": 244.38
           },
           {
-            "yd_from_tee": 226.6,
-            "elev_m": 244.43
+            "yd_from_tee": 217.7,
+            "elev_m": 244.44
           },
           {
-            "yd_from_tee": 231.5,
-            "elev_m": 244.48
+            "yd_from_tee": 222.7,
+            "elev_m": 244.4
           },
           {
-            "yd_from_tee": 236.4,
-            "elev_m": 244.56
-          },
-          {
-            "yd_from_tee": 241.4,
+            "yd_from_tee": 227.6,
             "elev_m": 244.42
           },
           {
-            "yd_from_tee": 246.3,
+            "yd_from_tee": 232.6,
             "elev_m": 244.23
           },
           {
-            "yd_from_tee": 251.2,
-            "elev_m": 244.07
+            "yd_from_tee": 237.5,
+            "elev_m": 244.14
           },
           {
-            "yd_from_tee": 256.2,
-            "elev_m": 244.04
+            "yd_from_tee": 242.5,
+            "elev_m": 243.96
           },
           {
-            "yd_from_tee": 261.1,
-            "elev_m": 243.86
+            "yd_from_tee": 247.4,
+            "elev_m": 243.74
           },
           {
-            "yd_from_tee": 266.0,
-            "elev_m": 243.54
+            "yd_from_tee": 252.4,
+            "elev_m": 243.46
           },
           {
-            "yd_from_tee": 270.9,
-            "elev_m": 243.07
+            "yd_from_tee": 257.3,
+            "elev_m": 242.94
           },
           {
-            "yd_from_tee": 275.9,
-            "elev_m": 242.51
+            "yd_from_tee": 262.3,
+            "elev_m": 242.37
           },
           {
-            "yd_from_tee": 280.8,
-            "elev_m": 242.08
+            "yd_from_tee": 267.2,
+            "elev_m": 241.8
           },
           {
-            "yd_from_tee": 285.7,
-            "elev_m": 241.57
+            "yd_from_tee": 272.2,
+            "elev_m": 241.32
           },
           {
-            "yd_from_tee": 290.6,
-            "elev_m": 241.15
-          },
-          {
-            "yd_from_tee": 295.6,
-            "elev_m": 240.98
-          },
-          {
-            "yd_from_tee": 300.5,
-            "elev_m": 240.96
-          },
-          {
-            "yd_from_tee": 305.4,
+            "yd_from_tee": 277.1,
             "elev_m": 241.0
           },
           {
-            "yd_from_tee": 310.3,
-            "elev_m": 241.19
+            "yd_from_tee": 282.1,
+            "elev_m": 240.97
           },
           {
-            "yd_from_tee": 315.3,
-            "elev_m": 241.31
+            "yd_from_tee": 287.0,
+            "elev_m": 240.95
           },
           {
-            "yd_from_tee": 320.2,
-            "elev_m": 241.38
+            "yd_from_tee": 292.0,
+            "elev_m": 241.15
           },
           {
-            "yd_from_tee": 325.1,
+            "yd_from_tee": 296.9,
+            "elev_m": 241.28
+          },
+          {
+            "yd_from_tee": 301.9,
+            "elev_m": 241.36
+          },
+          {
+            "yd_from_tee": 306.8,
             "elev_m": 241.42
           },
           {
-            "yd_from_tee": 330.0,
+            "yd_from_tee": 311.8,
             "elev_m": 241.45
           }
         ]
@@ -8728,8 +8748,9 @@
           "lat": 34.1182734,
           "lng": -118.2921256
         },
-        "length_m": 138.1,
-        "length_yd": 151.0
+        "length_m": 151.0,
+        "length_yd": 165.2,
+        "tee_source": "hole_line_start"
       },
       "terrain": {
         "tee_elevation_m": 238.48,
@@ -8745,119 +8766,131 @@
             "elev_m": 238.42
           },
           {
-            "yd_from_tee": 10.1,
-            "elev_m": 238.2
+            "yd_from_tee": 10.0,
+            "elev_m": 238.21
           },
           {
-            "yd_from_tee": 15.1,
-            "elev_m": 238.23
+            "yd_from_tee": 15.0,
+            "elev_m": 238.22
           },
           {
-            "yd_from_tee": 20.1,
-            "elev_m": 238.17
+            "yd_from_tee": 20.0,
+            "elev_m": 238.21
           },
           {
-            "yd_from_tee": 25.2,
-            "elev_m": 237.5
+            "yd_from_tee": 25.0,
+            "elev_m": 237.84
           },
           {
-            "yd_from_tee": 30.2,
-            "elev_m": 236.57
+            "yd_from_tee": 30.0,
+            "elev_m": 236.92
           },
           {
-            "yd_from_tee": 35.2,
-            "elev_m": 236.23
+            "yd_from_tee": 35.0,
+            "elev_m": 236.39
           },
           {
-            "yd_from_tee": 40.3,
-            "elev_m": 235.73
+            "yd_from_tee": 40.0,
+            "elev_m": 236.1
           },
           {
-            "yd_from_tee": 45.3,
+            "yd_from_tee": 45.1,
+            "elev_m": 235.45
+          },
+          {
+            "yd_from_tee": 50.1,
             "elev_m": 234.29
           },
           {
-            "yd_from_tee": 50.3,
+            "yd_from_tee": 55.1,
             "elev_m": 233.82
           },
           {
-            "yd_from_tee": 55.4,
-            "elev_m": 233.44
+            "yd_from_tee": 60.1,
+            "elev_m": 233.52
           },
           {
-            "yd_from_tee": 60.4,
-            "elev_m": 233.1
+            "yd_from_tee": 65.1,
+            "elev_m": 233.17
           },
           {
-            "yd_from_tee": 65.4,
-            "elev_m": 232.76
+            "yd_from_tee": 70.1,
+            "elev_m": 232.91
           },
           {
-            "yd_from_tee": 70.5,
-            "elev_m": 232.38
+            "yd_from_tee": 75.1,
+            "elev_m": 232.54
           },
           {
-            "yd_from_tee": 75.5,
-            "elev_m": 231.98
+            "yd_from_tee": 80.1,
+            "elev_m": 232.22
           },
           {
-            "yd_from_tee": 80.5,
-            "elev_m": 231.56
+            "yd_from_tee": 85.1,
+            "elev_m": 231.81
           },
           {
-            "yd_from_tee": 85.6,
-            "elev_m": 231.17
+            "yd_from_tee": 90.1,
+            "elev_m": 231.39
           },
           {
-            "yd_from_tee": 90.6,
-            "elev_m": 230.76
+            "yd_from_tee": 95.1,
+            "elev_m": 231.09
           },
           {
-            "yd_from_tee": 95.6,
+            "yd_from_tee": 100.1,
+            "elev_m": 230.68
+          },
+          {
+            "yd_from_tee": 105.1,
             "elev_m": 230.33
           },
           {
-            "yd_from_tee": 100.7,
+            "yd_from_tee": 110.1,
             "elev_m": 229.93
           },
           {
-            "yd_from_tee": 105.7,
-            "elev_m": 229.52
+            "yd_from_tee": 115.1,
+            "elev_m": 229.6
           },
           {
-            "yd_from_tee": 110.7,
-            "elev_m": 229.1
+            "yd_from_tee": 120.1,
+            "elev_m": 229.18
           },
           {
-            "yd_from_tee": 115.7,
-            "elev_m": 228.75
+            "yd_from_tee": 125.1,
+            "elev_m": 228.8
           },
           {
-            "yd_from_tee": 120.8,
-            "elev_m": 228.51
+            "yd_from_tee": 130.1,
+            "elev_m": 228.63
           },
           {
-            "yd_from_tee": 125.8,
-            "elev_m": 227.88
+            "yd_from_tee": 135.2,
+            "elev_m": 228.16
           },
           {
-            "yd_from_tee": 130.8,
-            "elev_m": 227.44
+            "yd_from_tee": 140.2,
+            "elev_m": 227.64
           },
           {
-            "yd_from_tee": 135.9,
-            "elev_m": 227.4
+            "yd_from_tee": 145.2,
+            "elev_m": 227.39
           },
           {
-            "yd_from_tee": 140.9,
+            "yd_from_tee": 150.2,
+            "elev_m": 227.39
+          },
+          {
+            "yd_from_tee": 155.2,
             "elev_m": 227.32
           },
           {
-            "yd_from_tee": 145.9,
+            "yd_from_tee": 160.2,
             "elev_m": 227.32
           },
           {
-            "yd_from_tee": 151.0,
+            "yd_from_tee": 165.2,
             "elev_m": 227.3
           }
         ]
