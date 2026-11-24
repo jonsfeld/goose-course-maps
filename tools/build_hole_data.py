@@ -274,6 +274,12 @@ def _assign_features(features, holes):
         if not dists:
             continue
         best = min(range(len(dists)), key=dists.__getitem__)
+        # A hand-traced feature names its hole (a back tee sits nearer the previous green than its own line).
+        want = feat["properties"].get("traced_for_hole")
+        if want is not None:
+            same = [i for i, h in enumerate(holes) if str(h["properties"].get("hole_ref")) == str(want)]
+            if same:
+                best = min(same, key=dists.__getitem__)
         feat["properties"]["hole_ref"] = holes[best]["properties"]["hole_ref"]
         bucket = {"green": "greens", "tee_box": "tees", "bunker": "bunkers", "fairway": "fairways"}.get(kind)
         if bucket:
@@ -360,6 +366,13 @@ def build(slug: str) -> Path:
 
     with osm_path.open() as f:
         features = json.load(f)["features"]
+    # Features traced by hand from public imagery (USGS NAIP) that OpenStreetMap doesn't have yet,
+    # e.g. Roosevelt 5 and 6 back tees. Same schema as features_osm; each carries its source.
+    traced = c / "notes" / "traced_features.geojson"
+    if traced.exists():
+        extra = json.loads(traced.read_text())["features"]
+        features = features + extra
+        print(f"[hole-data] + {len(extra)} traced features from {traced.name}")
     holes = [f for f in features if f["properties"]["kind"] == "hole_line"]
     holes.sort(key=lambda h: int(h["properties"]["hole_ref"]))
     print(f"[hole-data] {len(holes)} hole_lines, {len(features)} total features")
@@ -396,9 +409,15 @@ def build(slug: str) -> Path:
         own_tees = [shape(f["geometry"]) for f in assigned[idx]["tees"]]
         back = _back_tee(line, own_tees, [p for i, p in enumerate(starts) if i != idx], (line.coords[0][1] + line.coords[-1][1]) / 2)
         tee_source = "hole_line_start"
+        # A tee hand-traced for this hole (notes/traced_features.geojson) was placed as its back tee on
+        # purpose, after checking the published scorecard — use it rather than re-guessing.
+        traced_tee = next((shape(f["geometry"]).centroid for f in assigned[idx]["tees"]
+                           if str(f["properties"].get("traced_for_hole")) == str(h["properties"].get("hole_ref"))), None)
+        if traced_tee is not None:
+            back = traced_tee
         if back is not None:
             line = LineString([(back.x, back.y)] + [c[:2] for c in line.coords])
-            tee_source = "back_tee_box"
+            tee_source = "traced_back_tee" if traced_tee is not None else "back_tee_box"
         # A published scorecard (notes/scorecard.json) referees the tee when the line's length is off it.
         if card and card_holes.get(idx) is not None:
             vals = [t[card_holes[idx]] for t in card["tees"].values()]

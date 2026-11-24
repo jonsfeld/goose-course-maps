@@ -1,0 +1,77 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "kind": "tee_box",
+    "osm_id": null,
+    "traced_for_hole": 5,
+    "source": "Hand-traced from USGS NAIP aerial imagery (public domain, via the USGS NAIP ImageServer), Nov 2026; not yet in OpenStreetMap"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.290637,
+       34.1192587
+      ],
+      [
+       -118.2903593,
+       34.1193545
+      ],
+      [
+       -118.2902783,
+       34.1191921
+      ],
+      [
+       -118.2905561,
+       34.1190963
+      ],
+      [
+       -118.290637,
+       34.1192587
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "kind": "tee_box",
+    "osm_id": null,
+    "traced_for_hole": 6,
+    "source": "Hand-traced from USGS NAIP aerial imagery (public domain, via the USGS NAIP ImageServer), Nov 2026; not yet in OpenStreetMap"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.288267,
+       34.1213075
+      ],
+      [
+       -118.2881301,
+       34.1211965
+      ],
+      [
+       -118.2882189,
+       34.1211208
+      ],
+      [
+       -118.2883558,
+       34.1212317
+      ],
+      [
+       -118.288267,
+       34.1213075
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}
