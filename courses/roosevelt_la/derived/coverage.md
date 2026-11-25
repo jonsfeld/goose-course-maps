@@ -3,7 +3,7 @@
 - OSM features: bunker 10, course_boundary 1, fairway 8, green 9, hole_line 9, tee_box 11, water 1, woods 3
 - Hole lines (golf=hole): 9
 - Lidar point cloud: CA_LosAngeles_1_B23 (2023)
-- Trees detected from lidar: 23076
+- Trees detected from lidar: 22809
 - Per-hole terrain built: yes
 
 | Hole | Par | Green | Fairway | Tees | Bunkers | Water | Woods |
