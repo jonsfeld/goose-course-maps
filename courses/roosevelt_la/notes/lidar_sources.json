@@ -5,7 +5,7 @@
     -118.283,
     34.1255
   ],
-  "fetched_at": "2026-11-23T03:14:40Z",
+  "fetched_at": "2026-11-25T03:39:27Z",
   "dem": {
     "product": "USGS 3DEP Elevation ImageServer (best available)",
     "url": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/exportImage",

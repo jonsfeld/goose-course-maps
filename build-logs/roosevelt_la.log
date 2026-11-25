@@ -1,22 +1,16 @@
 --- tools/fetch_osm_features.py --course roosevelt_la (limit 6m)
-!!! FAILED or timed out: tools/fetch_osm_features.py --course roosevelt_la
+[osm] querying Overpass for bbox (-118.29800,34.11700)-(-118.28300,34.12550)
+[osm] got 52 elements
+[osm] feature counts: {'course_boundary': 1, 'green': 9, 'bunker': 10, 'tee_box': 11, 'woods': 3, 'fairway': 8, 'water': 1, 'hole_line': 9}
+[osm] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/derived/features_osm.geojson (52 features)
+[osm] raw OSM saved to /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/sources/osm_features.json
 --- tools/fetch_lidar.py --course roosevelt_la --only dem (limit 6m)
 [dem] 1383x940 px (~1 m) -> /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/sources/dem/3dep_1m.tif (5.8 MB)
 [lidar] provenance -> /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/notes/lidar_sources.json
 --- tools/fetch_naip_clip.py --course roosevelt_la (limit 6m)
 [naip] bbox -118.29800,34.11700,-118.28300,34.12550
 [naip] requesting 2048x2048 clip from https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer/exportImage
-Traceback (most recent call last):
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/fetch_naip_clip.py", line 71, in <module>
-    main()
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/fetch_naip_clip.py", line 67, in main
-    fetch(args.course, args.width, args.height)
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/fetch_naip_clip.py", line 43, in fetch
-    r.raise_for_status()
-  File "/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/requests/models.py", line 1167, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer/exportImage?bbox=-118.298%2C34.117%2C-118.283%2C34.1255&bboxSR=4326&imageSR=4326&size=2048%2C2048&format=tiff&pixelType=U8&interpolation=RSP_BilinearInterpolation&f=image
-!!! FAILED or timed out: tools/fetch_naip_clip.py --course roosevelt_la
+[naip] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/sources/imagery/naip_clip.tif (16.8 MB)
 --- tools/merge_clip_dem.py --course roosevelt_la (limit 5m)
 [dem] merging 1 tiles from /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/sources/dem
 [dem] merged mosaic CRS: EPSG:32611
@@ -28,119 +22,66 @@ requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://im
 [terrain] wrote aspect.tif
 [terrain] wrote hillshade.tif (az=315.0°, alt=45.0°)
 --- tools/render_osm_features.py --course roosevelt_la (limit 3m)
-Traceback (most recent call last):
-  File "rasterio/_base.pyx", line 311, in rasterio._base.DatasetBase.__init__
-  File "rasterio/_base.pyx", line 222, in rasterio._base.open_dataset
-  File "rasterio/_err.pyx", line 359, in rasterio._err.exc_wrap_pointer
-rasterio._err.CPLE_OpenFailedError: /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/sources/imagery/naip_clip.tif: No such file or directory
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/render_osm_features.py", line 124, in <module>
-    main()
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/render_osm_features.py", line 120, in main
-    render(args.course)
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/render_osm_features.py", line 40, in render
-    with rasterio.open(naip_path) as src:
-         ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/rasterio/env.py", line 463, in wrapper
-    return f(*args, **kwds)
-           ^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/rasterio/__init__.py", line 356, in open
-    dataset = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "rasterio/_base.pyx", line 313, in rasterio._base.DatasetBase.__init__
-rasterio.errors.RasterioIOError: /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/sources/imagery/naip_clip.tif: No such file or directory
-!!! FAILED or timed out: tools/render_osm_features.py --course roosevelt_la
+[osm-preview] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/derived/features_osm_preview.png
 --- tools/build_hole_data.py --course roosevelt_la (limit 10m)
-Traceback (most recent call last):
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py", line 433, in <module>
-    main()
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py", line 429, in main
-    build(args.course)
-  File "/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py", line 297, in build
-    raise FileNotFoundError(p)
-FileNotFoundError: /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/derived/canopy_height_model.tif
-!!! FAILED or timed out: tools/build_hole_data.py --course roosevelt_la
---- tools/coverage_report.py --course roosevelt_la (limit 3m)
-# Coverage — roosevelt_la
-
-- OSM features: bunker 10, course_boundary 1, fairway 8, green 9, hole_line 9, tee_box 11
-- Hole lines (golf=hole): 9
-- Lidar point cloud: None (None)
-- Trees detected from lidar: 16673
-- Per-hole terrain built: yes
-
-| Hole | Par | Green | Fairway | Tees | Bunkers | Water | Woods |
-|---|---|---|---|---|---|---|---|
-| 1 | 4 | 2 | 2 | 2 | 1 | 0 | 0 |
-| 2 | 4 | 2 | 2 | 2 | 0 | 0 | 0 |
-| 3 | 3 | 2 | 1 | 1 | 1 | 0 | 0 |
-| 4 | 4 | 3 | 2 | 1 | 1 | 0 | 0 |
-| 5 | 4 | 1 | 2 | 3 | 2 | 0 | 0 |
-| 6 | 4 | 2 | 2 | 3 | 0 | 0 | 0 |
-| 7 | 3 | 2 | 2 | 2 | 2 | 0 | 0 |
-| 8 | 4 | 2 | 1 | 2 | 3 | 0 | 0 |
-| 9 | 3 | 2 | 2 | 1 | 0 | 0 | 0 |
---- tools/fetch_points_ept.py --course roosevelt_la (limit 20m)
-(pdal pipeline writers.las Warning) Auto offset for 'X' requested in stream mode.  Using value of 381177.
-(pdal pipeline writers.las Warning) Auto offset for 'Y' requested in stream mode.  Using value of 3.77642e+06.
-(pdal pipeline writers.las Warning) Auto offset for 'Z' requested in stream mode.  Using value of 256.33.
-[ept] index: 2 resources intersect the course: ['CA_LosAngeles_1_B23', 'USGS_LPC_CA_LosAngeles_2016_LAS_2018']
-[ept] using newest: CA_LosAngeles_1_B23 (year 2023)
-[ept] wrote ept_CA_LosAngeles_1_B23.laz (221 MB) in 59s, EPSG:32611
---- tools/build_chm.py --course roosevelt_la (limit 15m)
-[chm] target grid 1666x945, crs=EPSG:4326, bounds=BoundingBox(left=-118.29800698718086, bottom=34.1169919364418, right=-118.28299797817185, top=34.12550544995531)
-[chm] reading ept_CA_LosAngeles_1_B23.laz
-[chm]   CRS EPSG:32611, 39149560 points
-[chm] DSM populated for 1573549 / 1574370 cells; DEM valid for 1574370; both valid 1573549
-[chm] clipping 4136 implausible cells (>80.0 m) to 0
-[chm] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/derived/canopy_height_model.tif (2.9 MB, max 59.1 m, 95th pct 15.4 m if nonzero)
---- tools/detect_trees.py --course roosevelt_la (limit 10m)
-[trees] CHM (945, 1666), cellsize ~0.914 m
-[trees] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/derived/canopy_polygons.geojson (2958 polygons)
-[trees] local-max window 5px (~4.6 m)
-[trees] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/derived/individual_trees.geojson (23076 trees)
---- tools/build_hole_data.py --course roosevelt_la (limit 10m)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:347: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  L = _tx(fwd, LineString([c[:2] for c in line.coords]))
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:348: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  poly = unary_union([_tx(fwd, f).buffer(0) for f in fairways])
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:347: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  L = _tx(fwd, LineString([c[:2] for c in line.coords]))
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:348: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  poly = unary_union([_tx(fwd, f).buffer(0) for f in fairways])
 /home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
   return shp_transform(fwd, poly_geom)
 /home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
   return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:347: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  L = _tx(fwd, LineString([c[:2] for c in line.coords]))
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:348: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  poly = unary_union([_tx(fwd, f).buffer(0) for f in fairways])
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:347: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  L = _tx(fwd, LineString([c[:2] for c in line.coords]))
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:348: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  poly = unary_union([_tx(fwd, f).buffer(0) for f in fairways])
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:347: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  L = _tx(fwd, LineString([c[:2] for c in line.coords]))
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:348: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  poly = unary_union([_tx(fwd, f).buffer(0) for f in fairways])
 /home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
   return shp_transform(fwd, poly_geom)
 /home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
   return shp_transform(fwd, poly_geom)
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:347: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  L = _tx(fwd, LineString([c[:2] for c in line.coords]))
+/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:348: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
+  poly = unary_union([_tx(fwd, f).buffer(0) for f in fairways])
 /home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
   return shp_transform(fwd, poly_geom)
 /home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
   return shp_transform(fwd, poly_geom)
-/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
-  return shp_transform(fwd, poly_geom)
-/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
-  return shp_transform(fwd, poly_geom)
-/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
-  return shp_transform(fwd, poly_geom)
-/home/runner/work/goose-course-maps/goose-course-maps/tools/build_hole_data.py:57: DeprecationWarning: The 'shapely.ops.transform()' function is deprecated. Use 'shapely.transform()' or 'shapely.transform_coordseq()' instead. See https://shapely.readthedocs.io/en/latest/manual.html#shapely.ops.transform for more details.
-  return shp_transform(fwd, poly_geom)
-[hole-data] 9 hole_lines, 48 total features
-[hole-data] H1 par 4: 234m (256yd), Δelev +9.6m, green slope 0.54° NE, tees 1 bunkers 1
-[hole-data] H2 par 4: 372m (407yd), Δelev +13.0m, green slope 0.88° NW, tees 1 bunkers 0
-[hole-data] H3 par 3: 100m (110yd), Δelev +0.1m, green slope 0.78° N, tees 1 bunkers 1
-[hole-data] H4 par 4: 306m (335yd), Δelev +1.2m, green slope 0.41° E, tees 1 bunkers 1
-[hole-data] H5 par 4: 225m (246yd), Δelev +5.5m, green slope 0.67° N, tees 2 bunkers 2
-[hole-data] H6 par 4: 237m (259yd), Δelev -20.8m, green slope 0.35° E, tees 2 bunkers 0
-[hole-data] H7 par 3: 175m (191yd), Δelev +7.0m, green slope 0.35° NE, tees 1 bunkers 2
-[hole-data] H8 par 4: 302m (330yd), Δelev +2.6m, green slope 0.25° NW, tees 1 bunkers 3
-[hole-data] H9 par 3: 138m (151yd), Δelev -11.2m, green slope 0.14° NE, tees 1 bunkers 0
+[hole-data] + 2 traced features from traced_features.geojson
+[hole-data] 9 hole_lines, 54 total features
+[hole-data] H1 par 4: 247m (270yd), Δelev +9.6m, green slope 0.54° NE, tees 1 bunkers 1
+[hole-data] H2 par 4: 343m (375yd), Δelev +13.0m, green slope 0.88° NW, tees 1 bunkers 0
+[hole-data] H3 par 3: 116m (127yd), Δelev -0.3m, green slope 0.78° N, tees 1 bunkers 1
+[hole-data] H4 par 4: 300m (328yd), Δelev +1.2m, green slope 0.41° E, tees 1 bunkers 1
+[hole-data] H5 par 4: 297m (325yd), Δelev -0.4m, green slope 0.67° N, tees 3 bunkers 2
+[hole-data] H6 par 4: 280m (306yd), Δelev -22.8m, green slope 0.35° E, tees 3 bunkers 0
+[hole-data] H7 par 3: 158m (172yd), Δelev +6.7m, green slope 0.35° NE, tees 1 bunkers 2
+[hole-data] H8 par 4: 285m (312yd), Δelev +2.6m, green slope 0.25° NW, tees 1 bunkers 3
+[hole-data] H9 par 3: 151m (165yd), Δelev -11.2m, green slope 0.14° NE, tees 1 bunkers 0
 [hole-data] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/derived/hole_data.json
---- tools/build_goose_payload.py --course roosevelt_la (limit 5m)
-[goose-payload] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/goose_payload.json (333.3 KB)
-[goose-payload] wrote /home/runner/work/goose-course-maps/goose-course-maps/courses/roosevelt_la/goose_upsert.sql  (139.8 KB)
 --- tools/coverage_report.py --course roosevelt_la (limit 3m)
 # Coverage — roosevelt_la
 
-- OSM features: bunker 10, course_boundary 1, fairway 8, green 9, hole_line 9, tee_box 11
+- OSM features: bunker 10, course_boundary 1, fairway 8, green 9, hole_line 9, tee_box 11, water 1, woods 3
 - Hole lines (golf=hole): 9
 - Lidar point cloud: CA_LosAngeles_1_B23 (2023)
 - Trees detected from lidar: 23076
@@ -148,13 +89,12 @@ FileNotFoundError: /home/runner/work/goose-course-maps/goose-course-maps/courses
 
 | Hole | Par | Green | Fairway | Tees | Bunkers | Water | Woods |
 |---|---|---|---|---|---|---|---|
-| 1 | 4 | 2 | 2 | 2 | 1 | 0 | 0 |
-| 2 | 4 | 2 | 2 | 2 | 0 | 0 | 0 |
-| 3 | 3 | 2 | 1 | 1 | 1 | 0 | 0 |
-| 4 | 4 | 3 | 2 | 1 | 1 | 0 | 0 |
+| 1 | 4 | 2 | 2 | 2 | 1 | 0 | 1 |
+| 2 | 4 | 2 | 2 | 2 | 0 | 0 | 1 |
+| 3 | 3 | 2 | 1 | 1 | 1 | 0 | 1 |
+| 4 | 4 | 3 | 2 | 1 | 1 | 0 | 1 |
 | 5 | 4 | 1 | 2 | 3 | 2 | 0 | 0 |
-| 6 | 4 | 2 | 2 | 3 | 0 | 0 | 0 |
+| 6 | 4 | 2 | 2 | 3 | 0 | 0 | 1 |
 | 7 | 3 | 2 | 2 | 2 | 2 | 0 | 0 |
 | 8 | 4 | 2 | 1 | 2 | 3 | 0 | 0 |
 | 9 | 3 | 2 | 2 | 1 | 0 | 0 | 0 |
-217M	courses/roosevelt_la/sources
