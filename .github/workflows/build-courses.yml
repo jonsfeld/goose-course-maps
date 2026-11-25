@@ -55,6 +55,7 @@ jobs:
                 step 5m  tools/derive_terrain.py --course "$slug"
                 step 3m  tools/render_osm_features.py --course "$slug"
                 step 10m tools/build_hole_data.py --course "$slug"
+                python3 tools/check_hole_lines.py "$slug" || echo "::error::hole line check failed for $slug"
                 step 3m  tools/coverage_report.py --course "$slug" ;;
               trees)
                 step 20m tools/fetch_points_ept.py --course "$slug"
@@ -62,6 +63,7 @@ jobs:
                 step 15m tools/build_chm.py --course "$slug"
                 step 10m tools/detect_trees.py --course "$slug"
                 step 10m tools/build_hole_data.py --course "$slug"
+                python3 tools/check_hole_lines.py "$slug" || echo "::error::hole line check failed for $slug"
                 step 5m  tools/build_goose_payload.py --course "$slug"
                 step 3m  tools/coverage_report.py --course "$slug"
                 du -sh "courses/${slug}/sources" 2>/dev/null | tee -a "$log" || true ;;

@@ -256,20 +256,13 @@ def render(slug, hole, out_path):
                 pass
     gpoly = min((g for k, _, g in feats if k == "green"), key=lambda g: g.distance(Point(gc)))
     pin = gpoly.centroid
-    # The hole's own centerline (OSM golf=hole), closest to this tee. A back tee can sit well behind
-    # where the mapped line starts (Roosevelt 5's traced back tee is ~68 m back), so allow 100 m and
-    # extend the line back to the tee. Never fall back to a straight tee->green line on a dogleg
-    # unless there is no centerline at all — that line ran through the trees on Roosevelt 5.
-    cands = [g for k, p, g in feats
-             if k == "hole_line" and str(p.get("hole_ref")) == str(hole) and g.distance(Point(tee)) < 100 and g.distance(pin) < 40]
-    hole_line = min(cands, key=lambda g: g.distance(Point(tee))) if cands else None
-    if hole_line is not None:
-        coords = list(hole_line.coords)
-        if math.dist(coords[0][:2], tee) > 5:
-            coords = [tee] + coords
-        hole_line = LineString(coords)
-    if hole_line is None:
-        hole_line = LineString([tee, (pin.x, pin.y)])
+    # Draw exactly the centerline build_hole_data measured (hole_line.coords). One source for the line:
+    # the renderer used to pick its own and, when a back tee sat >60 m behind the mapped line, quietly
+    # drew a straight tee->green line through the trees (Roosevelt 5). No coords = stop, don't guess.
+    hl_coords = h["hole_line"].get("coords")
+    if not hl_coords or len(hl_coords) < 2:
+        raise SystemExit(f"[render] {slug} hole {hole}: hole_data has no centerline coords — rebuild hole data first")
+    hole_line = LineString([to_utm.transform(x, y) for x, y in hl_coords])
 
     L = math.dist(tee, (pin.x, pin.y))
     hw = 105.0
@@ -632,6 +625,11 @@ def main():
     ap.add_argument("--out-dir", required=True)
     a = ap.parse_args()
     out = Path(a.out_dir); (out / "holes").mkdir(parents=True, exist_ok=True)
+    # Gate: don't draw a course whose hole lines fail the centerline check (tools/check_hole_lines.py).
+    from check_hole_lines import check as check_lines
+    bad = sum(check_lines(spec.partition("=")[0]) for spec in a.course)
+    if bad:
+        raise SystemExit(f"[render] {bad} hole line(s) failed tools/check_hole_lines.py — fix the course data first")
     courses = {}
     for spec in a.course:
         slug, _, name = spec.partition("=")

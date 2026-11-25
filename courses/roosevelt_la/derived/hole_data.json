@@ -16,7 +16,21 @@
         },
         "length_m": 246.9,
         "length_yd": 270.0,
-        "tee_source": "hole_line_start"
+        "tee_source": "hole_line_start",
+        "coords": [
+          [
+            -118.2926317,
+            34.11828
+          ],
+          [
+            -118.2932483,
+            34.1193039
+          ],
+          [
+            -118.2936956,
+            34.1203187
+          ]
+        ]
       },
       "terrain": {
         "tee_elevation_m": 228.64,
@@ -1274,7 +1288,21 @@
         },
         "length_m": 342.8,
         "length_yd": 374.9,
-        "tee_source": "hole_line_start"
+        "tee_source": "hole_line_start",
+        "coords": [
+          [
+            -118.2932219,
+            34.1203977
+          ],
+          [
+            -118.2911275,
+            34.1203685
+          ],
+          [
+            -118.289695,
+            34.1210225
+          ]
+        ]
       },
       "terrain": {
         "tee_elevation_m": 240.24,
@@ -2558,7 +2586,21 @@
         },
         "length_m": 116.5,
         "length_yd": 127.4,
-        "tee_source": "back_tee_box"
+        "tee_source": "back_tee_box",
+        "coords": [
+          [
+            -118.2900138,
+            34.1212775
+          ],
+          [
+            -118.2898574,
+            34.1213926
+          ],
+          [
+            -118.2890339,
+            34.1219431
+          ]
+        ]
       },
       "terrain": {
         "tee_elevation_m": 254.67,
@@ -3493,7 +3535,25 @@
         },
         "length_m": 299.9,
         "length_yd": 328.0,
-        "tee_source": "hole_line_start"
+        "tee_source": "hole_line_start",
+        "coords": [
+          [
+            -118.2886129,
+            34.121452
+          ],
+          [
+            -118.2897612,
+            34.1203361
+          ],
+          [
+            -118.2909107,
+            34.1196929
+          ],
+          [
+            -118.2909985,
+            34.119644
+          ]
+        ]
       },
       "terrain": {
         "tee_elevation_m": 251.87,
@@ -4743,7 +4803,25 @@
         },
         "length_m": 296.9,
         "length_yd": 324.7,
-        "tee_source": "traced_back_tee"
+        "tee_source": "traced_back_tee",
+        "coords": [
+          [
+            -118.2904577,
+            34.1192254
+          ],
+          [
+            -118.2897276,
+            34.1194087
+          ],
+          [
+            -118.2884874,
+            34.1201924
+          ],
+          [
+            -118.2884784,
+            34.1209439
+          ]
+        ]
       },
       "terrain": {
         "tee_elevation_m": 251.39,
@@ -5900,7 +5978,21 @@
         },
         "length_m": 279.6,
         "length_yd": 305.8,
-        "tee_source": "traced_back_tee"
+        "tee_source": "traced_back_tee",
+        "coords": [
+          [
+            -118.288243,
+            34.1212141
+          ],
+          [
+            -118.288035,
+            34.1209737
+          ],
+          [
+            -118.2867828,
+            34.1190069
+          ]
+        ]
       },
       "terrain": {
         "tee_elevation_m": 250.11,
@@ -6845,7 +6937,17 @@
         },
         "length_m": 157.6,
         "length_yd": 172.4,
-        "tee_source": "scorecard_fit"
+        "tee_source": "scorecard_fit",
+        "coords": [
+          [
+            -118.2870507,
+            34.1190012
+          ],
+          [
+            -118.2887607,
+            34.1191105
+          ]
+        ]
       },
       "terrain": {
         "tee_elevation_m": 231.17,
@@ -7677,7 +7779,21 @@
         },
         "length_m": 285.1,
         "length_yd": 311.8,
-        "tee_source": "hole_line_start"
+        "tee_source": "hole_line_start",
+        "coords": [
+          [
+            -118.2890832,
+            34.118883
+          ],
+          [
+            -118.2907301,
+            34.1186332
+          ],
+          [
+            -118.2917331,
+            34.1194745
+          ]
+        ]
       },
       "terrain": {
         "tee_elevation_m": 238.9,
@@ -8818,7 +8934,17 @@
         },
         "length_m": 151.0,
         "length_yd": 165.2,
-        "tee_source": "hole_line_start"
+        "tee_source": "hole_line_start",
+        "coords": [
+          [
+            -118.2921444,
+            34.1196341
+          ],
+          [
+            -118.2921256,
+            34.1182734
+          ]
+        ]
       },
       "terrain": {
         "tee_elevation_m": 238.48,

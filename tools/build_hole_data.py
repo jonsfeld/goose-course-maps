@@ -318,6 +318,58 @@ def _scorecard(c):
     return json.loads(p.read_text()) if p.exists() else None
 
 
+
+def _fairway_cover(ln: LineString, poly) -> float:
+    """Share of a hole line that runs over fairway, measured from where the line first reaches the
+    fairway (the carry off the tee is often rough by design) to 85 % of its length, before the green
+    complex. Shared with tools/check_hole_lines.py so both use one rule."""
+    L = ln.length
+    if not L:
+        return 0.0
+    first = next((L * k / 50 for k in range(51) if poly.contains(ln.interpolate(L * k / 50))), None)
+    if first is None:
+        return 0.0
+    s0, s1 = max(first, L * 0.15), L * 0.85
+    if s1 <= s0:
+        return 1.0
+    mid = LineString([ln.interpolate(s0 + (s1 - s0) * k / 30).coords[0] for k in range(31)])
+    return mid.intersection(poly).length / mid.length if mid.length else 0.0
+
+
+def _snap_to_fairway(line: LineString, fairways: list) -> LineString | None:
+    """If under 55 % of the line's middle runs over its fairway, return a line through the middle of
+    that fairway (tee -> fairway midpoints every ~11 m -> green) when that line is >= 80 % on it."""
+    from shapely.ops import unary_union, transform as _tx
+    lat0 = line.coords[0][1]
+    kx, ky = 111320 * math.cos(math.radians(lat0)), 110540
+    fwd = lambda x, y, z=None: (x * kx, y * ky)
+    back = lambda x, y, z=None: (x / kx, y / ky)
+    L = _tx(fwd, LineString([c[:2] for c in line.coords]))
+    poly = unary_union([_tx(fwd, f).buffer(0) for f in fairways])
+
+    def cover(ln):
+        return _fairway_cover(ln, poly)
+
+    if cover(L) >= 0.55:
+        return None
+    t, g = Point(L.coords[0]), Point(L.coords[-1])
+    pts, d, D = [t.coords[0]], 110.0, t.distance(g)
+    while d < D * 1.15:
+        ring = t.buffer(d, 256).exterior.intersection(poly)
+        parts = [ring] if ring.geom_type == "LineString" else [x for x in getattr(ring, "geoms", []) if x.geom_type == "LineString"]
+        if parts:
+            m = max(parts, key=lambda q: q.length).interpolate(0.5, normalized=True)
+            if m.distance(g) < Point(pts[-1]).distance(g) + 5:
+                pts.append(m.coords[0])
+        d += 11.0
+        if Point(pts[-1]).distance(g) < 55:
+            break
+    pts.append(g.coords[0])
+    cand = LineString(pts).simplify(4)
+    if len(cand.coords) < 2 or cover(cand) < 0.80:
+        return None
+    return _tx(back, cand)
+
 def _fit_tee_to_card(line, tee_polys, other_starts, lo, hi):
     """When the line's length is off the published scorecard, try each nearby tee box (within 90 m
     of the line start, on the hole's axis, not starting another hole) as the tee, and keep the one
@@ -424,6 +476,14 @@ def build(slug: str) -> Path:
             fitted = _fit_tee_to_card(line, all_tees, [p for i, p in enumerate(starts) if i != idx], min(vals), max(vals))
             if fitted is not None:
                 line, tee_source = fitted, "scorecard_fit"
+        # Par 4/5 whose mapped line mostly misses its own fairway (Harding 13, 16; Presidio 17): walk the
+        # fairway's middle instead, if that line really is on the fairway. Same rule Goose's own course
+        # data uses (goosecaddie bench/tools/fix_course_geometry.py); checked by tools/check_hole_lines.py.
+        if (par or 0) >= 4 and assigned[idx]["fairways"]:
+            snapped = _snap_to_fairway(line, [shape(f["geometry"]) for f in assigned[idx]["fairways"]])
+            if snapped is not None:
+                line = snapped
+                tee_source += "+fairway_snap"
         tee_pt = Point(line.coords[0])
         green_pt = Point(line.coords[-1])   # last vertex = green
 
@@ -501,6 +561,9 @@ def build(slug: str) -> Path:
                 "length_m": round(length_m, 1),
                 "length_yd": round(length_m * 1.09361, 1),
                 "tee_source": tee_source,
+                # The exact centerline the length was measured along (tee -> bend(s) -> green), [lng, lat].
+                # The hole view draws this line and nothing else, so the picture and the numbers can't diverge.
+                "coords": [[round(c[0], 7), round(c[1], 7)] for c in cs],
             },
             "terrain": {
                 "tee_elevation_m": round(tee_elev, 2) if not math.isnan(tee_elev) else None,
